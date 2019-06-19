@@ -37,8 +37,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/winpharm
-    username: winpharm
-    password:
+    username: postgres
+    password: test
     hikari:
       poolName: Hikari
       auto-commit: false
