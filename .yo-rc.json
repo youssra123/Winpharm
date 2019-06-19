@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.sophatel.winpharm",
+      "nativeLanguage": "fr"
+    },
+    "jhipsterVersion": "6.1.0",
+    "applicationType": "monolith",
+    "baseName": "winpharm",
+    "packageName": "com.sophatel.winpharm",
+    "packageFolder": "com/sophatel/winpharm",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MmQzNWE5N2VlMDAyZmZmNzlkYWMxZDgwMzQwYWM4NmVhZWI1YzAwN2MwZmEwODE2NmM4ZDgwYmZkMjJjYTA1NGI3ZGRjZTMzZGZkM2I5OTdkNTVjYTU3YzZiMDFjNWI0MGI1ZTE1YjQ2NjJmZTE0MzAzNmFjZWM2YjVjMzZkZWU=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "fr",
+    "languages": ["fr"]
+  }
+}
