@@ -4,6 +4,46 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     RouterModule.forChild([
+      {
+        path: 'ville',
+        loadChildren: './ville/ville.module#WinpharmVilleModule'
+      },
+      {
+        path: 'grossiste',
+        loadChildren: './grossiste/grossiste.module#WinpharmGrossisteModule'
+      },
+      {
+        path: 'forme',
+        loadChildren: './forme/forme.module#WinpharmFormeModule'
+      },
+      {
+        path: 'categorie',
+        loadChildren: './categorie/categorie.module#WinpharmCategorieModule'
+      },
+      {
+        path: 'rayon',
+        loadChildren: './rayon/rayon.module#WinpharmRayonModule'
+      },
+      {
+        path: 'fammille-tarifaire',
+        loadChildren: './fammille-tarifaire/fammille-tarifaire.module#WinpharmFammilleTarifaireModule'
+      },
+      {
+        path: 'laboratoire',
+        loadChildren: './laboratoire/laboratoire.module#WinpharmLaboratoireModule'
+      },
+      {
+        path: 'stock',
+        loadChildren: './stock/stock.module#WinpharmStockModule'
+      },
+      {
+        path: 'produit',
+        loadChildren: './produit/produit.module#WinpharmProduitModule'
+      },
+      {
+        path: 'stockproduit',
+        loadChildren: './stockproduit/stockproduit.module#WinpharmStockproduitModule'
+      }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
   ],

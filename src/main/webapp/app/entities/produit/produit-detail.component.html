@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="produit">
+            <h2><span jhiTranslate="winpharmApp.produit.detail.title">Produit</span> {{produit.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="winpharmApp.produit.produitLibelle">Produit Libelle</span></dt>
+                <dd>
+                    <span>{{produit.produitLibelle}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produitActif">Produit Actif</span></dt>
+                <dd>
+                    <span>{{produit.produitActif}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produitCodeBarre">Produit Code Barre</span></dt>
+                <dd>
+                    <span>{{produit.produitCodeBarre}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produitDosage">Produit Dosage</span></dt>
+                <dd>
+                    <span>{{produit.produitDosage}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produitUniDosage">Produit Uni Dosage</span></dt>
+                <dd>
+                    <span>{{produit.produitUniDosage}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produitVolume">Produit Volume</span></dt>
+                <dd>
+                    <span>{{produit.produitVolume}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produitUniVolume">Produit Uni Volume</span></dt>
+                <dd>
+                    <span>{{produit.produitUniVolume}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produit_rayon">Produit Rayon</span></dt>
+                <dd>
+                    <div *ngIf="produit.produit_rayon">
+                        <a [routerLink]="['/rayon', produit.produit_rayon?.id, 'view']">{{produit.produit_rayon?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produit_categorie">Produit Categorie</span></dt>
+                <dd>
+                    <div *ngIf="produit.produit_categorie">
+                        <a [routerLink]="['/categorie', produit.produit_categorie?.id, 'view']">{{produit.produit_categorie?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produit_fam_tar">Produit Fam Tar</span></dt>
+                <dd>
+                    <div *ngIf="produit.produit_fam_tar">
+                        <a [routerLink]="['/fammille-tarifaire', produit.produit_fam_tar?.id, 'view']">{{produit.produit_fam_tar?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produit_laboratoire">Produit Laboratoire</span></dt>
+                <dd>
+                    <div *ngIf="produit.produit_laboratoire">
+                        <a [routerLink]="['/laboratoire', produit.produit_laboratoire?.id, 'view']">{{produit.produit_laboratoire?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.produit_grossiste">Produit Grossiste</span></dt>
+                <dd>
+                    <div *ngIf="produit.produit_grossiste">
+                        <a [routerLink]="['/grossiste', produit.produit_grossiste?.id, 'view']">{{produit.produit_grossiste?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.produit.proform">Proform</span></dt>
+                <dd>
+                    <div *ngIf="produit.proform">
+                        <a [routerLink]="['/forme', produit.proform?.id, 'view']">{{produit.proform?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/produit', produit.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

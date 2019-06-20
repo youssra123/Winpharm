@@ -1,0 +1,24 @@
+{
+  "winpharmApp": {
+    "laboratoire": {
+      "home": {
+        "title": "Laboratoires",
+        "createLabel": "Créer un nouveau Laboratoire",
+        "createOrEditLabel": "Créer ou éditer un Laboratoire",
+        "notFound": "Aucun Laboratoire trouvé"
+      },
+      "created": "Un nouveau Laboratoire a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Laboratoire avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Laboratoire avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Laboratoire {{ id }} ?"
+      },
+      "detail": {
+        "title": "Laboratoire"
+      },
+      "laboratoireRaisSoc": "Laboratoire Rais Soc",
+      "laboratoireAdresse": "Laboratoire Adresse",
+      "laboratoireTelephone": "Laboratoire Telephone"
+    }
+  }
+}

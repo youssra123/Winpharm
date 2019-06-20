@@ -1,0 +1,22 @@
+{
+  "winpharmApp": {
+    "rayon": {
+      "home": {
+        "title": "Rayons",
+        "createLabel": "Créer un nouveau Rayon",
+        "createOrEditLabel": "Créer ou éditer un Rayon",
+        "notFound": "Aucun Rayon trouvé"
+      },
+      "created": "Un nouveau Rayon a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Rayon avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Rayon avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Rayon {{ id }} ?"
+      },
+      "detail": {
+        "title": "Rayon"
+      },
+      "rayonLibelle": "Rayon Libelle"
+    }
+  }
+}

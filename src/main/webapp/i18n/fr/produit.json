@@ -1,0 +1,34 @@
+{
+  "winpharmApp": {
+    "produit": {
+      "home": {
+        "title": "Produits",
+        "createLabel": "Créer un nouveau Produit",
+        "createOrEditLabel": "Créer ou éditer un Produit",
+        "notFound": "Aucun Produit trouvé"
+      },
+      "created": "Un nouveau Produit a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Produit avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Produit avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Produit {{ id }} ?"
+      },
+      "detail": {
+        "title": "Produit"
+      },
+      "produitLibelle": "Produit Libelle",
+      "produitActif": "Produit Actif",
+      "produitCodeBarre": "Produit Code Barre",
+      "produitDosage": "Produit Dosage",
+      "produitUniDosage": "Produit Uni Dosage",
+      "produitVolume": "Produit Volume",
+      "produitUniVolume": "Produit Uni Volume",
+      "produit_rayon": "Produit Rayon",
+      "produit_categorie": "Produit Categorie",
+      "produit_fam_tar": "Produit Fam Tar",
+      "produit_laboratoire": "Produit Laboratoire",
+      "produit_grossiste": "Produit Grossiste",
+      "proform": "Proform"
+    }
+  }
+}

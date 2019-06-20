@@ -43,6 +43,16 @@ public class CacheConfiguration {
             createCache(cm, com.sophatel.winpharm.domain.User.class.getName());
             createCache(cm, com.sophatel.winpharm.domain.Authority.class.getName());
             createCache(cm, com.sophatel.winpharm.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.sophatel.winpharm.domain.Ville.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.Grossiste.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.Forme.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.Categorie.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.Rayon.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.FammilleTarifaire.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.Laboratoire.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.Stock.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.Produit.class.getName());
+            createCache(cm, com.sophatel.winpharm.domain.Stockproduit.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

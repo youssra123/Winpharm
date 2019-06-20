@@ -1,0 +1,25 @@
+{
+  "winpharmApp": {
+    "grossiste": {
+      "home": {
+        "title": "Grossistes",
+        "createLabel": "Créer un nouveau Grossiste",
+        "createOrEditLabel": "Créer ou éditer un Grossiste",
+        "notFound": "Aucun Grossiste trouvé"
+      },
+      "created": "Un nouveau Grossiste a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Grossiste avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Grossiste avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Grossiste {{ id }} ?"
+      },
+      "detail": {
+        "title": "Grossiste"
+      },
+      "grossisteRaisSoc": "Grossiste Rais Soc",
+      "grossisteAdresse": "Grossiste Adresse",
+      "grossisteTelephone": "Grossiste Telephone",
+      "grossis_ville": "Grossis Ville"
+    }
+  }
+}

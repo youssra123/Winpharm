@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="laboratoire">
+            <h2><span jhiTranslate="winpharmApp.laboratoire.detail.title">Laboratoire</span> {{laboratoire.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="winpharmApp.laboratoire.laboratoireRaisSoc">Laboratoire Rais Soc</span></dt>
+                <dd>
+                    <span>{{laboratoire.laboratoireRaisSoc}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.laboratoire.laboratoireAdresse">Laboratoire Adresse</span></dt>
+                <dd>
+                    <span>{{laboratoire.laboratoireAdresse}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.laboratoire.laboratoireTelephone">Laboratoire Telephone</span></dt>
+                <dd>
+                    <span>{{laboratoire.laboratoireTelephone}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/laboratoire', laboratoire.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

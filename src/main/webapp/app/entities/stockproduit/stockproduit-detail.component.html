@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="stockproduit">
+            <h2><span jhiTranslate="winpharmApp.stockproduit.detail.title">Stockproduit</span> {{stockproduit.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="winpharmApp.stockproduit.stockProduitQuantite">Stock Produit Quantite</span></dt>
+                <dd>
+                    <span>{{stockproduit.stockProduitQuantite}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.stockproduit.stockProduitDateCreation">Stock Produit Date Creation</span></dt>
+                <dd>
+                    <span>{{stockproduit.stockProduitDateCreation}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.stockproduit.stockProduitDatePeremption">Stock Produit Date Peremption</span></dt>
+                <dd>
+                    <span>{{stockproduit.stockProduitDatePeremption}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.stockproduit.stockProduitPrixVente">Stock Produit Prix Vente</span></dt>
+                <dd>
+                    <span>{{stockproduit.stockProduitPrixVente}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.stockproduit.stockProduitPrixHorsTaxe">Stock Produit Prix Hors Taxe</span></dt>
+                <dd>
+                    <span>{{stockproduit.stockProduitPrixHorsTaxe}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.stockproduit.stock_produit_produit">Stock Produit Produit</span></dt>
+                <dd>
+                    <div *ngIf="stockproduit.stock_produit_produit">
+                        <a [routerLink]="['/produit', stockproduit.stock_produit_produit?.id, 'view']">{{stockproduit.stock_produit_produit?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.stockproduit.stock_produit_stock">Stock Produit Stock</span></dt>
+                <dd>
+                    <div *ngIf="stockproduit.stock_produit_stock">
+                        <a [routerLink]="['/stock', stockproduit.stock_produit_stock?.id, 'view']">{{stockproduit.stock_produit_stock?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/stockproduit', stockproduit.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

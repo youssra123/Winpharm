@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="grossiste">
+            <h2><span jhiTranslate="winpharmApp.grossiste.detail.title">Grossiste</span> {{grossiste.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="winpharmApp.grossiste.grossisteRaisSoc">Grossiste Rais Soc</span></dt>
+                <dd>
+                    <span>{{grossiste.grossisteRaisSoc}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.grossiste.grossisteAdresse">Grossiste Adresse</span></dt>
+                <dd>
+                    <span>{{grossiste.grossisteAdresse}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.grossiste.grossisteTelephone">Grossiste Telephone</span></dt>
+                <dd>
+                    <span>{{grossiste.grossisteTelephone}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.grossiste.grossis_ville">Grossis Ville</span></dt>
+                <dd>
+                    <div *ngIf="grossiste.grossis_ville">
+                        <a [routerLink]="['/ville', grossiste.grossis_ville?.id, 'view']">{{grossiste.grossis_ville?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/grossiste', grossiste.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

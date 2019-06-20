@@ -1,0 +1,105 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "produit_rayon",
+            "otherEntityName": "rayon",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "produit"
+        },
+        {
+            "relationshipName": "produit_categorie",
+            "otherEntityName": "categorie",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "produit"
+        },
+        {
+            "relationshipName": "produit_fam_tar",
+            "otherEntityName": "fammilleTarifaire",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "produit"
+        },
+        {
+            "relationshipName": "produit_laboratoire",
+            "otherEntityName": "laboratoire",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "produit"
+        },
+        {
+            "relationshipName": "produit_grossiste",
+            "otherEntityName": "grossiste",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "produit"
+        },
+        {
+            "relationshipName": "proform",
+            "otherEntityName": "forme",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "produit"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "produitLibelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "5",
+            "fieldValidateRulesMaxlength": "30"
+        },
+        {
+            "fieldName": "produitActif",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "produitCodeBarre",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "produitDosage",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "produitUniDosage",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "produitVolume",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "produitUniVolume",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190620181305",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "produit",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

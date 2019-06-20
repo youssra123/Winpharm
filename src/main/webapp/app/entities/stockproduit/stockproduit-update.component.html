@@ -1,0 +1,127 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-stockproduit-heading" jhiTranslate="winpharmApp.stockproduit.home.createOrEditLabel">Create or edit a Stockproduit</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.stockproduit.stockProduitQuantite" for="field_stockProduitQuantite">Stock Produit Quantite</label>
+                    <input type="number" class="form-control" name="stockProduitQuantite" id="field_stockProduitQuantite"
+                           formControlName="stockProduitQuantite"/>
+                    <div *ngIf="editForm.get('stockProduitQuantite').invalid && (editForm.get('stockProduitQuantite').dirty || editForm.get('stockProduitQuantite').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('stockProduitQuantite').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('stockProduitQuantite')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.stockproduit.stockProduitDateCreation" for="field_stockProduitDateCreation">Stock Produit Date Creation</label>
+                    <div class="d-flex">
+                        <input id="field_stockProduitDateCreation" type="datetime-local" class="form-control" name="stockProduitDateCreation" formControlName="stockProduitDateCreation" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('stockProduitDateCreation').invalid && (editForm.get('stockProduitDateCreation').dirty || editForm.get('stockProduitDateCreation').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('stockProduitDateCreation').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('stockProduitDateCreation').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.stockproduit.stockProduitDatePeremption" for="field_stockProduitDatePeremption">Stock Produit Date Peremption</label>
+                    <div class="d-flex">
+                        <input id="field_stockProduitDatePeremption" type="datetime-local" class="form-control" name="stockProduitDatePeremption" formControlName="stockProduitDatePeremption" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('stockProduitDatePeremption').invalid && (editForm.get('stockProduitDatePeremption').dirty || editForm.get('stockProduitDatePeremption').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('stockProduitDatePeremption').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('stockProduitDatePeremption').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.stockproduit.stockProduitPrixVente" for="field_stockProduitPrixVente">Stock Produit Prix Vente</label>
+                    <input type="number" class="form-control" name="stockProduitPrixVente" id="field_stockProduitPrixVente"
+                           formControlName="stockProduitPrixVente"/>
+                    <div *ngIf="editForm.get('stockProduitPrixVente').invalid && (editForm.get('stockProduitPrixVente').dirty || editForm.get('stockProduitPrixVente').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('stockProduitPrixVente').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('stockProduitPrixVente')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.stockproduit.stockProduitPrixHorsTaxe" for="field_stockProduitPrixHorsTaxe">Stock Produit Prix Hors Taxe</label>
+                    <input type="number" class="form-control" name="stockProduitPrixHorsTaxe" id="field_stockProduitPrixHorsTaxe"
+                           formControlName="stockProduitPrixHorsTaxe"/>
+                    <div *ngIf="editForm.get('stockProduitPrixHorsTaxe').invalid && (editForm.get('stockProduitPrixHorsTaxe').dirty || editForm.get('stockProduitPrixHorsTaxe').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('stockProduitPrixHorsTaxe').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('stockProduitPrixHorsTaxe')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.stockproduit.stock_produit_produit" for="field_stock_produit_produit">Stock Produit Produit</label>
+                    <select class="form-control" id="field_stock_produit_produit" name="stock_produit_produit" formControlName="stock_produit_produit">
+                        <option *ngIf="!editForm.get('stock_produit_produit').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="produitOption.id === editForm.get('stock_produit_produit').value?.id ? editForm.get('stock_produit_produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('stock_produit_produit').invalid && (editForm.get('stock_produit_produit').dirty || editForm.get('stock_produit_produit').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('stock_produit_produit').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.stockproduit.stock_produit_stock" for="field_stock_produit_stock">Stock Produit Stock</label>
+                    <select class="form-control" id="field_stock_produit_stock" name="stock_produit_stock" formControlName="stock_produit_stock">
+                        <option *ngIf="!editForm.get('stock_produit_stock').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="stockOption.id === editForm.get('stock_produit_stock').value?.id ? editForm.get('stock_produit_stock').value : stockOption" *ngFor="let stockOption of stocks; trackBy: trackStockById">{{stockOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('stock_produit_stock').invalid && (editForm.get('stock_produit_stock').dirty || editForm.get('stock_produit_stock').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('stock_produit_stock').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

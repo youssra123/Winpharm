@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="winpharmApp.grossiste.home.title">Grossistes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-grossiste" [routerLink]="['/grossiste/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="winpharmApp.grossiste.home.createLabel">
+            Create new Grossiste
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="grossistes?.length === 0">
+        <span jhiTranslate="winpharmApp.grossiste.home.notFound">No grossistes found</span>
+    </div>
+    <div class="table-responsive" *ngIf="grossistes?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="grossisteRaisSoc"><span jhiTranslate="winpharmApp.grossiste.grossisteRaisSoc">Grossiste Rais Soc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="grossisteAdresse"><span jhiTranslate="winpharmApp.grossiste.grossisteAdresse">Grossiste Adresse</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="grossisteTelephone"><span jhiTranslate="winpharmApp.grossiste.grossisteTelephone">Grossiste Telephone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="grossis_ville.id"><span jhiTranslate="winpharmApp.grossiste.grossis_ville">Grossis Ville</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let grossiste of grossistes ;trackBy: trackId">
+                <td><a [routerLink]="['/grossiste', grossiste.id, 'view' ]">{{grossiste.id}}</a></td>
+                <td>{{grossiste.grossisteRaisSoc}}</td>
+                <td>{{grossiste.grossisteAdresse}}</td>
+                <td>{{grossiste.grossisteTelephone}}</td>
+                <td>
+                    <div *ngIf="grossiste.grossis_ville">
+                        <a [routerLink]="['../ville', grossiste.grossis_ville?.id, 'view' ]" >{{grossiste.grossis_ville?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/grossiste', grossiste.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/grossiste', grossiste.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'grossiste', { outlets: { popup: grossiste.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

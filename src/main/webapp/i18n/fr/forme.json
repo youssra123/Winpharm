@@ -1,0 +1,22 @@
+{
+  "winpharmApp": {
+    "forme": {
+      "home": {
+        "title": "Formes",
+        "createLabel": "Créer un nouveau Forme",
+        "createOrEditLabel": "Créer ou éditer un Forme",
+        "notFound": "Aucun Forme trouvé"
+      },
+      "created": "Un nouveau Forme a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Forme avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Forme avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Forme {{ id }} ?"
+      },
+      "detail": {
+        "title": "Forme"
+      },
+      "formeLibelle": "Forme Libelle"
+    }
+  }
+}
