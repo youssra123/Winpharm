@@ -18,6 +18,7 @@ import { WinpharmHomeModule } from './home/home.module';
 import { WinpharmAccountModule } from './account/account.module';
 import { WinpharmEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
+import { WinpharmAppContactModule } from './contact/contact.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
@@ -36,6 +37,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     WinpharmCoreModule,
     WinpharmHomeModule,
     WinpharmAccountModule,
+    WinpharmAppContactModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     WinpharmEntityModule,
     WinpharmAppRoutingModule
