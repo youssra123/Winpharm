@@ -6,7 +6,11 @@
 Bootstrap tweaks
 ===============================================================*/
 
-body,
+body {
+  background-image: url('../../content/images/medications.jpg');
+  background-size: cover;
+  font-weight: 300;
+}
 h1,
 h2,
 h3,
