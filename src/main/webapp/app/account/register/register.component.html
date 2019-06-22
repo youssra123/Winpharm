@@ -1,8 +1,8 @@
 <div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1 jhiTranslate="register.title">Registration</h1>
-
+            <h5 jhiTranslate="register.title" class="content padding-box">Registration</h5>
+            <br><br>
             <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
                 <strong>Registration saved!</strong> Please check your email for confirmation.
             </div>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="password" jhiTranslate="global.form.newpassword.label">New password</label>
+                    <label class="form-control-label" for="password" jhiTranslate="global.form.password">New password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="{{'global.form.newpassword.placeholder' | translate}}"
                             formControlName="password">
                     <div *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched)">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
+                <button type="submit" [disabled]="registerForm.invalid" class="btn back_color" jhiTranslate="register.form.button">Register</button>
             </form>
             <p></p>
             <div class="alert alert-warning">

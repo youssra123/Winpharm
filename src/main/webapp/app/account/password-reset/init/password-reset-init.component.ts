@@ -6,7 +6,27 @@ import { PasswordResetInitService } from './password-reset-init.service';
 
 @Component({
   selector: 'jhi-password-reset-init',
-  templateUrl: './password-reset-init.component.html'
+  templateUrl: './password-reset-init.component.html',
+  styles: [
+    `
+      .padding-box {
+        background-clip: padding-box;
+      }
+
+      .content {
+        padding: 1em;
+        border-bottom: 1px solid #aeb2b6;
+        padding-bottom: 7%;
+        padding-top: 15%;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .back_color {
+        background-color: rgb(38, 151, 87);
+        color: white;
+      }
+    `
+  ]
 })
 export class PasswordResetInitComponent implements AfterViewInit {
   error: string;

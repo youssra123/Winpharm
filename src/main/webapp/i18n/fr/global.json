@@ -54,7 +54,8 @@
       "confirmpassword.label": "Confirmation du nouveau mot de passe",
       "confirmpassword.placeholder": "Confirmation du nouveau mot de passe",
       "email.label": "Email",
-      "email.placeholder": "Votre email"
+      "email.placeholder": "Votre email",
+      "password": "Mot de passe"
     },
     "messages": {
       "info": {
@@ -92,7 +93,7 @@
       }
     },
     "field": {
-      "id": "ID"
+      "id": "Code"
     },
     "ribbon": {
       "dev": "Développement"

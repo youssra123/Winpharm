@@ -10,7 +10,26 @@ import { Register } from './register.service';
 
 @Component({
   selector: 'jhi-register',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
+  styles: [
+    `
+      .padding-box {
+        background-clip: padding-box;
+      }
+
+      .content {
+        padding: 1em;
+        border-bottom: 1px solid #aeb2b6;
+        padding-bottom: 7%;
+        padding-top: 15%;
+      }
+      .back_color {
+        margin-left: 30%;
+        background-color: rgb(38, 151, 87);
+        color: white;
+      }
+    `
+  ]
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
   doNotMatch: string;

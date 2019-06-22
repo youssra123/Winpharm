@@ -9,7 +9,24 @@ import { StateStorageService } from 'app/core/auth/state-storage.service';
 
 @Component({
   selector: 'jhi-login-modal',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styles: [
+    `
+      .model {
+        background-color: rgb(38, 151, 87);
+        color: white;
+      }
+      .m {
+        text-align: center;
+        padding-left: 30%;
+      }
+      .back_color {
+        margin-left: 12%;
+        background-color: rgb(38, 151, 87);
+        color: white;
+      }
+    `
+  ]
 })
 export class JhiLoginModalComponent implements AfterViewInit {
   authenticationError: boolean;

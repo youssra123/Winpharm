@@ -12,7 +12,8 @@ import { ProduitService } from './produit.service';
 
 @Component({
   selector: 'jhi-produit',
-  templateUrl: './produit.component.html'
+  templateUrl: './produit.component.html',
+  styleUrls: ['produit.scss']
 })
 export class ProduitComponent implements OnInit, OnDestroy {
   produits: IProduit[];

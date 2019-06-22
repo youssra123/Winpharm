@@ -1,6 +1,6 @@
-<div class="modal-header">
-    <h4 class="modal-title" jhiTranslate="login.title">Sign in</h4>
-    <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
+<div class="modal-header model">
+    <h4 class="modal-title m" jhiTranslate="login.title">Sign in</h4>
+    <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')" style="color:white;"><span aria-hidden="true" >x</span>
     </button>
 </div>
 <div class="modal-body">
@@ -28,12 +28,14 @@
                         <span jhiTranslate="login.form.rememberme">Remember me</span>
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button">Sign in</button>
+                <br>
+                <div>
+                    <a class="alert-link" (click)="requestResetPassword()" jhiTranslate="login.password.forgot" style="color:rgb(38, 151, 87);">Did you forget your password?</a>
+                    <button type="submit" class="btn back_color" jhiTranslate="login.form.button">Sign in</button>
+                </div>
             </form>
             <p></p>
-            <div class="alert alert-warning">
-                <a class="alert-link" (click)="requestResetPassword()" jhiTranslate="login.password.forgot">Did you forget your password?</a>
-            </div>
+            
             <div class="alert alert-warning">
                 <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
                 <a class="alert-link" (click)="register()" jhiTranslate="global.messages.info.register.link">Register a new account</a>

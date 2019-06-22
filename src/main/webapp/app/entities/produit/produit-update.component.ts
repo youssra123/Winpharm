@@ -22,7 +22,8 @@ import { FormeService } from 'app/entities/forme';
 
 @Component({
   selector: 'jhi-produit-update',
-  templateUrl: './produit-update.component.html'
+  templateUrl: './produit-update.component.html',
+  styleUrls: ['produit.scss']
 })
 export class ProduitUpdateComponent implements OnInit {
   isSaving: boolean;
