@@ -91,8 +91,5 @@ public class ProduitServiceImpl implements ProduitService {
         produitRepository.deleteById(id);
     }
 
-    @Override
-    public int calculQteStock(Long id) {
-        return produitRepository.calculQteStock(id);
-    }
+
 }
