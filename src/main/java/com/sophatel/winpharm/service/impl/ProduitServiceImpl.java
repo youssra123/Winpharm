@@ -90,4 +90,9 @@ public class ProduitServiceImpl implements ProduitService {
         log.debug("Request to delete Produit : {}", id);
         produitRepository.deleteById(id);
     }
+
+    @Override
+    public int calculQteStock(Long id) {
+        return produitRepository.calculQteStock(id);
+    }
 }

@@ -52,4 +52,5 @@ public interface ProduitService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    int calculQteStock(Long id );
 }

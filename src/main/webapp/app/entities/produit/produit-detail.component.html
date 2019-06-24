@@ -70,7 +70,7 @@
                             <span jhiTranslate="winpharmApp.produit.produit_rayon">Produit Rayon</span>
                         </div>
                         <div *ngIf="produit.produit_rayon, else elseblock">
-                            <a [routerLink]="['/rayon', produit.produit_rayon?.id, 'view']">{{produit.produit_rayon?.id}}</a>
+                            <a [routerLink]="['/rayon', produit.produit_rayon?.id, 'view']">{{produit.produit_rayon?.rayonLibelle}}</a>
                         </div>
                         <ng-template #elseblock>
                         <div>
@@ -83,7 +83,7 @@
                             <span jhiTranslate="winpharmApp.produit.produit_categorie">Produit Categorie</span>
                         </div>
                         <div *ngIf="produit.produit_categorie">
-                            <a [routerLink]="['/categorie', produit.produit_categorie?.id, 'view']">{{produit.produit_categorie?.id}}</a>
+                            <a [routerLink]="['/categorie', produit.produit_categorie?.id, 'view']">{{produit.produit_categorie?.categorieLibelle}}</a>
                         </div>    
                 </div>
                 <div class="col-md-6 bottom">
@@ -91,12 +91,15 @@
                             <span jhiTranslate="winpharmApp.produit.produit_fam_tar">Produit Fam Tar</span>
                         </div>
                         <div *ngIf="produit.produit_fam_tar, else elseblock2">
-                                <a [routerLink]="['/fammille-tarifaire', produit.produit_fam_tar?.id, 'view']">{{produit.produit_fam_tar?.id}}</a>
+                                <a [routerLink]="['/fammille-tarifaire', produit.produit_fam_tar?.id, 'view']">{{produit.produit_fam_tar?.famiTarifLibelle}}</a>
                         </div>    
                 </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produit_laboratoire">Produit Laboratoire</span>
+                        </div>
+                        <div *ngIf="produit.produit_laboratoire , else elseblock">
+                            <a [routerLink]="['/laboratoire', produit.produit_laboratoire?.id, 'view']">{{produit.produit_laboratoire?.laboratoireRaisSoc}}</a>
                         </div>
                         <ng-template #elseblock2>
                         <div>
@@ -109,7 +112,7 @@
                             <span jhiTranslate="winpharmApp.produit.produit_grossiste">Produit Grossiste</span>
                         </div>
                         <div>
-                                <a [routerLink]="['/grossiste', produit.produit_grossiste?.id, 'view']">{{produit.produit_grossiste?.id}}</a>
+                                <a [routerLink]="['/grossiste', produit.produit_grossiste?.id, 'view']">{{produit.produit_grossiste?.grossisteRaisSoc}}</a>
                         </div> 
                 </div>
                 <div class="col-md-6 bottom">
@@ -117,7 +120,7 @@
                             <span jhiTranslate="winpharmApp.produit.proform">Proform</span>
                         </div>
                         <div *ngIf="produit.proform">
-                                <a [routerLink]="['/forme', produit.proform?.id, 'view']">{{produit.proform?.id}}</a>
+                                <a [routerLink]="['/forme', produit.proform?.id, 'view']">{{produit.proform?.formeLibelle}}</a>
                         </div>   
                 </div>
 

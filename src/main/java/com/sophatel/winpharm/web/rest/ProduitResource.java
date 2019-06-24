@@ -86,7 +86,7 @@ public class ProduitResource {
             .body(result);
     }
 
-    /**
+    /** 
      * {@code GET  /produits} : get all the produits.
      *
      * @param pageable the pagination information.
