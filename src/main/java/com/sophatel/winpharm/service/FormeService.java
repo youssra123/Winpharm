@@ -28,6 +28,13 @@ public interface FormeService {
      */
     Page<Forme> findAll(Pageable pageable);
 
+    /**
+     * Get all the formes by libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Forme> findAllByDes(String str, Pageable pageable);
 
     /**
      * Get the "id" forme.

@@ -52,7 +52,19 @@ public class FormeServiceImpl implements FormeService {
         log.debug("Request to get all Formes");
         return formeRepository.findAll(pageable);
     }
-
+    
+    /**
+     * Get all the formes by libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Forme> findAllByDes(String str, Pageable pageable) {
+        log.debug("Request to get all Formes by libelle");
+        return formeRepository.findAllByDes("%"+str+"%", pageable);
+    }
 
     /**
      * Get one forme by id.

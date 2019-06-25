@@ -28,6 +28,13 @@ public interface LaboratoireService {
      */
     Page<Laboratoire> findAll(Pageable pageable);
 
+    /**
+     * Get all the laboratoires by libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Laboratoire> findAllByDes(String str, Pageable pageable);
 
     /**
      * Get the "id" laboratoire.

@@ -53,6 +53,18 @@ public class FammilleTarifaireServiceImpl implements FammilleTarifaireService {
         return fammilleTarifaireRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the fammilleTarifaires by libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<FammilleTarifaire> findAllByDes(String str, Pageable pageable) {
+        log.debug("Request to get all FammilleTarifaires by libelle");
+        return fammilleTarifaireRepository.findAllByDes("%"+str+"%", pageable);
+    }
 
     /**
      * Get one fammilleTarifaire by id.

@@ -28,6 +28,13 @@ public interface GrossisteService {
      */
     Page<Grossiste> findAll(Pageable pageable);
 
+    /**
+     * Get all the grossistes by libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Grossiste> findAllByDes(String str, Pageable pageable);
 
     /**
      * Get the "id" grossiste.

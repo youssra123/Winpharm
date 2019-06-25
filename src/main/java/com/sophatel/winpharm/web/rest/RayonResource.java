@@ -95,7 +95,14 @@ public class RayonResource {
     @GetMapping("/rayons")
     public ResponseEntity<List<Rayon>> getAllRayons(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Rayons");
-        Page<Rayon> page = rayonService.findAll(pageable);
+        String str = "";
+        Page<Rayon> page;
+        if (queryParams.get("q") != null)
+            str = queryParams.get("q").get(0);
+        if (str != "")
+            page = rayonService.findAllByDes(str, pageable);
+        else
+            page = rayonService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

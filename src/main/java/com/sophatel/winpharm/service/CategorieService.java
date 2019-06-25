@@ -28,6 +28,14 @@ public interface CategorieService {
      */
     Page<Categorie> findAll(Pageable pageable);
 
+    /**
+     * Get all the categories by Libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Categorie> findAllByDes(String str, Pageable pageable);
+
 
     /**
      * Get the "id" categorie.

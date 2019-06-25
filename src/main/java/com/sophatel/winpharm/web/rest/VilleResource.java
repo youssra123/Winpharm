@@ -94,7 +94,14 @@ public class VilleResource {
     @GetMapping("/villes")
     public ResponseEntity<List<Ville>> getAllVilles(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Villes");
-        Page<Ville> page = villeService.findAll(pageable);
+        String str = "";
+        Page<Ville> page;
+        if (queryParams.get("q") != null)
+            str = queryParams.get("q").get(0);
+        if (str != "")
+            page = villeService.findAllByDes(str, pageable);
+        else
+            page = villeService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

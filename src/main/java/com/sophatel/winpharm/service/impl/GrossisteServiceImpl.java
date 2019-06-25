@@ -53,6 +53,18 @@ public class GrossisteServiceImpl implements GrossisteService {
         return grossisteRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the grossistes by libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Grossiste> findAllByDes(String str, Pageable pageable) {
+        log.debug("Request to get all Grossistes by libelle");
+        return grossisteRepository.findAllByDes("%"+str+"%", pageable);
+    }
 
     /**
      * Get one grossiste by id.
