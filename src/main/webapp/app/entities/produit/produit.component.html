@@ -1,6 +1,6 @@
 <div>
     <h2 id="page-heading">
-        <span >Barre de recherche</span>
+        <span jhiTranslate="winpharmApp.produit.home.title">Produits</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-produit" [routerLink]="['/produit/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="winpharmApp.produit.home.createLabel">
@@ -14,15 +14,24 @@
         <span jhiTranslate="winpharmApp.produit.home.notFound">No produits found</span>
     </div>
     <div class="table-responsive" *ngIf="produits?.length > 0">
-        <table class="table ">
+        <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id" style="width: 1%;"><span jhiTranslate="global.field.id">ID</span>&nbsp;</span><fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="produitLibelle"><span jhiTranslate="winpharmApp.produit.produitLibelle">Produit Libelle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="produitActif"><span jhiTranslate="winpharmApp.produit.produitActif">Produit Actif</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="produitVolume"><span jhiTranslate="winpharmApp.produit.produitPPV">Produit PPV</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="produitUniVolume"><span jhiTranslate="winpharmApp.produit.produitStock">Stock</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            
+            <th jhiSortBy="produitCodeBarre"><span jhiTranslate="winpharmApp.produit.produitCodeBarre">Produit Code Barre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produitDosage"><span jhiTranslate="winpharmApp.produit.produitDosage">Produit Dosage</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produitUniDosage"><span jhiTranslate="winpharmApp.produit.produitUniDosage">Produit Uni Dosage</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produitVolume"><span jhiTranslate="winpharmApp.produit.produitVolume">Produit Volume</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produitUniVolume"><span jhiTranslate="winpharmApp.produit.produitUniVolume">Produit Uni Volume</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produit_rayon.id"><span jhiTranslate="winpharmApp.produit.produit_rayon">Produit Rayon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produit_categorie.id"><span jhiTranslate="winpharmApp.produit.produit_categorie">Produit Categorie</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produit_fam_tar.id"><span jhiTranslate="winpharmApp.produit.produit_fam_tar">Produit Fam Tar</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produit_laboratoire.id"><span jhiTranslate="winpharmApp.produit.produit_laboratoire">Produit Laboratoire</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produit_grossiste.id"><span jhiTranslate="winpharmApp.produit.produit_grossiste">Produit Grossiste</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="proform.id"><span jhiTranslate="winpharmApp.produit.proform">Proform</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="stock.id"><span jhiTranslate="winpharmApp.produit.stock">Stock</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -31,15 +40,51 @@
                 <td><a [routerLink]="['/produit', produit.id, 'view' ]">{{produit.id}}</a></td>
                 <td>{{produit.produitLibelle}}</td>
                 <td>{{produit.produitActif}}</td>
-                <td>20</td>
-                <td>0</td>
-                
-              
+                <td>{{produit.produitCodeBarre}}</td>
+                <td>{{produit.produitDosage}}</td>
+                <td>{{produit.produitUniDosage}}</td>
+                <td>{{produit.produitVolume}}</td>
+                <td>{{produit.produitUniVolume}}</td>
+                <td>
+                    <div *ngIf="produit.produit_rayon">
+                        <a [routerLink]="['../rayon', produit.produit_rayon?.id, 'view' ]" >{{produit.produit_rayon?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="produit.produit_categorie">
+                        <a [routerLink]="['../categorie', produit.produit_categorie?.id, 'view' ]" >{{produit.produit_categorie?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="produit.produit_fam_tar">
+                        <a [routerLink]="['../fammille-tarifaire', produit.produit_fam_tar?.id, 'view' ]" >{{produit.produit_fam_tar?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="produit.produit_laboratoire">
+                        <a [routerLink]="['../laboratoire', produit.produit_laboratoire?.id, 'view' ]" >{{produit.produit_laboratoire?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="produit.produit_grossiste">
+                        <a [routerLink]="['../grossiste', produit.produit_grossiste?.id, 'view' ]" >{{produit.produit_grossiste?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="produit.proform">
+                        <a [routerLink]="['../forme', produit.proform?.id, 'view' ]" >{{produit.proform?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="produit.stock">
+                        <a [routerLink]="['../stock', produit.stock?.id, 'view' ]" >{{produit.stock?.id}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/produit', produit.id, 'view' ]"
-                                class="btn  back_color">
+                                class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>

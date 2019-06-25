@@ -15,14 +15,7 @@
       },
       "detail": {
         "title": "Stockproduit"
-      },
-      "stockProduitQuantite": "Stock Produit Quantite",
-      "stockProduitDateCreation": "Stock Produit Date Creation",
-      "stockProduitDatePeremption": "Stock Produit Date Peremption",
-      "stockProduitPrixVente": "Stock Produit Prix Vente",
-      "stockProduitPrixHorsTaxe": "Stock Produit Prix Hors Taxe",
-      "stock_produit_produit": "Stock Produit Produit",
-      "stock_produit_stock": "Stock Produit Stock"
+      }
     }
   }
 }

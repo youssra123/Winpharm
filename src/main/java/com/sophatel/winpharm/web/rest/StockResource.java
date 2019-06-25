@@ -25,6 +25,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link com.sophatel.winpharm.domain.Stock}.
@@ -90,10 +91,16 @@ public class StockResource {
      * {@code GET  /stocks} : get all the stocks.
      *
      * @param pageable the pagination information.
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of stocks in body.
      */
     @GetMapping("/stocks")
-    public ResponseEntity<List<Stock>> getAllStocks(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<List<Stock>> getAllStocks(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder, @RequestParam(required = false) String filter) {
+        if ("produit-is-null".equals(filter)) {
+            log.debug("REST request to get all Stocks where produit is null");
+            return new ResponseEntity<>(stockService.findAllWhereProduitIsNull(),
+                    HttpStatus.OK);
+        }
         log.debug("REST request to get a page of Stocks");
         Page<Stock> page = stockService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);

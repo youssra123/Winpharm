@@ -74,6 +74,11 @@ public class Produit implements Serializable {
     @JsonIgnoreProperties("produits")
     private Forme proform;
 
+    @OneToOne(optional = false)    @NotNull
+
+    @JoinColumn(unique = true)
+    private Stock stock;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -250,6 +255,19 @@ public class Produit implements Serializable {
 
     public void setProform(Forme forme) {
         this.proform = forme;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public Produit stock(Stock stock) {
+        this.stock = stock;
+        return this;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

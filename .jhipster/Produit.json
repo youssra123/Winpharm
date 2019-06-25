@@ -52,6 +52,18 @@
             ],
             "otherEntityField": "id",
             "otherEntityRelationshipName": "produit"
+        },
+        {
+            "relationshipName": "stock",
+            "otherEntityName": "stock",
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "produit"
         }
     ],
     "fields": [

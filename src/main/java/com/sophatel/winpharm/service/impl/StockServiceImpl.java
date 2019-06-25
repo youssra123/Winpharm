@@ -11,7 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing {@link Stock}.
@@ -53,6 +56,20 @@ public class StockServiceImpl implements StockService {
         return stockRepository.findAll(pageable);
     }
 
+
+
+    /**
+    *  Get all the stocks where Produit is {@code null}.
+     *  @return the list of entities.
+     */
+    @Transactional(readOnly = true) 
+    public List<Stock> findAllWhereProduitIsNull() {
+        log.debug("Request to get all stocks where Produit is null");
+        return StreamSupport
+            .stream(stockRepository.findAll().spliterator(), false)
+            .filter(stock -> stock.getProduit() == null)
+            .collect(Collectors.toList());
+    }
 
     /**
      * Get one stock by id.

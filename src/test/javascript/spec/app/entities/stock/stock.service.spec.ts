@@ -4,6 +4,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { StockService } from 'app/entities/stock/stock.service';
 import { IStock, Stock } from 'app/shared/model/stock.model';
 
@@ -14,6 +16,7 @@ describe('Service Tests', () => {
     let httpMock: HttpTestingController;
     let elemDefault: IStock;
     let expectedResult;
+    let currentDate: moment.Moment;
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule]
@@ -22,13 +25,22 @@ describe('Service Tests', () => {
       injector = getTestBed();
       service = injector.get(StockService);
       httpMock = injector.get(HttpTestingController);
+      currentDate = moment();
 
-      elemDefault = new Stock(0, 0, 0);
+      elemDefault = new Stock(0, 0, 0, 0, 0, 0, 0, 0, 0, currentDate, currentDate, currentDate, 0, 0, 0, currentDate);
     });
 
     describe('Service methods', () => {
       it('should find an element', async () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            stockDatePeremption1: currentDate.format(DATE_TIME_FORMAT),
+            stockDatePeremption2: currentDate.format(DATE_TIME_FORMAT),
+            stockDatePeremption3: currentDate.format(DATE_TIME_FORMAT),
+            stockDateCreation: currentDate.format(DATE_TIME_FORMAT)
+          },
+          elemDefault
+        );
         service
           .find(123)
           .pipe(take(1))
@@ -42,11 +54,23 @@ describe('Service Tests', () => {
       it('should create a Stock', async () => {
         const returnedFromService = Object.assign(
           {
-            id: 0
+            id: 0,
+            stockDatePeremption1: currentDate.format(DATE_TIME_FORMAT),
+            stockDatePeremption2: currentDate.format(DATE_TIME_FORMAT),
+            stockDatePeremption3: currentDate.format(DATE_TIME_FORMAT),
+            stockDateCreation: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            stockDatePeremption1: currentDate,
+            stockDatePeremption2: currentDate,
+            stockDatePeremption3: currentDate,
+            stockDateCreation: currentDate
+          },
+          returnedFromService
+        );
         service
           .create(new Stock(null))
           .pipe(take(1))
@@ -60,12 +84,33 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             stockCouvertureMin: 1,
-            stockCouvertureMax: 1
+            stockCouvertureMax: 1,
+            stockQte1: 1,
+            stockQte2: 1,
+            stockQte3: 1,
+            stockPrix1: 1,
+            stockPrix2: 1,
+            stockPrix3: 1,
+            stockDatePeremption1: currentDate.format(DATE_TIME_FORMAT),
+            stockDatePeremption2: currentDate.format(DATE_TIME_FORMAT),
+            stockDatePeremption3: currentDate.format(DATE_TIME_FORMAT),
+            stockPrixHT1: 1,
+            stockPrixHT2: 1,
+            stockPrixHT3: 1,
+            stockDateCreation: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            stockDatePeremption1: currentDate,
+            stockDatePeremption2: currentDate,
+            stockDatePeremption3: currentDate,
+            stockDateCreation: currentDate
+          },
+          returnedFromService
+        );
         service
           .update(expected)
           .pipe(take(1))
@@ -79,11 +124,32 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             stockCouvertureMin: 1,
-            stockCouvertureMax: 1
+            stockCouvertureMax: 1,
+            stockQte1: 1,
+            stockQte2: 1,
+            stockQte3: 1,
+            stockPrix1: 1,
+            stockPrix2: 1,
+            stockPrix3: 1,
+            stockDatePeremption1: currentDate.format(DATE_TIME_FORMAT),
+            stockDatePeremption2: currentDate.format(DATE_TIME_FORMAT),
+            stockDatePeremption3: currentDate.format(DATE_TIME_FORMAT),
+            stockPrixHT1: 1,
+            stockPrixHT2: 1,
+            stockPrixHT3: 1,
+            stockDateCreation: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            stockDatePeremption1: currentDate,
+            stockDatePeremption2: currentDate,
+            stockDatePeremption3: currentDate,
+            stockDateCreation: currentDate
+          },
+          returnedFromService
+        );
         service
           .query(expected)
           .pipe(

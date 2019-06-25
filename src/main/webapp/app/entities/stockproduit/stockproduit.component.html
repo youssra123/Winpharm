@@ -18,34 +18,12 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockProduitQuantite"><span jhiTranslate="winpharmApp.stockproduit.stockProduitQuantite">Stock Produit Quantite</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockProduitDateCreation"><span jhiTranslate="winpharmApp.stockproduit.stockProduitDateCreation">Stock Produit Date Creation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockProduitDatePeremption"><span jhiTranslate="winpharmApp.stockproduit.stockProduitDatePeremption">Stock Produit Date Peremption</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockProduitPrixVente"><span jhiTranslate="winpharmApp.stockproduit.stockProduitPrixVente">Stock Produit Prix Vente</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockProduitPrixHorsTaxe"><span jhiTranslate="winpharmApp.stockproduit.stockProduitPrixHorsTaxe">Stock Produit Prix Hors Taxe</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stock_produit_produit.id"><span jhiTranslate="winpharmApp.stockproduit.stock_produit_produit">Stock Produit Produit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stock_produit_stock.id"><span jhiTranslate="winpharmApp.stockproduit.stock_produit_stock">Stock Produit Stock</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let stockproduit of stockproduits ;trackBy: trackId">
                 <td><a [routerLink]="['/stockproduit', stockproduit.id, 'view' ]">{{stockproduit.id}}</a></td>
-                <td>{{stockproduit.stockProduitQuantite}}</td>
-                <td>{{stockproduit.stockProduitDateCreation | date:'medium'}}</td>
-                <td>{{stockproduit.stockProduitDatePeremption | date:'medium'}}</td>
-                <td>{{stockproduit.stockProduitPrixVente}}</td>
-                <td>{{stockproduit.stockProduitPrixHorsTaxe}}</td>
-                <td>
-                    <div *ngIf="stockproduit.stock_produit_produit">
-                        <a [routerLink]="['../produit', stockproduit.stock_produit_produit?.id, 'view' ]" >{{stockproduit.stock_produit_produit?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="stockproduit.stock_produit_stock">
-                        <a [routerLink]="['../stock', stockproduit.stock_produit_stock?.id, 'view' ]" >{{stockproduit.stock_produit_stock?.id}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

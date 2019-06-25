@@ -28,15 +28,6 @@ public interface ProduitService {
      */
     Page<Produit> findAll(Pageable pageable);
 
-    
-    /**
-     * Get all the produits which contain str in their produitLibele.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
-    Page<Produit> findAllByDes(String str, Pageable pageable);
-
 
     /**
      * Get the "id" produit.

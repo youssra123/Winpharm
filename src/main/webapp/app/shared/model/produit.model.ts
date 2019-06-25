@@ -4,6 +4,7 @@ import { IFammilleTarifaire } from 'app/shared/model/fammille-tarifaire.model';
 import { ILaboratoire } from 'app/shared/model/laboratoire.model';
 import { IGrossiste } from 'app/shared/model/grossiste.model';
 import { IForme } from 'app/shared/model/forme.model';
+import { IStock } from 'app/shared/model/stock.model';
 
 export interface IProduit {
   id?: number;
@@ -20,6 +21,7 @@ export interface IProduit {
   produit_laboratoire?: ILaboratoire;
   produit_grossiste?: IGrossiste;
   proform?: IForme;
+  stock?: IStock;
 }
 
 export class Produit implements IProduit {
@@ -37,6 +39,7 @@ export class Produit implements IProduit {
     public produit_fam_tar?: IFammilleTarifaire,
     public produit_laboratoire?: ILaboratoire,
     public produit_grossiste?: IGrossiste,
-    public proform?: IForme
+    public proform?: IForme,
+    public stock?: IStock
   ) {}
 }

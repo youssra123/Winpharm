@@ -44,5 +44,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="forme"/>
 
+        <addForeignKeyConstraint baseColumnNames="stock_id"
+                                 baseTableName="produit"
+                                 constraintName="fk_produit_stock_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="stock"/>
+
     </changeSet>
 </databaseChangeLog>

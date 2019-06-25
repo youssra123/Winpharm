@@ -15,39 +15,9 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="stock_produit_quantite" type="integer">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="stock_produit_date_creation" type="datetime">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="stock_produit_date_peremption" type="datetime">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="stock_produit_prix_vente" type="double">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="stock_produit_prix_hors_taxe" type="double">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="stock_produit_produit_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="stock_produit_stock_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
-        <dropDefaultValue tableName="stockproduit" columnName="stock_produit_date_creation" columnDataType="datetime"/>
-        <dropDefaultValue tableName="stockproduit" columnName="stock_produit_date_peremption" columnDataType="datetime"/>
     </changeSet>
 
     <!--
@@ -64,13 +34,6 @@
                   separator=";"
                   tableName="stockproduit">
             <column name="id" type="numeric"/>
-            <column name="stock_produit_quantite" type="numeric"/>
-            <column name="stock_produit_date_creation" type="datetime"/>
-            <column name="stock_produit_date_peremption" type="datetime"/>
-            <column name="stock_produit_prix_vente" type="numeric"/>
-            <column name="stock_produit_prix_hors_taxe" type="numeric"/>
-            <column name="stock_produit_produit_id" type="numeric"/>
-            <column name="stock_produit_stock_id" type="numeric"/>
         </loadData>
     </changeSet>
 

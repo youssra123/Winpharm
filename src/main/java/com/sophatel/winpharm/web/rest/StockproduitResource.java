@@ -19,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -54,7 +53,7 @@ public class StockproduitResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/stockproduits")
-    public ResponseEntity<Stockproduit> createStockproduit(@Valid @RequestBody Stockproduit stockproduit) throws URISyntaxException {
+    public ResponseEntity<Stockproduit> createStockproduit(@RequestBody Stockproduit stockproduit) throws URISyntaxException {
         log.debug("REST request to save Stockproduit : {}", stockproduit);
         if (stockproduit.getId() != null) {
             throw new BadRequestAlertException("A new stockproduit cannot already have an ID", ENTITY_NAME, "idexists");
@@ -75,7 +74,7 @@ public class StockproduitResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/stockproduits")
-    public ResponseEntity<Stockproduit> updateStockproduit(@Valid @RequestBody Stockproduit stockproduit) throws URISyntaxException {
+    public ResponseEntity<Stockproduit> updateStockproduit(@RequestBody Stockproduit stockproduit) throws URISyntaxException {
         log.debug("REST request to update Stockproduit : {}", stockproduit);
         if (stockproduit.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
