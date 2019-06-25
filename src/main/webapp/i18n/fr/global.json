@@ -17,7 +17,6 @@
         "laboratoire": "Laboratoire",
         "stock": "Stock",
         "produit": "Produit",
-        "stockproduit": "Stockproduit",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
