@@ -53,6 +53,19 @@ public class ProduitServiceImpl implements ProduitService {
         return produitRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the produits.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Produit> findAllByDes(String str, Pageable pageable) {
+        log.debug("Request to get all Produits");
+        return produitRepository.findAllByDes("%"+str+"%", pageable);
+    }
+
 
     /**
      * Get one produit by id.

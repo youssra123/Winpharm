@@ -95,7 +95,17 @@ public class ProduitResource {
     @GetMapping("/produits")
     public ResponseEntity<List<Produit>> getAllProduits(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Produits");
-        Page<Produit> page = produitService.findAll(pageable);
+        String str = "";
+        Page<Produit> page;
+        System.out.println("\n\n----------------- " + queryParams.get("q") + " --------------");
+        if (queryParams.get("q") != null){
+            str = queryParams.get("q").get(0);
+            System.out.println("\n\n********* " + str + " ********\n\n");
+        }
+        if (str != "")
+            page = produitService.findAllByDes(str, pageable);
+        else
+            page = produitService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
