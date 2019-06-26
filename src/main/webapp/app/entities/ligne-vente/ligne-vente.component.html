@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="winpharmApp.ligneVente.home.title">Ligne Ventes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-ligne-vente" [routerLink]="['/ligne-vente/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="winpharmApp.ligneVente.home.createLabel">
+            Create new Ligne Vente
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="ligneVentes?.length === 0">
+        <span jhiTranslate="winpharmApp.ligneVente.home.notFound">No ligneVentes found</span>
+    </div>
+    <div class="table-responsive" *ngIf="ligneVentes?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVenteQte"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteQte">Ligne Vente Qte</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVenteTotalHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalHT">Ligne Vente Total HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVenteTotalTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalTTC">Ligne Vente Total TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVentePrixTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC">Ligne Vente Prix TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVentePrixHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT">Ligne Vente Prix HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVenteDesignation"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteDesignation">Ligne Vente Designation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="enteteVente.id"><span jhiTranslate="winpharmApp.ligneVente.enteteVente">Entete Vente</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produit.id"><span jhiTranslate="winpharmApp.ligneVente.produit">Produit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ligneVente of ligneVentes ;trackBy: trackId">
+                <td><a [routerLink]="['/ligne-vente', ligneVente.id, 'view' ]">{{ligneVente.id}}</a></td>
+                <td>{{ligneVente.ligneVenteQte}}</td>
+                <td>{{ligneVente.ligneVenteTotalHT}}</td>
+                <td>{{ligneVente.ligneVenteTotalTTC}}</td>
+                <td>{{ligneVente.ligneVentePrixTTC}}</td>
+                <td>{{ligneVente.ligneVentePrixHT}}</td>
+                <td>{{ligneVente.ligneVenteDesignation}}</td>
+                <td>
+                    <div *ngIf="ligneVente.enteteVente">
+                        <a [routerLink]="['../entete-vente', ligneVente.enteteVente?.id, 'view' ]" >{{ligneVente.enteteVente?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ligneVente.produit">
+                        <a [routerLink]="['../produit', ligneVente.produit?.id, 'view' ]" >{{ligneVente.produit?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/ligne-vente', ligneVente.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/ligne-vente', ligneVente.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'ligne-vente', { outlets: { popup: ligneVente.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="ligneVentes?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -39,8 +39,20 @@ import { RouterModule } from '@angular/router';
       {
         path: 'produit',
         loadChildren: './produit/produit.module#WinpharmProduitModule'
-      }
+      },
 
+      {
+        path: 'client',
+        loadChildren: './client/client.module#WinpharmClientModule'
+      },
+      {
+        path: 'entete-vente',
+        loadChildren: './entete-vente/entete-vente.module#WinpharmEnteteVenteModule'
+      },
+      {
+        path: 'ligne-vente',
+        loadChildren: './ligne-vente/ligne-vente.module#WinpharmLigneVenteModule'
+      }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
   ],

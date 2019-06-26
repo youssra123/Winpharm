@@ -17,6 +17,9 @@
         "laboratoire": "Laboratoire",
         "stock": "Stock",
         "produit": "Produit",
+        "client": "Client",
+        "enteteVente": "Entete Vente",
+        "ligneVente": "Ligne Vente",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

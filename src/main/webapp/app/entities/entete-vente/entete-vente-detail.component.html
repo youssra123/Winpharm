@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="enteteVente">
+            <h2><span jhiTranslate="winpharmApp.enteteVente.detail.title">Entete Vente</span> {{enteteVente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalHT">Entete Vente Total HT</span></dt>
+                <dd>
+                    <span>{{enteteVente.enteteVenteTotalHT}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalTTC">Entete Vente Total TTC</span></dt>
+                <dd>
+                    <span>{{enteteVente.enteteVenteTotalTTC}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.enteteVente.enteteVenteType">Entete Vente Type</span></dt>
+                <dd>
+                    <span>{{enteteVente.enteteVenteType}}</span>
+                </dd>
+                <dt><span jhiTranslate="winpharmApp.enteteVente.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="enteteVente.client">
+                        <a [routerLink]="['/client', enteteVente.client?.id, 'view']">{{enteteVente.client?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/entete-vente', enteteVente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

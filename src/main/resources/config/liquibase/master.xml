@@ -23,8 +23,13 @@
     <include file="config/liquibase/changelog/20190620175404_added_entity_Laboratoire.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190620180446_added_entity_Stock.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190620181305_added_entity_Produit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190626124848_added_entity_Client.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190626125719_added_entity_EnteteVente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190626130625_added_entity_LigneVente.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190620172747_added_entity_constraints_Grossiste.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190620181305_added_entity_constraints_Produit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190626125719_added_entity_constraints_EnteteVente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190626130625_added_entity_constraints_LigneVente.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -1,0 +1,136 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-ligne-vente-heading" jhiTranslate="winpharmApp.ligneVente.home.createOrEditLabel">Create or edit a Ligne Vente</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteQte" for="field_ligneVenteQte">Ligne Vente Qte</label>
+                    <input type="number" class="form-control" name="ligneVenteQte" id="field_ligneVenteQte"
+                           formControlName="ligneVenteQte"/>
+                    <div *ngIf="editForm.get('ligneVenteQte').invalid && (editForm.get('ligneVenteQte').dirty || editForm.get('ligneVenteQte').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ligneVenteQte').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('ligneVenteQte')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalHT" for="field_ligneVenteTotalHT">Ligne Vente Total HT</label>
+                    <input type="number" class="form-control" name="ligneVenteTotalHT" id="field_ligneVenteTotalHT"
+                           formControlName="ligneVenteTotalHT"/>
+                    <div *ngIf="editForm.get('ligneVenteTotalHT').invalid && (editForm.get('ligneVenteTotalHT').dirty || editForm.get('ligneVenteTotalHT').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ligneVenteTotalHT').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('ligneVenteTotalHT')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalTTC" for="field_ligneVenteTotalTTC">Ligne Vente Total TTC</label>
+                    <input type="number" class="form-control" name="ligneVenteTotalTTC" id="field_ligneVenteTotalTTC"
+                           formControlName="ligneVenteTotalTTC"/>
+                    <div *ngIf="editForm.get('ligneVenteTotalTTC').invalid && (editForm.get('ligneVenteTotalTTC').dirty || editForm.get('ligneVenteTotalTTC').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ligneVenteTotalTTC').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('ligneVenteTotalTTC')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC" for="field_ligneVentePrixTTC">Ligne Vente Prix TTC</label>
+                    <input type="number" class="form-control" name="ligneVentePrixTTC" id="field_ligneVentePrixTTC"
+                           formControlName="ligneVentePrixTTC"/>
+                    <div *ngIf="editForm.get('ligneVentePrixTTC').invalid && (editForm.get('ligneVentePrixTTC').dirty || editForm.get('ligneVentePrixTTC').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ligneVentePrixTTC').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('ligneVentePrixTTC')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT" for="field_ligneVentePrixHT">Ligne Vente Prix HT</label>
+                    <input type="number" class="form-control" name="ligneVentePrixHT" id="field_ligneVentePrixHT"
+                           formControlName="ligneVentePrixHT"/>
+                    <div *ngIf="editForm.get('ligneVentePrixHT').invalid && (editForm.get('ligneVentePrixHT').dirty || editForm.get('ligneVentePrixHT').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ligneVentePrixHT').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('ligneVentePrixHT')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteDesignation" for="field_ligneVenteDesignation">Ligne Vente Designation</label>
+                    <input type="text" class="form-control" name="ligneVenteDesignation" id="field_ligneVenteDesignation"
+                           formControlName="ligneVenteDesignation"/>
+                    <div *ngIf="editForm.get('ligneVenteDesignation').invalid && (editForm.get('ligneVenteDesignation').dirty || editForm.get('ligneVenteDesignation').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ligneVenteDesignation').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.enteteVente" for="field_enteteVente">Entete Vente</label>
+                    <select class="form-control" id="field_enteteVente" name="enteteVente" formControlName="enteteVente">
+                        <option *ngIf="!editForm.get('enteteVente').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="enteteVenteOption.id === editForm.get('enteteVente').value?.id ? editForm.get('enteteVente').value : enteteVenteOption" *ngFor="let enteteVenteOption of enteteventes; trackBy: trackEnteteVenteById">{{enteteVenteOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('enteteVente').invalid && (editForm.get('enteteVente').dirty || editForm.get('enteteVente').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('enteteVente').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">Produit</label>
+                    <select class="form-control" id="field_produit" name="produit" formControlName="produit">
+                        <option *ngIf="!editForm.get('produit').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="produitOption.id === editForm.get('produit').value?.id ? editForm.get('produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('produit').invalid && (editForm.get('produit').dirty || editForm.get('produit').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('produit').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

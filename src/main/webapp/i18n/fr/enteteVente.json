@@ -1,0 +1,26 @@
+{
+  "winpharmApp": {
+    "enteteVente": {
+      "home": {
+        "title": "EnteteVentes",
+        "createLabel": "Créer un nouveau Entete Vente",
+        "createOrEditLabel": "Créer ou éditer un Entete Vente",
+        "notFound": "Aucun Entete Vente trouvé"
+      },
+      "created": "Un nouveau Entete Vente a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Entete Vente avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Entete Vente avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Entete Vente {{ id }} ?"
+      },
+      "detail": {
+        "title": "Entete Vente"
+      },
+      "enteteVenteTotalHT": "Entete Vente Total HT",
+      "enteteVenteTotalTTC": "Entete Vente Total TTC",
+      "enteteVenteType": "Entete Vente Type",
+      "client": "Client",
+      "ligneVente": "Ligne Vente"
+    }
+  }
+}

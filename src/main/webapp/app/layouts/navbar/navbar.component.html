@@ -35,6 +35,24 @@
             </li>
             <router-outlet></router-outlet>
                     
+            <li>
+                        <a class="dropdown-item" routerLink="client" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.client">Client</span>
+                        </a>
+                    </li>
+            <li>
+                        <a class="dropdown-item" routerLink="entete-vente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.enteteVente">Entete Vente</span>
+                        </a>
+                    </li>
+            <li>
+                        <a class="dropdown-item" routerLink="ligne-vente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.ligneVente">Ligne Vente</span>
+                        </a>
+                    </li>
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
              
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
