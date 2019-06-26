@@ -8,7 +8,8 @@ import { FammilleTarifaireService } from './fammille-tarifaire.service';
 
 @Component({
   selector: 'jhi-fammille-tarifaire-update',
-  templateUrl: './fammille-tarifaire-update.component.html'
+  templateUrl: './fammille-tarifaire-update.component.html',
+  styleUrls: ['famille.scss']
 })
 export class FammilleTarifaireUpdateComponent implements OnInit {
   isSaving: boolean;

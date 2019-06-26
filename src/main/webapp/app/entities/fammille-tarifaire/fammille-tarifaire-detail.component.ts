@@ -5,7 +5,8 @@ import { IFammilleTarifaire } from 'app/shared/model/fammille-tarifaire.model';
 
 @Component({
   selector: 'jhi-fammille-tarifaire-detail',
-  templateUrl: './fammille-tarifaire-detail.component.html'
+  templateUrl: './fammille-tarifaire-detail.component.html',
+  styleUrls: ['famille.scss']
 })
 export class FammilleTarifaireDetailComponent implements OnInit {
   fammilleTarifaire: IFammilleTarifaire;

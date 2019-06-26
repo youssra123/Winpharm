@@ -31,7 +31,10 @@ export class StockService {
       .put<IStock>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
-
+  findByDes(libelle: string, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IStock[]>(`${this.resourceUrl}?q=${libelle}`, { params: options, observe: 'response' });
+  }
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<IStock>(`${this.resourceUrl}/${id}`, { observe: 'response' })

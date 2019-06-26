@@ -1,6 +1,5 @@
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="winpharmApp.produit.home.title">Produits</span>
+    <h2 id="page-heading">  
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-produit" [routerLink]="['/produit/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="winpharmApp.produit.home.createLabel">
@@ -9,7 +8,14 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <br/>
+    <br><br><br><br>
+    <form class="form-inline md-form form-sm">
+            <fa-icon [icon]="'search'"></fa-icon>
+            <input #box class="form-control form-control-sm ml-3 w-75" type="text" (keyup)="onKey(box.value)" placeholder="Chercher un produit" aria-label="Search"
+              mdbInput>
+          </form>
+ 
+
     <div class="alert alert-warning" *ngIf="produits?.length === 0">
         <span jhiTranslate="winpharmApp.produit.home.notFound">No produits found</span>
     </div>
@@ -106,6 +112,14 @@
                 </td>
             </tr>
             </tbody>
+            <tfoot class="grey lighten-5 w-100">
+                    <tr>
+                      <td colspan="4">
+                        <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="produits"></mdb-table-pagination>
+                      </td>
+                    </tr>
+                    </tfoot>
         </table>
+
     </div>
 </div>

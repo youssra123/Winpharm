@@ -9,7 +9,13 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <br/>
+    <br/><br/><br/>
+    <form class="form-inline md-form form-sm">
+        <input #box class="form-control form-control-sm mr-3" type="text" placeholder="Chercher un ville" aria-label="Search" (keyup)="onKey(box.value)"
+          mdbInput>
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </form>
+      <p>{{values}}</p>
     <div class="alert alert-warning" *ngIf="villes?.length === 0">
         <span jhiTranslate="winpharmApp.ville.home.notFound">No villes found</span>
     </div>

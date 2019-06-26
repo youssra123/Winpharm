@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { ProduitService } from './produit.service';
-
+import { MdbTablePaginationComponent, MdbTableDirective } from 'angular-bootstrap-md';
 @Component({
   selector: 'jhi-produit',
   templateUrl: './produit.component.html'
@@ -24,8 +24,21 @@ export class ProduitComponent implements OnInit, OnDestroy {
   predicate: any;
   reverse: any;
   totalItems: number;
+  libelle = '';
+  mdbTable: MdbTableDirective;
+  mdbTablePagination: MdbTablePaginationComponent;
+  row: ElementRef;
+
+  elements: any = [];
+  headElements = ['id', 'first', 'last', 'handle'];
+
+  searchText: string = '';
+  previous: string;
+
+  maxVisibleItems: number = 8;
 
   constructor(
+    private cdRef: ChangeDetectorRef,
     protected produitService: ProduitService,
     protected jhiAlertService: JhiAlertService,
     protected eventManager: JhiEventManager,
@@ -45,6 +58,19 @@ export class ProduitComponent implements OnInit, OnDestroy {
   loadAll() {
     this.produitService
       .query({
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IProduit[]>) => this.paginateProduits(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+  onKey(libelle: string) {
+    this.produits = [];
+    this.produitService
+      .findByDes(libelle, {
         page: this.page,
         size: this.itemsPerPage,
         sort: this.sort()

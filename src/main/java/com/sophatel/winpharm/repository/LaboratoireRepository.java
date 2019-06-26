@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface LaboratoireRepository extends JpaRepository<Laboratoire, Long> {
-    @Query("select l from Laboratoire l where l.laboratoireRaisSoc like :x")
+    @Query("select l from Laboratoire l where upper(l.laboratoireRaisSoc) like :x")
     public Page<Laboratoire> findAllByDes(@Param("x") String str, Pageable pageable);
 }

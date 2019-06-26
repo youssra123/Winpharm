@@ -1,6 +1,5 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="winpharmApp.stock.home.title">Stocks</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-stock" [routerLink]="['/stock/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="winpharmApp.stock.home.createLabel">
@@ -9,12 +8,18 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <br/>
+    <br/><br/><br/>
+    <form class="form-inline md-form form-sm">
+        <input #box class="form-control form-control-sm mr-3" type="text" placeholder="Chercher un stock" aria-label="Search" (keyup)="onKey(box.value)"
+          mdbInput>
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </form>
+      <p>{{values}}</p>
     <div class="alert alert-warning" *ngIf="stocks?.length === 0">
         <span jhiTranslate="winpharmApp.stock.home.notFound">No stocks found</span>
     </div>
     <div class="table-responsive" *ngIf="stocks?.length > 0">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -58,7 +63,7 @@
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/stock', stock.id, 'view' ]"
-                                class="btn btn-info btn-sm">
+                                class="btn btn-info btn-sm back_color">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>

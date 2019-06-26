@@ -1,16 +1,16 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="rayon">
-            <h2><span jhiTranslate="winpharmApp.rayon.detail.title">Rayon</span> {{rayon.id}}</h2>
-            <hr>
+            <h4 class="content padding-box"><span jhiTranslate="winpharmApp.rayon.detail.title">Rayon</span> {{rayon.id}}:  {{rayon.rayonLibelle}}</h4>
+            <hr style="border: none; ">
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
+            <dl class="row-md jh-entity-details pad">
                 <dt><span jhiTranslate="winpharmApp.rayon.rayonLibelle">Rayon Libelle</span></dt>
                 <dd>
                     <span>{{rayon.rayonLibelle}}</span>
                 </dd>
             </dl>
-
+            <div style="text-align: center;">
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
@@ -19,9 +19,10 @@
 
             <button type="button"
                     [routerLink]="['/rayon', rayon.id, 'edit']"
-                    class="btn btn-primary">
+                    class="btn back_color">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
+            </div>
         </div>
     </div>
 </div>

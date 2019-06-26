@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface ProduitRepository extends JpaRepository<Produit, Long> {
-    @Query("select p from Produit p where p.produitLibelle like :x")
+    @Query("select p from Produit p where upper(p.produitLibelle) like :x")
     public Page<Produit> findAllByDes(@Param("x") String str, Pageable pageable);
 
 

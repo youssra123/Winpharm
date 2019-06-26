@@ -12,7 +12,8 @@ import { LaboratoireService } from './laboratoire.service';
 
 @Component({
   selector: 'jhi-laboratoire',
-  templateUrl: './laboratoire.component.html'
+  templateUrl: './laboratoire.component.html',
+  styleUrls: ['laboratoire.scss']
 })
 export class LaboratoireComponent implements OnInit, OnDestroy {
   laboratoires: ILaboratoire[];
@@ -65,7 +66,19 @@ export class LaboratoireComponent implements OnInit, OnDestroy {
     this.page = page;
     this.loadAll();
   }
-
+  onKey(libelle: string) {
+    this.laboratoires = [];
+    this.laboratoireService
+      .findByDes(libelle, {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<ILaboratoire[]>) => this.paginateLaboratoires(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
   ngOnInit() {
     this.loadAll();
     this.accountService.identity().then(account => {

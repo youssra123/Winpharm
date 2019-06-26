@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface CategorieRepository extends JpaRepository<Categorie, Long> {
-    @Query("select c from Categorie c where c.categorieLibelle like :x")
+    @Query("select c from Categorie c where upper(c.categorieLibelle) like :x")
     public Page<Categorie> findAllByDes(@Param("x") String str, Pageable pageable);
 }

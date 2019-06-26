@@ -1,6 +1,5 @@
-<div>
+<div >
     <h2 id="page-heading">
-        <span jhiTranslate="winpharmApp.forme.home.title">Formes</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-forme" [routerLink]="['/forme/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="winpharmApp.forme.home.createLabel">
@@ -9,16 +8,22 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <br/>
+    <br/><br/><br/>
+    <form class="form-inline md-form form-sm">
+        <input #box class="form-control form-control-sm mr-3" type="text" placeholder="Chercher un forme" aria-label="Search" (keyup)="onKey(box.value)"
+          mdbInput>
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </form>
+      <p>{{values}}</p>
     <div class="alert alert-warning" *ngIf="formes?.length === 0">
         <span jhiTranslate="winpharmApp.forme.home.notFound">No formes found</span>
     </div>
-    <div class="table-responsive" *ngIf="formes?.length > 0">
-        <table class="table table-striped">
-            <thead>
+    <div class="table-responsive" *ngIf="formes?.length > 0" >
+        <table class="table">
+            <thead >
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="formeLibelle"><span jhiTranslate="winpharmApp.forme.formeLibelle">Forme Libelle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="id" ><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="formeLibelle" ><span jhiTranslate="winpharmApp.forme.formeLibelle">Forme Libelle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -26,11 +31,11 @@
             <tr *ngFor="let forme of formes ;trackBy: trackId">
                 <td><a [routerLink]="['/forme', forme.id, 'view' ]">{{forme.id}}</a></td>
                 <td>{{forme.formeLibelle}}</td>
-                <td class="text-right">
+                <td class="text-right" >
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/forme', forme.id, 'view' ]"
-                                class="btn btn-info btn-sm">
+                                class="btn btn-info btn-sm back_color">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>

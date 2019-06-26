@@ -3,7 +3,7 @@
     "ville": {
       "home": {
         "title": "Villes",
-        "createLabel": "Créer un nouveau Ville",
+        "createLabel": "Créer une nouvelle Ville",
         "createOrEditLabel": "Créer ou éditer un Ville",
         "notFound": "Aucun Ville trouvé"
       },

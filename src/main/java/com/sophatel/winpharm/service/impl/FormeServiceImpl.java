@@ -63,7 +63,7 @@ public class FormeServiceImpl implements FormeService {
     @Transactional(readOnly = true)
     public Page<Forme> findAllByDes(String str, Pageable pageable) {
         log.debug("Request to get all Formes by libelle");
-        return formeRepository.findAllByDes("%"+str+"%", pageable);
+        return formeRepository.findAllByDes("%"+str.toUpperCase()+"%", pageable);
     }
 
     /**

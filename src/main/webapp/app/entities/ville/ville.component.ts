@@ -12,7 +12,8 @@ import { VilleService } from './ville.service';
 
 @Component({
   selector: 'jhi-ville',
-  templateUrl: './ville.component.html'
+  templateUrl: './ville.component.html',
+  styleUrls: ['ville.scss']
 })
 export class VilleComponent implements OnInit, OnDestroy {
   villes: IVille[];
@@ -54,7 +55,19 @@ export class VilleComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
-
+  onKey(libelle: string) {
+    this.villes = [];
+    this.villeService
+      .findByDes(libelle, {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IVille[]>) => this.paginateVilles(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
   reset() {
     this.page = 0;
     this.villes = [];

@@ -63,7 +63,7 @@ public class FammilleTarifaireServiceImpl implements FammilleTarifaireService {
     @Transactional(readOnly = true)
     public Page<FammilleTarifaire> findAllByDes(String str, Pageable pageable) {
         log.debug("Request to get all FammilleTarifaires by libelle");
-        return fammilleTarifaireRepository.findAllByDes("%"+str+"%", pageable);
+        return fammilleTarifaireRepository.findAllByDes("%"+str.toUpperCase()+"%", pageable);
     }
 
     /**

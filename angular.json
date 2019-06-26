@@ -10,6 +10,28 @@
       "architect": {}
     }
   },
+  "apps": [
+    {
+      "root": "src/main/webapp",
+      "outDir": "target/www/app",
+      "assets": ["content", "i18n", "favicon.ico"],
+      "index": "index.html",
+      "main": "app/app.main.ts",
+      "polyfills": "app/polyfills.ts",
+      "test": "src/test/javascript/spec/entry.ts",
+      "tsconfig": "../../../tsconfig.json",
+      "prefix": "jhi",
+      "mobile": false,
+      "styles": [
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+        "./styles.scss",
+        "content/scss/vendor.scss",
+        "content/scss/global.scss"
+      ],
+      "scripts": ["../node_modules/chart.js/dist/Chart.js", "../node_modules/hammerjs/hammer.min.js"]
+    }
+  ],
   "defaultProject": "winpharm",
   "cli": {
     "packageManager": "npm"

@@ -5,7 +5,8 @@ import { IRayon } from 'app/shared/model/rayon.model';
 
 @Component({
   selector: 'jhi-rayon-detail',
-  templateUrl: './rayon-detail.component.html'
+  templateUrl: './rayon-detail.component.html',
+  styleUrls: ['rayon.scss']
 })
 export class RayonDetailComponent implements OnInit {
   rayon: IRayon;

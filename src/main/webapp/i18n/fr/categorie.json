@@ -3,7 +3,7 @@
     "categorie": {
       "home": {
         "title": "Categories",
-        "createLabel": "Créer un nouveau Categorie",
+        "createLabel": "Créer une nouvelle Categorie",
         "createOrEditLabel": "Créer ou éditer un Categorie",
         "notFound": "Aucun Categorie trouvé"
       },

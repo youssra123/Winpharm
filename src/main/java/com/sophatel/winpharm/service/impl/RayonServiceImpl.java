@@ -63,7 +63,7 @@ public class RayonServiceImpl implements RayonService {
     @Transactional(readOnly = true)
     public Page<Rayon> findAllByDes(String str, Pageable pageable) {
         log.debug("Request to get all Rayons By libelle");
-        return rayonRepository.findAllByDes("%"+str+"%", pageable);
+        return rayonRepository.findAllByDes("%"+str.toUpperCase()+"%", pageable);
     }
 
 

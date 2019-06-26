@@ -63,7 +63,7 @@ public class LaboratoireServiceImpl implements LaboratoireService {
     @Transactional(readOnly = true)
     public Page<Laboratoire> findAllByDes(String str, Pageable pageable) {
         log.debug("Request to get all Laboratoires by libelle");
-        return laboratoireRepository.findAllByDes("%"+str+"%", pageable);
+        return laboratoireRepository.findAllByDes("%"+str.toUpperCase()+"%", pageable);
     }
 
     /**

@@ -12,7 +12,8 @@ import { GrossisteService } from './grossiste.service';
 
 @Component({
   selector: 'jhi-grossiste',
-  templateUrl: './grossiste.component.html'
+  templateUrl: './grossiste.component.html',
+  styleUrls: ['grossiste.scss']
 })
 export class GrossisteComponent implements OnInit, OnDestroy {
   grossistes: IGrossiste[];
@@ -60,7 +61,19 @@ export class GrossisteComponent implements OnInit, OnDestroy {
     this.grossistes = [];
     this.loadAll();
   }
-
+  onKey(libelle: string) {
+    this.grossistes = [];
+    this.grossisteService
+      .findByDes(libelle, {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IGrossiste[]>) => this.paginateGrossistes(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
   loadPage(page) {
     this.page = page;
     this.loadAll();

@@ -8,7 +8,8 @@ import { RayonService } from './rayon.service';
 
 @Component({
   selector: 'jhi-rayon-update',
-  templateUrl: './rayon-update.component.html'
+  templateUrl: './rayon-update.component.html',
+  styleUrls: ['rayon.scss']
 })
 export class RayonUpdateComponent implements OnInit {
   isSaving: boolean;

@@ -3,23 +3,23 @@
     "fammilleTarifaire": {
       "home": {
         "title": "FammilleTarifaires",
-        "createLabel": "Créer un nouveau Fammille Tarifaire",
-        "createOrEditLabel": "Créer ou éditer un Fammille Tarifaire",
-        "notFound": "Aucun Fammille Tarifaire trouvé"
+        "createLabel": "Créer une nouvelle Famille Tarifaire",
+        "createOrEditLabel": "Créer ou éditer un Famille Tarifaire",
+        "notFound": "Aucun Famille Tarifaire trouvé"
       },
       "created": "Un nouveau Fammille Tarifaire a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Fammille Tarifaire avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Fammille Tarifaire avec l'identifiant {{ param }} a été supprimé",
+      "updated": "Le Famille Tarifaire avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Famille Tarifaire avec l'identifiant {{ param }} a été supprimé",
       "delete": {
         "question": "Etes-vous certain de vouloir supprimer le Fammille Tarifaire {{ id }} ?"
       },
       "detail": {
-        "title": "Fammille Tarifaire"
+        "title": "Famille Tarifaire"
       },
-      "famiTarifLibelle": "Fami Tarif Libelle",
-      "famiTarifForfait": "Fami Tarif Forfait",
-      "famiTarifCodeTVA": "Fami Tarif Code TVA",
-      "famiTarifTauxTVA": "Fami Tarif Taux TVA"
+      "famiTarifLibelle": "Libelle",
+      "famiTarifForfait": "Forfait",
+      "famiTarifCodeTVA": "Code TVA",
+      "famiTarifTauxTVA": "Taux TVA"
     }
   }
 }

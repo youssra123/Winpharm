@@ -63,7 +63,7 @@ public class GrossisteServiceImpl implements GrossisteService {
     @Transactional(readOnly = true)
     public Page<Grossiste> findAllByDes(String str, Pageable pageable) {
         log.debug("Request to get all Grossistes by libelle");
-        return grossisteRepository.findAllByDes("%"+str+"%", pageable);
+        return grossisteRepository.findAllByDes("%"+str.toUpperCase()+"%", pageable);
     }
 
     /**

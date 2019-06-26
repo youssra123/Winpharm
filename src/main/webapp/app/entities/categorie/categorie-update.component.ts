@@ -5,10 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ICategorie, Categorie } from 'app/shared/model/categorie.model';
 import { CategorieService } from './categorie.service';
-
 @Component({
   selector: 'jhi-categorie-update',
-  templateUrl: './categorie-update.component.html'
+  templateUrl: './categorie-update.component.html',
+  styleUrls: ['categorie.scss']
 })
 export class CategorieUpdateComponent implements OnInit {
   isSaving: boolean;

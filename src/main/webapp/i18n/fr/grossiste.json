@@ -2,7 +2,7 @@
   "winpharmApp": {
     "grossiste": {
       "home": {
-        "title": "Grossistes",
+        "title": "Barre de recherche",
         "createLabel": "Créer un nouveau Grossiste",
         "createOrEditLabel": "Créer ou éditer un Grossiste",
         "notFound": "Aucun Grossiste trouvé"
@@ -16,10 +16,10 @@
       "detail": {
         "title": "Grossiste"
       },
-      "grossisteRaisSoc": "Grossiste Rais Soc",
-      "grossisteAdresse": "Grossiste Adresse",
-      "grossisteTelephone": "Grossiste Telephone",
-      "grossis_ville": "Grossis Ville"
+      "grossisteRaisSoc": "Raison Sociale",
+      "grossisteAdresse": "Adresse",
+      "grossisteTelephone": "Telephone",
+      "grossis_ville": "Ville"
     }
   }
 }

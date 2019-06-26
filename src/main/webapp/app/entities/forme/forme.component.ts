@@ -12,7 +12,8 @@ import { FormeService } from './forme.service';
 
 @Component({
   selector: 'jhi-forme',
-  templateUrl: './forme.component.html'
+  templateUrl: './forme.component.html',
+  styleUrls: ['forme.scss']
 })
 export class FormeComponent implements OnInit, OnDestroy {
   formes: IForme[];
@@ -54,7 +55,19 @@ export class FormeComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
-
+  onKey(libelle: string) {
+    this.formes = [];
+    this.formeService
+      .findByDes(libelle, {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IForme[]>) => this.paginateFormes(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
   reset() {
     this.page = 0;
     this.formes = [];

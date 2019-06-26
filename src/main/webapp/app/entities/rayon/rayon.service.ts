@@ -22,7 +22,10 @@ export class RayonService {
   update(rayon: IRayon): Observable<EntityResponseType> {
     return this.http.put<IRayon>(this.resourceUrl, rayon, { observe: 'response' });
   }
-
+  findByDes(libelle: string, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IRayon[]>(`${this.resourceUrl}?q=${libelle}`, { params: options, observe: 'response' });
+  }
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IRayon>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

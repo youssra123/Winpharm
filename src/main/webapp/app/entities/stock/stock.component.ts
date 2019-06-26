@@ -12,7 +12,8 @@ import { StockService } from './stock.service';
 
 @Component({
   selector: 'jhi-stock',
-  templateUrl: './stock.component.html'
+  templateUrl: './stock.component.html',
+  styleUrls: ['stock.scss']
 })
 export class StockComponent implements OnInit, OnDestroy {
   stocks: IStock[];
@@ -45,6 +46,19 @@ export class StockComponent implements OnInit, OnDestroy {
   loadAll() {
     this.stockService
       .query({
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IStock[]>) => this.paginateStocks(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+  onKey(libelle: string) {
+    this.stocks = [];
+    this.stockService
+      .findByDes(libelle, {
         page: this.page,
         size: this.itemsPerPage,
         sort: this.sort()

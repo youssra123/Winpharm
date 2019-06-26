@@ -9,7 +9,8 @@ import { RayonService } from './rayon.service';
 
 @Component({
   selector: 'jhi-rayon-delete-dialog',
-  templateUrl: './rayon-delete-dialog.component.html'
+  templateUrl: './rayon-delete-dialog.component.html',
+  styleUrls: ['rayon.scss']
 })
 export class RayonDeleteDialogComponent {
   rayon: IRayon;

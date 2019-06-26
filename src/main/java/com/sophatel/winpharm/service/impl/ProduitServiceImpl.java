@@ -63,7 +63,7 @@ public class ProduitServiceImpl implements ProduitService {
     @Transactional(readOnly = true)
     public Page<Produit> findAllByDes(String str, Pageable pageable) {
         log.debug("Request to get all Produits");
-        return produitRepository.findAllByDes("%"+str+"%", pageable);
+        return produitRepository.findAllByDes("%"+str.toUpperCase()+"%", pageable);
     }
 
 
