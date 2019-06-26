@@ -95,7 +95,14 @@ public class GrossisteResource {
     @GetMapping("/grossistes")
     public ResponseEntity<List<Grossiste>> getAllGrossistes(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Grossistes");
-        Page<Grossiste> page = grossisteService.findAll(pageable);
+        String str = "";
+        Page<Grossiste> page;
+        if (queryParams.get("q") != null)
+            str = queryParams.get("q").get(0);
+        if (str != "")
+            page = grossisteService.findAllByDes(str, pageable);
+        else
+            page = grossisteService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

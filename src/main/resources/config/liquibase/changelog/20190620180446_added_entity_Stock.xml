@@ -23,9 +23,65 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="stock_qte_1" type="integer">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="stock_qte_2" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="stock_qte_3" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="stock_prix_1" type="double">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="stock_prix_2" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="stock_prix_3" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="stock_date_peremption_1" type="datetime">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="stock_date_peremption_2" type="datetime">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="stock_date_peremption_3" type="datetime">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="stock_prix_ht_1" type="double">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="stock_prix_ht_2" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="stock_prix_ht_3" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="stock_date_creation" type="datetime">
+                <constraints nullable="false" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
+        <dropDefaultValue tableName="stock" columnName="stock_date_peremption_1" columnDataType="datetime"/>
+        <dropDefaultValue tableName="stock" columnName="stock_date_peremption_2" columnDataType="datetime"/>
+        <dropDefaultValue tableName="stock" columnName="stock_date_peremption_3" columnDataType="datetime"/>
+        <dropDefaultValue tableName="stock" columnName="stock_date_creation" columnDataType="datetime"/>
     </changeSet>
 
     <!--
@@ -44,6 +100,19 @@
             <column name="id" type="numeric"/>
             <column name="stock_couverture_min" type="numeric"/>
             <column name="stock_couverture_max" type="numeric"/>
+            <column name="stock_qte_1" type="numeric"/>
+            <column name="stock_qte_2" type="numeric"/>
+            <column name="stock_qte_3" type="numeric"/>
+            <column name="stock_prix_1" type="numeric"/>
+            <column name="stock_prix_2" type="numeric"/>
+            <column name="stock_prix_3" type="numeric"/>
+            <column name="stock_date_peremption_1" type="datetime"/>
+            <column name="stock_date_peremption_2" type="datetime"/>
+            <column name="stock_date_peremption_3" type="datetime"/>
+            <column name="stock_prix_ht_1" type="numeric"/>
+            <column name="stock_prix_ht_2" type="numeric"/>
+            <column name="stock_prix_ht_3" type="numeric"/>
+            <column name="stock_date_creation" type="datetime"/>
         </loadData>
     </changeSet>
 

@@ -53,6 +53,19 @@ public class RayonServiceImpl implements RayonService {
         return rayonRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the rayons by desc.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Rayon> findAllByDes(String str, Pageable pageable) {
+        log.debug("Request to get all Rayons By libelle");
+        return rayonRepository.findAllByDes("%"+str+"%", pageable);
+    }
+
 
     /**
      * Get one rayon by id.

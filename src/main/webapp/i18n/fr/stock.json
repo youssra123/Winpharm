@@ -16,8 +16,22 @@
       "detail": {
         "title": "Stock"
       },
-      "stockCouvertureMin": " Couverture Min",
-      "stockCouvertureMax": " Couverture Max"
+      "stockCouvertureMin": "Stock Couverture Min",
+      "stockCouvertureMax": "Stock Couverture Max",
+      "stockQte1": "Stock Qte 1",
+      "stockQte2": "Stock Qte 2",
+      "stockQte3": "Stock Qte 3",
+      "stockPrix1": "Stock Prix 1",
+      "stockPrix2": "Stock Prix 2",
+      "stockPrix3": "Stock Prix 3",
+      "stockDatePeremption1": "Stock Date Peremption 1",
+      "stockDatePeremption2": "Stock Date Peremption 2",
+      "stockDatePeremption3": "Stock Date Peremption 3",
+      "stockPrixHT1": "Stock Prix HT 1",
+      "stockPrixHT2": "Stock Prix HT 2",
+      "stockPrixHT3": "Stock Prix HT 3",
+      "stockDateCreation": "Stock Date Creation",
+      "produit": "Produit"
     }
   }
 }

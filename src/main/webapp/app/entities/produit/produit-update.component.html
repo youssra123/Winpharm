@@ -1,8 +1,7 @@
-<div class="container">
-
-    <div class="row">
-        <div class="col-xl-8 offset-xl-2 py-5">
+<div class="row justify-content-center">
+    <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-produit-heading" jhiTranslate="winpharmApp.produit.home.createOrEditLabel">Create or edit a Produit</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -10,12 +9,6 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
                 </div>
-            <div class="messages"></div>
-
-             <div class="controls">
-
-            <div class="row">
-                <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.produitLibelle" for="field_produitLibelle">Produit Libelle</label>
                     <input type="text" class="form-control" name="produitLibelle" id="field_produitLibelle"
@@ -46,8 +39,6 @@
                         </small>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.produitCodeBarre" for="field_produitCodeBarre">Produit Code Barre</label>
                     <input type="number" class="form-control" name="produitCodeBarre" id="field_produitCodeBarre"
@@ -58,8 +49,6 @@
                     <input type="number" class="form-control" name="produitDosage" id="field_produitDosage"
                            formControlName="produitDosage"/>
                 </div>
-                </div>
-                <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.produitUniDosage" for="field_produitUniDosage">Produit Uni Dosage</label>
                     <input type="text" class="form-control" name="produitUniDosage" id="field_produitUniDosage"
@@ -70,8 +59,6 @@
                     <input type="number" class="form-control" name="produitVolume" id="field_produitVolume"
                            formControlName="produitVolume"/>
                 </div>
-                </div>
-                <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.produitUniVolume" for="field_produitUniVolume">Produit Uni Volume</label>
                     <input type="text" class="form-control" name="produitUniVolume" id="field_produitUniVolume"
@@ -85,8 +72,6 @@
                         <option [ngValue]="rayonOption.id === editForm.get('produit_rayon').value?.id ? editForm.get('produit_rayon').value : rayonOption" *ngFor="let rayonOption of rayons; trackBy: trackRayonById">{{rayonOption.id}}</option>
                     </select>
                 </div>
-                </div>
-                <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.produit_categorie" for="field_produit_categorie">Produit Categorie</label>
                     <select class="form-control" id="field_produit_categorie" name="produit_categorie" formControlName="produit_categorie">
@@ -100,8 +85,6 @@
                         This field is required.
                     </small>
                 </div>
-                </div>
-                <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.produit_fam_tar" for="field_produit_fam_tar">Produit Fam Tar</label>
                     <select class="form-control" id="field_produit_fam_tar" name="produit_fam_tar" formControlName="produit_fam_tar">
@@ -115,8 +98,6 @@
                         This field is required.
                     </small>
                 </div>
-                </div>
-                <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.produit_laboratoire" for="field_produit_laboratoire">Produit Laboratoire</label>
                     <select class="form-control" id="field_produit_laboratoire" name="produit_laboratoire" formControlName="produit_laboratoire">
@@ -131,8 +112,6 @@
                         <option [ngValue]="grossisteOption.id === editForm.get('produit_grossiste').value?.id ? editForm.get('produit_grossiste').value : grossisteOption" *ngFor="let grossisteOption of grossistes; trackBy: trackGrossisteById">{{grossisteOption.id}}</option>
                     </select>
                 </div>
-                </div>
-                <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.proform" for="field_proform">Proform</label>
                     <select class="form-control" id="field_proform" name="proform" formControlName="proform">
@@ -146,19 +125,28 @@
                         This field is required.
                     </small>
                 </div>
-            
-           
-            <div class="boutton">
-                
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="winpharmApp.produit.stock" for="field_stock">Stock</label>
+                    <select class="form-control" id="field_stock" name="stock" formControlName="stock">
+                        <option *ngIf="!editForm.get('stock').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="stockOption.id === editForm.get('stock').value?.id ? editForm.get('stock').value : stockOption" *ngFor="let stockOption of stocks; trackBy: trackStockById">{{stockOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('stock').invalid && (editForm.get('stock').dirty || editForm.get('stock').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('stock').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn back_color" >
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
-        </div>
-        
         </form>
     </div>
 </div>

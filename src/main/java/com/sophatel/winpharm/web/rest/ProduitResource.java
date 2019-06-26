@@ -97,8 +97,9 @@ public class ProduitResource {
         log.debug("REST request to get a page of Produits");
         String str = "";
         Page<Produit> page;
-        if (queryParams.get("q") != null)
+        if (queryParams.get("q") != null){
             str = queryParams.get("q").get(0);
+        }
         if (str != "")
             page = produitService.findAllByDes(str, pageable);
         else

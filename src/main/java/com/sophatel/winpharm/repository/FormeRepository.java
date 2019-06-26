@@ -1,7 +1,11 @@
 package com.sophatel.winpharm.repository;
 
 import com.sophatel.winpharm.domain.Forme;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -11,5 +15,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface FormeRepository extends JpaRepository<Forme, Long> {
-
+    @Query("select f from Forme f where f.formeLibelle like :x")
+    public Page<Forme> findAllByDes(@Param("x") String str, Pageable pageable);
 }

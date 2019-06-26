@@ -95,7 +95,14 @@ public class FormeResource {
     @GetMapping("/formes")
     public ResponseEntity<List<Forme>> getAllFormes(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of Formes");
-        Page<Forme> page = formeService.findAll(pageable);
+        String str = "";
+        Page<Forme> page;
+        if (queryParams.get("q") != null)
+            str = queryParams.get("q").get(0);
+        if (str != "")
+            page = formeService.findAllByDes(str, pageable);
+        else
+            page = formeService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

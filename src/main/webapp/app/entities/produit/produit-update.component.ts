@@ -19,11 +19,12 @@ import { IGrossiste } from 'app/shared/model/grossiste.model';
 import { GrossisteService } from 'app/entities/grossiste';
 import { IForme } from 'app/shared/model/forme.model';
 import { FormeService } from 'app/entities/forme';
+import { IStock } from 'app/shared/model/stock.model';
+import { StockService } from 'app/entities/stock';
 
 @Component({
   selector: 'jhi-produit-update',
-  templateUrl: './produit-update.component.html',
-  styleUrls: ['produit.scss']
+  templateUrl: './produit-update.component.html'
 })
 export class ProduitUpdateComponent implements OnInit {
   isSaving: boolean;
@@ -40,6 +41,8 @@ export class ProduitUpdateComponent implements OnInit {
 
   formes: IForme[];
 
+  stocks: IStock[];
+
   editForm = this.fb.group({
     id: [],
     produitLibelle: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
@@ -54,7 +57,8 @@ export class ProduitUpdateComponent implements OnInit {
     produit_fam_tar: [null, Validators.required],
     produit_laboratoire: [],
     produit_grossiste: [],
-    proform: [null, Validators.required]
+    proform: [null, Validators.required],
+    stock: [null, Validators.required]
   });
 
   constructor(
@@ -66,6 +70,7 @@ export class ProduitUpdateComponent implements OnInit {
     protected laboratoireService: LaboratoireService,
     protected grossisteService: GrossisteService,
     protected formeService: FormeService,
+    protected stockService: StockService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -117,6 +122,31 @@ export class ProduitUpdateComponent implements OnInit {
         map((response: HttpResponse<IForme[]>) => response.body)
       )
       .subscribe((res: IForme[]) => (this.formes = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.stockService
+      .query({ filter: 'produit-is-null' })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IStock[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IStock[]>) => response.body)
+      )
+      .subscribe(
+        (res: IStock[]) => {
+          if (!this.editForm.get('stock').value || !this.editForm.get('stock').value.id) {
+            this.stocks = res;
+          } else {
+            this.stockService
+              .find(this.editForm.get('stock').value.id)
+              .pipe(
+                filter((subResMayBeOk: HttpResponse<IStock>) => subResMayBeOk.ok),
+                map((subResponse: HttpResponse<IStock>) => subResponse.body)
+              )
+              .subscribe(
+                (subRes: IStock) => (this.stocks = [subRes].concat(res)),
+                (subRes: HttpErrorResponse) => this.onError(subRes.message)
+              );
+          }
+        },
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
   }
 
   updateForm(produit: IProduit) {
@@ -134,7 +164,8 @@ export class ProduitUpdateComponent implements OnInit {
       produit_fam_tar: produit.produit_fam_tar,
       produit_laboratoire: produit.produit_laboratoire,
       produit_grossiste: produit.produit_grossiste,
-      proform: produit.proform
+      proform: produit.proform,
+      stock: produit.stock
     });
   }
 
@@ -168,7 +199,8 @@ export class ProduitUpdateComponent implements OnInit {
       produit_fam_tar: this.editForm.get(['produit_fam_tar']).value,
       produit_laboratoire: this.editForm.get(['produit_laboratoire']).value,
       produit_grossiste: this.editForm.get(['produit_grossiste']).value,
-      proform: this.editForm.get(['proform']).value
+      proform: this.editForm.get(['proform']).value,
+      stock: this.editForm.get(['stock']).value
     };
     return entity;
   }
@@ -210,6 +242,10 @@ export class ProduitUpdateComponent implements OnInit {
   }
 
   trackFormeById(index: number, item: IForme) {
+    return item.id;
+  }
+
+  trackStockById(index: number, item: IStock) {
     return item.id;
   }
 }

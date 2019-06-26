@@ -95,7 +95,14 @@ public class FammilleTarifaireResource {
     @GetMapping("/fammille-tarifaires")
     public ResponseEntity<List<FammilleTarifaire>> getAllFammilleTarifaires(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of FammilleTarifaires");
-        Page<FammilleTarifaire> page = fammilleTarifaireService.findAll(pageable);
+        String str = "";
+        Page<FammilleTarifaire> page;
+        if (queryParams.get("q") != null)
+            str = queryParams.get("q").get(0);
+        if (str != "")
+            page = fammilleTarifaireService.findAllByDes(str, pageable);
+        else
+            page = fammilleTarifaireService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

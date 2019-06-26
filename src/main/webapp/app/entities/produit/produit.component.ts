@@ -12,8 +12,7 @@ import { ProduitService } from './produit.service';
 import { MdbTablePaginationComponent, MdbTableDirective } from 'angular-bootstrap-md';
 @Component({
   selector: 'jhi-produit',
-  templateUrl: './produit.component.html',
-  styleUrls: ['produit.scss']
+  templateUrl: './produit.component.html'
 })
 export class ProduitComponent implements OnInit, OnDestroy {
   produits: IProduit[];

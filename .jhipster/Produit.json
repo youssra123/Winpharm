@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "fluentMethods": true,
     "clientRootFolder": "",
     "relationships": [
@@ -53,6 +52,18 @@
             ],
             "otherEntityField": "id",
             "otherEntityRelationshipName": "produit"
+        },
+        {
+            "relationshipName": "stock",
+            "otherEntityName": "stock",
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": false,
+            "otherEntityRelationshipName": "produit"
         }
     ],
     "fields": [
@@ -104,27 +115,3 @@
     "jpaMetamodelFiltering": false,
     "pagination": "infinite-scroll"
 }
-=======
-    "name": "Produit",
-    "fields": [
-        {
-            "fieldName": "name",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "price",
-            "fieldType": "Long"
-        }
-    ],
-    "relationships": [],
-    "changelogDate": "20190617135354",
-    "entityTableName": "produit",
-    "dto": "no",
-    "pagination": "pagination",
-    "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
-}
->>>>>>> ae2aaeb2270ae795fa8bd79c74f7cdcf08c0f595

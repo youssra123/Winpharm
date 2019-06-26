@@ -53,6 +53,18 @@ public class LaboratoireServiceImpl implements LaboratoireService {
         return laboratoireRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the laboratoires.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Laboratoire> findAllByDes(String str, Pageable pageable) {
+        log.debug("Request to get all Laboratoires by libelle");
+        return laboratoireRepository.findAllByDes("%"+str+"%", pageable);
+    }
 
     /**
      * Get one laboratoire by id.

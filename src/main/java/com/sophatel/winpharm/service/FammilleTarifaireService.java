@@ -28,6 +28,14 @@ public interface FammilleTarifaireService {
      */
     Page<FammilleTarifaire> findAll(Pageable pageable);
 
+    /**
+     * Get all the fammilleTarifaires by libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<FammilleTarifaire> findAllByDes(String str, Pageable pageable);
+
 
     /**
      * Get the "id" fammilleTarifaire.

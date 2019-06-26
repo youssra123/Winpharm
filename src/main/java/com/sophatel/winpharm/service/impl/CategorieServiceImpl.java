@@ -53,6 +53,19 @@ public class CategorieServiceImpl implements CategorieService {
         return categorieRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the categories.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Categorie> findAllByDes(String str, Pageable pageable) {
+        log.debug("Request to get all Categories by libelle");
+        return categorieRepository.findAllByDes("%"+str+"%", pageable);
+    }
+
 
     /**
      * Get one categorie by id.

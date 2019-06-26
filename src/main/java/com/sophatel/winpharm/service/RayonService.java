@@ -28,6 +28,14 @@ public interface RayonService {
      */
     Page<Rayon> findAll(Pageable pageable);
 
+    /**
+     * Get all the rayons.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Rayon> findAllByDes(String str, Pageable pageable);
+
 
     /**
      * Get the "id" rayon.

@@ -28,6 +28,13 @@ public interface VilleService {
      */
     Page<Ville> findAll(Pageable pageable);
 
+    /**
+     * Get all the villes by libelle.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Ville> findAllByDes(String str, Pageable pageable);
 
     /**
      * Get the "id" ville.
