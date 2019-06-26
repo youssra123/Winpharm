@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface GrossisteRepository extends JpaRepository<Grossiste, Long> {
-    @Query("select g from Grossiste g where g.grossisteRaisSoc like :x")
+    @Query("select g from Grossiste g where upper(g.grossisteRaisSoc) like :x")
     public Page<Grossiste> findAllByDes(@Param("x") String str, Pageable pageable);
 }

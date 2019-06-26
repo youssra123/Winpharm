@@ -63,7 +63,7 @@ public class VilleServiceImpl implements VilleService {
     @Transactional(readOnly = true)
     public Page<Ville> findAllByDes(String str, Pageable pageable) {
         log.debug("Request to get all Villes by libelle");
-        return villeRepository.findAllByDes("%"+str+"%", pageable);
+        return villeRepository.findAllByDes("%"+str.toUpperCase()+"%", pageable);
     }
 
     /**

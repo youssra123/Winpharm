@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface FammilleTarifaireRepository extends JpaRepository<FammilleTarifaire, Long> {
-    @Query("select f from FammilleTarifaire f where f.famiTarifLibelle like :x")
+    @Query("select f from FammilleTarifaire f where upper(f.famiTarifLibelle) like :x")
     public Page<FammilleTarifaire> findAllByDes(@Param("x") String str, Pageable pageable);
 }

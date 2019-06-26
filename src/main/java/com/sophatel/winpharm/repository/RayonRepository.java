@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface RayonRepository extends JpaRepository<Rayon, Long> {
-    @Query("select r from Rayon r where r.rayonLibelle like :x")
+    @Query("select r from Rayon r where upper(r.rayonLibelle) like :x")
     public Page<Rayon> findAllByDes(@Param("x") String str, Pageable pageable);
 }

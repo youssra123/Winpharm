@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface VilleRepository extends JpaRepository<Ville, Long> {
-    @Query("select v from Ville v where v.villeLibelle like :x")
+    @Query("select v from Ville v where upper(v.villeLibelle) like :x")
     public Page<Ville> findAllByDes(@Param("x") String str, Pageable pageable);
 }

@@ -4,47 +4,11 @@
             <h2><span jhiTranslate="winpharmApp.produit.detail.title">Produit</span> {{produit.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-<<<<<<< HEAD
              <div class="controls">
               <div class="row">
                 <div class="col-md-6 bottom">
                     <div class="text-content">
                         <span jhiTranslate="winpharmApp.produit.produitLibelle">Produit Libelle</span>
-=======
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="winpharmApp.produit.produitLibelle">Produit Libelle</span></dt>
-                <dd>
-                    <span>{{produit.produitLibelle}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produitActif">Produit Actif</span></dt>
-                <dd>
-                    <span>{{produit.produitActif}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produitCodeBarre">Produit Code Barre</span></dt>
-                <dd>
-                    <span>{{produit.produitCodeBarre}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produitDosage">Produit Dosage</span></dt>
-                <dd>
-                    <span>{{produit.produitDosage}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produitUniDosage">Produit Uni Dosage</span></dt>
-                <dd>
-                    <span>{{produit.produitUniDosage}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produitVolume">Produit Volume</span></dt>
-                <dd>
-                    <span>{{produit.produitVolume}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produitUniVolume">Produit Uni Volume</span></dt>
-                <dd>
-                    <span>{{produit.produitUniVolume}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produit_rayon">Produit Rayon</span></dt>
-                <dd>
-                    <div *ngIf="produit.produit_rayon">
-                        <a [routerLink]="['/rayon', produit.produit_rayon?.id, 'view']">{{produit.produit_rayon?.id}}</a>
->>>>>>> 5b75907d62216879384211d9644ca5dd30e8f01b
                     </div>
                 </dd>
                 <dt><span jhiTranslate="winpharmApp.produit.produit_categorie">Produit Categorie</span></dt>
@@ -85,7 +49,6 @@
                 </dd>
             </dl>
 
-<<<<<<< HEAD
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produitActif">Produit Actif</span>
@@ -180,13 +143,6 @@
                                 <a [routerLink]="['/forme', produit.proform?.id, 'view']">{{produit.proform?.id}}</a>
                         </div>   
                 </div>
-=======
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
->>>>>>> 5b75907d62216879384211d9644ca5dd30e8f01b
 
             <button type="button"
                     [routerLink]="['/produit', produit.id, 'edit']"

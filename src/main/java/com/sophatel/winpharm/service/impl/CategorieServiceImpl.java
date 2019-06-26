@@ -63,7 +63,7 @@ public class CategorieServiceImpl implements CategorieService {
     @Transactional(readOnly = true)
     public Page<Categorie> findAllByDes(String str, Pageable pageable) {
         log.debug("Request to get all Categories by libelle");
-        return categorieRepository.findAllByDes("%"+str+"%", pageable);
+        return categorieRepository.findAllByDes("%"+str.toUpperCase()+"%", pageable);
     }
 
 

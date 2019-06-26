@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface FormeRepository extends JpaRepository<Forme, Long> {
-    @Query("select f from Forme f where f.formeLibelle like :x")
+    @Query("select f from Forme f where upper(f.formeLibelle) like :x")
     public Page<Forme> findAllByDes(@Param("x") String str, Pageable pageable);
 }
