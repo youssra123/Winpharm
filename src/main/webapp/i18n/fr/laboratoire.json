@@ -2,7 +2,7 @@
   "winpharmApp": {
     "laboratoire": {
       "home": {
-        "title": "Laboratoires",
+        "title": "Barre de recherche",
         "createLabel": "Créer un nouveau Laboratoire",
         "createOrEditLabel": "Créer ou éditer un Laboratoire",
         "notFound": "Aucun Laboratoire trouvé"
@@ -16,9 +16,9 @@
       "detail": {
         "title": "Laboratoire"
       },
-      "laboratoireRaisSoc": "Laboratoire Rais Soc",
-      "laboratoireAdresse": "Laboratoire Adresse",
-      "laboratoireTelephone": "Laboratoire Telephone"
+      "laboratoireRaisSoc": "Raison Sociale",
+      "laboratoireAdresse": "Adresse",
+      "laboratoireTelephone": "Telephone"
     }
   }
 }

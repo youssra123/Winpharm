@@ -17,6 +17,9 @@ export class ProduitDetailComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ produit }) => {
       this.produit = produit;
     });
+    this.activatedRoute.data.subscribe(({ produit }) => {
+      this.produit = produit;
+    });
   }
 
   previousState() {

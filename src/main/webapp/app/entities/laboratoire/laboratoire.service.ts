@@ -26,6 +26,10 @@ export class LaboratoireService {
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ILaboratoire>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+  findByDes(libelle: string, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ILaboratoire[]>(`${this.resourceUrl}?q=${libelle}`, { params: options, observe: 'response' });
+  }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);

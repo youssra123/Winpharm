@@ -3,7 +3,7 @@
     "forme": {
       "home": {
         "title": "Formes",
-        "createLabel": "Créer un nouveau Forme",
+        "createLabel": "Créer une nouvelle Forme",
         "createOrEditLabel": "Créer ou éditer un Forme",
         "notFound": "Aucun Forme trouvé"
       },

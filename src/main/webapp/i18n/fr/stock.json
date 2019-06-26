@@ -16,8 +16,8 @@
       "detail": {
         "title": "Stock"
       },
-      "stockCouvertureMin": "Stock Couverture Min",
-      "stockCouvertureMax": "Stock Couverture Max"
+      "stockCouvertureMin": " Couverture Min",
+      "stockCouvertureMax": " Couverture Max"
     }
   }
 }

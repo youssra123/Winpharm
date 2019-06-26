@@ -12,7 +12,8 @@ import { FammilleTarifaireService } from './fammille-tarifaire.service';
 
 @Component({
   selector: 'jhi-fammille-tarifaire',
-  templateUrl: './fammille-tarifaire.component.html'
+  templateUrl: './fammille-tarifaire.component.html',
+  styleUrls: ['famille.scss']
 })
 export class FammilleTarifaireComponent implements OnInit, OnDestroy {
   fammilleTarifaires: IFammilleTarifaire[];
@@ -54,7 +55,19 @@ export class FammilleTarifaireComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
-
+  onKey(libelle: string) {
+    this.fammilleTarifaires = [];
+    this.fammilleTarifaireService
+      .findByDes(libelle, {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IFammilleTarifaire[]>) => this.paginateFammilleTarifaires(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
   reset() {
     this.page = 0;
     this.fammilleTarifaires = [];

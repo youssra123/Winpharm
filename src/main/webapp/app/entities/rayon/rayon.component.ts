@@ -12,7 +12,8 @@ import { RayonService } from './rayon.service';
 
 @Component({
   selector: 'jhi-rayon',
-  templateUrl: './rayon.component.html'
+  templateUrl: './rayon.component.html',
+  styleUrls: ['rayon.scss']
 })
 export class RayonComponent implements OnInit, OnDestroy {
   rayons: IRayon[];
@@ -54,7 +55,21 @@ export class RayonComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
+  onKey(libelle: string) {
+    console.log('libelle:' + libelle);
 
+    this.rayons = [];
+    this.rayonService
+      .findByDes(libelle, {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IRayon[]>) => this.paginateRayons(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
   reset() {
     this.page = 0;
     this.rayons = [];

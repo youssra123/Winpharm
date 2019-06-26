@@ -7,7 +7,8 @@
       "contact": "Contact",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entités",
+        "main": "Divers",
+        "tiers": "Tiers",
         "ville": "Ville",
         "grossiste": "Grossiste",
         "forme": "Forme",

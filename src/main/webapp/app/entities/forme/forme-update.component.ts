@@ -8,7 +8,8 @@ import { FormeService } from './forme.service';
 
 @Component({
   selector: 'jhi-forme-update',
-  templateUrl: './forme-update.component.html'
+  templateUrl: './forme-update.component.html',
+  styleUrls: ['forme.scss']
 })
 export class FormeUpdateComponent implements OnInit {
   isSaving: boolean;

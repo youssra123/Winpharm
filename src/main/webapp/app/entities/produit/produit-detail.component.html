@@ -5,7 +5,6 @@
             <h4 class="content padding-box"><span jhiTranslate="winpharmApp.produit.detail.title">Produit</span> <span> {{produit.id}}:  {{produit.produitLibelle}}</span></h4>
             <div><br></div>
             <jhi-alert-error></jhi-alert-error>
-            <div class="messages"></div>
              <div class="controls">
               <div class="row">
                 <div class="col-md-6 bottom">
@@ -69,14 +68,10 @@
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produit_rayon">Produit Rayon</span>
                         </div>
-                        <div *ngIf="produit.produit_rayon, else elseblock">
+                        <div *ngIf="produit.produit_rayon">
                             <a [routerLink]="['/rayon', produit.produit_rayon?.id, 'view']">{{produit.produit_rayon?.id}}</a>
                         </div>
-                        <ng-template #elseblock>
-                        <div>
-                            <span>Non spécifié</span>
-                        </div>   
-                       </ng-template> 
+                          
                 </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">
@@ -90,19 +85,14 @@
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produit_fam_tar">Produit Fam Tar</span>
                         </div>
-                        <div *ngIf="produit.produit_fam_tar, else elseblock2">
+                        <div *ngIf="produit.produit_fam_tar">
                                 <a [routerLink]="['/fammille-tarifaire', produit.produit_fam_tar?.id, 'view']">{{produit.produit_fam_tar?.id}}</a>
                         </div>    
                 </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produit_laboratoire">Produit Laboratoire</span>
-                        </div>
-                        <ng-template #elseblock2>
-                        <div>
-                              <span>Non spécifié</span>  
-                        </div> 
-                    </ng-template>   
+                        </div>   
                 </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">

@@ -20,6 +20,6 @@
     "importHelpers": true,
     "allowJs": true
   },
-  "include": ["src/main/webapp/app", "src/test/javascript/"],
+  "include": ["src/main/webapp/app", "src/test/javascript/", "node_modules/angular-bootstrap-md/**/*.ts ", "src/**/*.ts"],
   "exclude": ["node_modules"]
 }

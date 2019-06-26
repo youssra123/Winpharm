@@ -5,7 +5,8 @@ import { ICategorie } from 'app/shared/model/categorie.model';
 
 @Component({
   selector: 'jhi-categorie-detail',
-  templateUrl: './categorie-detail.component.html'
+  templateUrl: './categorie-detail.component.html',
+  styleUrls: ['categorie.scss']
 })
 export class CategorieDetailComponent implements OnInit {
   categorie: ICategorie;

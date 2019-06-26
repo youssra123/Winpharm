@@ -9,12 +9,18 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <br/>
+    <br/><br/><br/>
+    <form class="form-inline md-form form-sm">
+        <input #box class="form-control form-control-sm mr-3" type="text" placeholder="Chercher un grossiste" aria-label="Search" (keyup)="onKey(box.value)"
+          mdbInput>
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </form>
+      <p>{{values}}</p>
     <div class="alert alert-warning" *ngIf="grossistes?.length === 0">
         <span jhiTranslate="winpharmApp.grossiste.home.notFound">No grossistes found</span>
     </div>
     <div class="table-responsive" *ngIf="grossistes?.length > 0">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>

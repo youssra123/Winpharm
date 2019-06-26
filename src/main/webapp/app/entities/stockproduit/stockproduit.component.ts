@@ -12,7 +12,8 @@ import { StockproduitService } from './stockproduit.service';
 
 @Component({
   selector: 'jhi-stockproduit',
-  templateUrl: './stockproduit.component.html'
+  templateUrl: './stockproduit.component.html',
+  styleUrls: ['stockproduit.scss']
 })
 export class StockproduitComponent implements OnInit, OnDestroy {
   stockproduits: IStockproduit[];
@@ -54,7 +55,19 @@ export class StockproduitComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
-
+  onKey(libelle: string) {
+    this.stockproduits = [];
+    this.stockproduitService
+      .findByDes(libelle, {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IStockproduit[]>) => this.paginateStockproduits(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
   reset() {
     this.page = 0;
     this.stockproduits = [];

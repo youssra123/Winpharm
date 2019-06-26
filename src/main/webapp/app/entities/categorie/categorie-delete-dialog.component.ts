@@ -9,7 +9,8 @@ import { CategorieService } from './categorie.service';
 
 @Component({
   selector: 'jhi-categorie-delete-dialog',
-  templateUrl: './categorie-delete-dialog.component.html'
+  templateUrl: './categorie-delete-dialog.component.html',
+  styleUrls: ['categorie.scss']
 })
 export class CategorieDeleteDialogComponent {
   categorie: ICategorie;

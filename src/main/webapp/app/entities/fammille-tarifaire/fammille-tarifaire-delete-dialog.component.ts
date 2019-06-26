@@ -9,7 +9,8 @@ import { FammilleTarifaireService } from './fammille-tarifaire.service';
 
 @Component({
   selector: 'jhi-fammille-tarifaire-delete-dialog',
-  templateUrl: './fammille-tarifaire-delete-dialog.component.html'
+  templateUrl: './fammille-tarifaire-delete-dialog.component.html',
+  styleUrls: ['famille.scss']
 })
 export class FammilleTarifaireDeleteDialogComponent {
   fammilleTarifaire: IFammilleTarifaire;

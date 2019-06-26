@@ -26,7 +26,10 @@ export class GrossisteService {
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IGrossiste>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
-
+  findByDes(libelle: string, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IGrossiste[]>(`${this.resourceUrl}?q=${libelle}`, { params: options, observe: 'response' });
+  }
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IGrossiste[]>(this.resourceUrl, { params: options, observe: 'response' });

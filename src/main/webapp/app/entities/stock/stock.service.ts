@@ -22,7 +22,10 @@ export class StockService {
   update(stock: IStock): Observable<EntityResponseType> {
     return this.http.put<IStock>(this.resourceUrl, stock, { observe: 'response' });
   }
-
+  findByDes(libelle: string, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IStock[]>(`${this.resourceUrl}?q=${libelle}`, { params: options, observe: 'response' });
+  }
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IStock>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

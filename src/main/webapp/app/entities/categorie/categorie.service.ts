@@ -22,6 +22,10 @@ export class CategorieService {
   update(categorie: ICategorie): Observable<EntityResponseType> {
     return this.http.put<ICategorie>(this.resourceUrl, categorie, { observe: 'response' });
   }
+  findByDes(libelle: string, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ICategorie[]>(`${this.resourceUrl}?q=${libelle}`, { params: options, observe: 'response' });
+  }
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICategorie>(`${this.resourceUrl}/${id}`, { observe: 'response' });

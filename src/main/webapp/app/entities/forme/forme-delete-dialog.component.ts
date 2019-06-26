@@ -9,7 +9,8 @@ import { FormeService } from './forme.service';
 
 @Component({
   selector: 'jhi-forme-delete-dialog',
-  templateUrl: './forme-delete-dialog.component.html'
+  templateUrl: './forme-delete-dialog.component.html',
+  styleUrls: ['forme.scss']
 })
 export class FormeDeleteDialogComponent {
   forme: IForme;

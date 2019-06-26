@@ -44,6 +44,10 @@ export class StockproduitService {
       .get<IStockproduit[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
+  findByDes(libelle: string, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IStockproduit[]>(`${this.resourceUrl}?q=${libelle}`, { params: options, observe: 'response' });
+  }
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });

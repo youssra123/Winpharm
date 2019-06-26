@@ -27,6 +27,11 @@ export class ProduitService {
     return this.http.get<IProduit>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findByDes(libelle: string, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IProduit[]>(`${this.resourceUrl}?q=${libelle}`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IProduit[]>(this.resourceUrl, { params: options, observe: 'response' });

@@ -1,19 +1,21 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="forme">
-            <h2><span jhiTranslate="winpharmApp.forme.detail.title">Forme</span> {{forme.id}}</h2>
-            <hr>
+            <h4 class="content padding-box"><span jhiTranslate="winpharmApp.forme.detail.title">Forme  </span>{{forme.id}}:  {{forme.formeLibelle}}</h4>
+            <br>
+            <hr style="border: none; ">
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
+            <dl class="row-md jh-entity-details pad" >
                 <dt><span jhiTranslate="winpharmApp.forme.formeLibelle">Forme Libelle</span></dt>
                 <dd>
                     <span>{{forme.formeLibelle}}</span>
                 </dd>
             </dl>
-
+            
+            <div style="text-align: center;">
             <button type="submit"
                     (click)="previousState()"
-                    class="btn btn-info">
+                    class="btn back_color">
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
@@ -23,5 +25,6 @@
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
+    </div>
     </div>
 </div>

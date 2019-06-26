@@ -1,37 +1,3 @@
-.back_color {
-  background-color: rgb(38, 151, 87);
-  color: white;
-}
-.boutton {
-  padding-top: 9%;
-  padding-left: 20%;
-}
-label {
-  font-weight: bold;
-}
-input {
-  margin-bottom: 5%;
-}
-
-.padding-box {
-  background-clip: padding-box;
-}
-
-.content {
-  padding: 2em;
-  background: rgba(38, 151, 87, 0.6);
-  color: white;
-  font-weight: bold;
-}
-
-.bottom {
-  margin-bottom: 4%;
-  padding-left: 8%;
-}
-.text-content {
-  font-weight: bold;
-  font-size: 18px;
-}
 .active-pink-2 input[type='text']:focus:not([readonly]) {
   border-bottom: 1px solid #f48fb1;
   box-shadow: 0 1px 0 0 #f48fb1;

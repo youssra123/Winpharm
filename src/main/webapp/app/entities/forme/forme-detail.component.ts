@@ -5,7 +5,8 @@ import { IForme } from 'app/shared/model/forme.model';
 
 @Component({
   selector: 'jhi-forme-detail',
-  templateUrl: './forme-detail.component.html'
+  templateUrl: './forme-detail.component.html',
+  styleUrls: ['forme.scss']
 })
 export class FormeDetailComponent implements OnInit {
   forme: IForme;

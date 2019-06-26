@@ -1,6 +1,5 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="winpharmApp.fammilleTarifaire.home.title">Fammille Tarifaires</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fammille-tarifaire" [routerLink]="['/fammille-tarifaire/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="winpharmApp.fammilleTarifaire.home.createLabel">
@@ -9,19 +8,25 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <br/>
+    <br/><br/><br/>
+    <form class="form-inline md-form form-sm">
+        <input #box class="form-control form-control-sm mr-3" type="text" placeholder="Chercher un famille tarifaire" aria-label="Search" (keyup)="onKey(box.value)"
+          mdbInput>
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </form>
+      <p>{{values}}</p>
     <div class="alert alert-warning" *ngIf="fammilleTarifaires?.length === 0">
         <span jhiTranslate="winpharmApp.fammilleTarifaire.home.notFound">No fammilleTarifaires found</span>
     </div>
     <div class="table-responsive" *ngIf="fammilleTarifaires?.length > 0">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="famiTarifLibelle"><span jhiTranslate="winpharmApp.fammilleTarifaire.famiTarifLibelle">Fami Tarif Libelle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="famiTarifForfait"><span jhiTranslate="winpharmApp.fammilleTarifaire.famiTarifForfait">Fami Tarif Forfait</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="famiTarifCodeTVA"><span jhiTranslate="winpharmApp.fammilleTarifaire.famiTarifCodeTVA">Fami Tarif Code TVA</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="famiTarifTauxTVA"><span jhiTranslate="winpharmApp.fammilleTarifaire.famiTarifTauxTVA">Fami Tarif Taux TVA</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="id" ><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="famiTarifLibelle"><span jhiTranslate="winpharmApp.fammilleTarifaire.famiTarifLibelle">Libelle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="famiTarifForfait"><span jhiTranslate="winpharmApp.fammilleTarifaire.famiTarifForfait">Forfait</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="famiTarifCodeTVA"><span jhiTranslate="winpharmApp.fammilleTarifaire.famiTarifCodeTVA">Code TVA</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="famiTarifTauxTVA"><span jhiTranslate="winpharmApp.fammilleTarifaire.famiTarifTauxTVA">Taux TVA</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -36,7 +41,7 @@
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/fammille-tarifaire', fammilleTarifaire.id, 'view' ]"
-                                class="btn btn-info btn-sm">
+                                class="btn btn-info btn-sm back_color">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>

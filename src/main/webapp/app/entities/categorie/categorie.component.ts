@@ -12,7 +12,8 @@ import { CategorieService } from './categorie.service';
 
 @Component({
   selector: 'jhi-categorie',
-  templateUrl: './categorie.component.html'
+  templateUrl: './categorie.component.html',
+  styleUrls: ['categorie.scss']
 })
 export class CategorieComponent implements OnInit, OnDestroy {
   categories: ICategorie[];
@@ -45,6 +46,19 @@ export class CategorieComponent implements OnInit, OnDestroy {
   loadAll() {
     this.categorieService
       .query({
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<ICategorie[]>) => this.paginateCategories(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+  onKey(libelle: string) {
+    this.categories = [];
+    this.categorieService
+      .findByDes(libelle, {
         page: this.page,
         size: this.itemsPerPage,
         sort: this.sort()
