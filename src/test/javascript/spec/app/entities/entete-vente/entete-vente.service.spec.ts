@@ -4,6 +4,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { EnteteVenteService } from 'app/entities/entete-vente/entete-vente.service';
 import { IEnteteVente, EnteteVente } from 'app/shared/model/entete-vente.model';
 
@@ -14,6 +16,7 @@ describe('Service Tests', () => {
     let httpMock: HttpTestingController;
     let elemDefault: IEnteteVente;
     let expectedResult;
+    let currentDate: moment.Moment;
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule]
@@ -22,13 +25,19 @@ describe('Service Tests', () => {
       injector = getTestBed();
       service = injector.get(EnteteVenteService);
       httpMock = injector.get(HttpTestingController);
+      currentDate = moment();
 
-      elemDefault = new EnteteVente(0, 0, 0, 'AAAAAAA');
+      elemDefault = new EnteteVente(0, 0, 0, 'AAAAAAA', currentDate);
     });
 
     describe('Service methods', () => {
       it('should find an element', async () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            enteteVenteDateCreation: currentDate.format(DATE_TIME_FORMAT)
+          },
+          elemDefault
+        );
         service
           .find(123)
           .pipe(take(1))
@@ -42,11 +51,17 @@ describe('Service Tests', () => {
       it('should create a EnteteVente', async () => {
         const returnedFromService = Object.assign(
           {
-            id: 0
+            id: 0,
+            enteteVenteDateCreation: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            enteteVenteDateCreation: currentDate
+          },
+          returnedFromService
+        );
         service
           .create(new EnteteVente(null))
           .pipe(take(1))
@@ -61,12 +76,18 @@ describe('Service Tests', () => {
           {
             enteteVenteTotalHT: 1,
             enteteVenteTotalTTC: 1,
-            enteteVenteType: 'BBBBBB'
+            enteteVenteType: 'BBBBBB',
+            enteteVenteDateCreation: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            enteteVenteDateCreation: currentDate
+          },
+          returnedFromService
+        );
         service
           .update(expected)
           .pipe(take(1))
@@ -81,11 +102,17 @@ describe('Service Tests', () => {
           {
             enteteVenteTotalHT: 1,
             enteteVenteTotalTTC: 1,
-            enteteVenteType: 'BBBBBB'
+            enteteVenteType: 'BBBBBB',
+            enteteVenteDateCreation: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
         );
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            enteteVenteDateCreation: currentDate
+          },
+          returnedFromService
+        );
         service
           .query(expected)
           .pipe(

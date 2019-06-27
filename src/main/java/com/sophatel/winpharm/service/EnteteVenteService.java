@@ -28,6 +28,13 @@ public interface EnteteVenteService {
      */
     Page<EnteteVente> findAll(Pageable pageable);
 
+    /**
+     * Get all the enteteVentes by date.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<EnteteVente> findAllByDate(String str, Pageable pageable);
 
     /**
      * Get the "id" enteteVente.

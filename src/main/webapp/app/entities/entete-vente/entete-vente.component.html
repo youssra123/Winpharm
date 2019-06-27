@@ -21,6 +21,7 @@
             <th jhiSortBy="enteteVenteTotalHT"><span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalHT">Entete Vente Total HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="enteteVenteTotalTTC"><span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalTTC">Entete Vente Total TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="enteteVenteType"><span jhiTranslate="winpharmApp.enteteVente.enteteVenteType">Entete Vente Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="enteteVenteDateCreation"><span jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation">Entete Vente Date Creation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="client.id"><span jhiTranslate="winpharmApp.enteteVente.client">Client</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -31,6 +32,7 @@
                 <td>{{enteteVente.enteteVenteTotalHT}}</td>
                 <td>{{enteteVente.enteteVenteTotalTTC}}</td>
                 <td>{{enteteVente.enteteVenteType}}</td>
+                <td>{{enteteVente.enteteVenteDateCreation | date:'medium'}}</td>
                 <td>
                     <div *ngIf="enteteVente.client">
                         <a [routerLink]="['../client', enteteVente.client?.id, 'view' ]" >{{enteteVente.client?.id}}</a>
