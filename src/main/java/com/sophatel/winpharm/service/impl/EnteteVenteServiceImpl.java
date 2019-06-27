@@ -53,6 +53,18 @@ public class EnteteVenteServiceImpl implements EnteteVenteService {
         return enteteVenteRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the enteteVentes by date.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<EnteteVente> findAllByDate(String str, Pageable pageable) {
+        log.debug("Request to get all EnteteVentes by date");
+        return enteteVenteRepository.findAllByDate(str, pageable);
+    }
 
     /**
      * Get one enteteVente by id.
