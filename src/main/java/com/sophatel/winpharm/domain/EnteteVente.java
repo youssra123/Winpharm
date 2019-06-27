@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,6 +37,10 @@ public class EnteteVente implements Serializable {
     @NotNull
     @Column(name = "entete_vente_type", nullable = false)
     private String enteteVenteType;
+
+    @NotNull
+    @Column(name = "entete_vente_date_creation", nullable = false)
+    private ZonedDateTime enteteVenteDateCreation;
 
     @ManyToOne
     @JsonIgnoreProperties("enteteVentes")
@@ -91,6 +96,19 @@ public class EnteteVente implements Serializable {
 
     public void setEnteteVenteType(String enteteVenteType) {
         this.enteteVenteType = enteteVenteType;
+    }
+
+    public ZonedDateTime getEnteteVenteDateCreation() {
+        return enteteVenteDateCreation;
+    }
+
+    public EnteteVente enteteVenteDateCreation(ZonedDateTime enteteVenteDateCreation) {
+        this.enteteVenteDateCreation = enteteVenteDateCreation;
+        return this;
+    }
+
+    public void setEnteteVenteDateCreation(ZonedDateTime enteteVenteDateCreation) {
+        this.enteteVenteDateCreation = enteteVenteDateCreation;
     }
 
     public Client getClient() {
@@ -155,6 +173,7 @@ public class EnteteVente implements Serializable {
             ", enteteVenteTotalHT=" + getEnteteVenteTotalHT() +
             ", enteteVenteTotalTTC=" + getEnteteVenteTotalTTC() +
             ", enteteVenteType='" + getEnteteVenteType() + "'" +
+            ", enteteVenteDateCreation='" + getEnteteVenteDateCreation() + "'" +
             "}";
     }
 }

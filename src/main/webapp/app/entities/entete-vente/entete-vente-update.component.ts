@@ -4,6 +4,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { IEnteteVente, EnteteVente } from 'app/shared/model/entete-vente.model';
 import { EnteteVenteService } from './entete-vente.service';
@@ -24,6 +26,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
     enteteVenteTotalHT: [null, [Validators.required]],
     enteteVenteTotalTTC: [null, [Validators.required]],
     enteteVenteType: [null, [Validators.required]],
+    enteteVenteDateCreation: [null, [Validators.required]],
     client: []
   });
 
@@ -55,6 +58,8 @@ export class EnteteVenteUpdateComponent implements OnInit {
       enteteVenteTotalHT: enteteVente.enteteVenteTotalHT,
       enteteVenteTotalTTC: enteteVente.enteteVenteTotalTTC,
       enteteVenteType: enteteVente.enteteVenteType,
+      enteteVenteDateCreation:
+        enteteVente.enteteVenteDateCreation != null ? enteteVente.enteteVenteDateCreation.format(DATE_TIME_FORMAT) : null,
       client: enteteVente.client
     });
   }
@@ -80,6 +85,10 @@ export class EnteteVenteUpdateComponent implements OnInit {
       enteteVenteTotalHT: this.editForm.get(['enteteVenteTotalHT']).value,
       enteteVenteTotalTTC: this.editForm.get(['enteteVenteTotalTTC']).value,
       enteteVenteType: this.editForm.get(['enteteVenteType']).value,
+      enteteVenteDateCreation:
+        this.editForm.get(['enteteVenteDateCreation']).value != null
+          ? moment(this.editForm.get(['enteteVenteDateCreation']).value, DATE_TIME_FORMAT)
+          : undefined,
       client: this.editForm.get(['client']).value
     };
     return entity;

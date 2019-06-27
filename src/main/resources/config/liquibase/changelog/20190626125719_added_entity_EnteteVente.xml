@@ -27,6 +27,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="entete_vente_date_creation" type="datetime">
+                <constraints nullable="false" />
+            </column>
+
             <column name="client_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -34,6 +38,7 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
+        <dropDefaultValue tableName="entete_vente" columnName="entete_vente_date_creation" columnDataType="datetime"/>
     </changeSet>
 
     <!--
@@ -53,6 +58,7 @@
             <column name="entete_vente_total_ht" type="numeric"/>
             <column name="entete_vente_total_ttc" type="numeric"/>
             <column name="entete_vente_type" type="string"/>
+            <column name="entete_vente_date_creation" type="datetime"/>
         </loadData>
     </changeSet>
 
