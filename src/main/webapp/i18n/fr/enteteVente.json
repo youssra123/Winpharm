@@ -19,6 +19,7 @@
       "enteteVenteTotalHT": "Entete Vente Total HT",
       "enteteVenteTotalTTC": "Entete Vente Total TTC",
       "enteteVenteType": "Entete Vente Type",
+      "enteteVenteDateCreation": "Entete Vente Date Creation",
       "client": "Client",
       "ligneVente": "Ligne Vente"
     }
