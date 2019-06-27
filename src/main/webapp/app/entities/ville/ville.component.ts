@@ -13,33 +13,32 @@ import { VilleService } from './ville.service';
 
 @Component({
   selector: 'jhi-ville',
-  templateUrl: './ville.component.html',
-  styleUrls: ['ville.scss']
+  templateUrl: './ville.component.html'
 })
 export class VilleComponent implements OnInit, OnDestroy {
-  villes: IVille[];
   currentAccount: any;
+  villes: IVille[];
+  error: any;
+  success: any;
   eventSubscriber: Subscription;
-  itemsPerPage: number;
+  routeData: any;
   links: any;
+  totalItems: any;
+  itemsPerPage: any;
   page: any;
   predicate: any;
-  reverse: any;
-  totalItems: number;
-  error: any;
-  routeData: any;
   previousPage: any;
+  reverse: any;
 
   constructor(
     protected villeService: VilleService,
-    protected jhiAlertService: JhiAlertService,
-    protected eventManager: JhiEventManager,
     protected parseLinks: JhiParseLinks,
+    protected jhiAlertService: JhiAlertService,
     protected accountService: AccountService,
     protected activatedRoute: ActivatedRoute,
-    protected router: Router
+    protected router: Router,
+    protected eventManager: JhiEventManager
   ) {
-    this.villes = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;
@@ -60,24 +59,6 @@ export class VilleComponent implements OnInit, OnDestroy {
         (res: HttpResponse<IVille[]>) => this.paginateVilles(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-  }
-  onKey(libelle: string) {
-    this.villes = [];
-    this.villeService
-      .findByDes(libelle, {
-        page: this.page,
-        size: this.itemsPerPage,
-        sort: this.sort()
-      })
-      .subscribe(
-        (res: HttpResponse<IVille[]>) => this.paginateVilles(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
-  }
-  reset() {
-    this.page = 0;
-    this.villes = [];
-    this.loadAll();
   }
 
   loadPage(page: number) {
@@ -109,6 +90,7 @@ export class VilleComponent implements OnInit, OnDestroy {
     ]);
     this.loadAll();
   }
+
   ngOnInit() {
     this.loadAll();
     this.accountService.identity().then(account => {

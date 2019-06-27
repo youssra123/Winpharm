@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
+import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -31,9 +32,14 @@ export class VilleResolve implements Resolve<IVille> {
 export const villeRoute: Routes = [
   {
     path: '',
+    resolve: {
+      pagingParams: JhiResolvePagingParams
+    },
+
     component: VilleComponent,
     data: {
       authorities: ['ROLE_USER'],
+      defaultSort: 'id,asc',
       pageTitle: 'winpharmApp.ville.home.title'
     },
     canActivate: [UserRouteAccessService]
