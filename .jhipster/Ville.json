@@ -15,5 +15,5 @@
     "entityTableName": "ville",
     "databaseType": "sql",
     "jpaMetamodelFiltering": false,
-    "pagination": "infinite-scroll"
+    "pagination": "pagination"
 }

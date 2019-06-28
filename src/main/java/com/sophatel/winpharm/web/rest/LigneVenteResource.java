@@ -101,6 +101,20 @@ public class LigneVenteResource {
     }
 
     /**
+     * {@code GET  /ligne-ventes/vente/:id} : get all the ligneVentes associated to a vente.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ligneVentes in body.
+     */
+    @GetMapping("/ligne-ventes/vente/{id}")
+    public ResponseEntity<List<LigneVente>> getAllLigneVentesByVente(@PathVariable Long id, Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of LigneVentes assiciated to vente");
+        Page<LigneVente> page = ligneVenteService.findAllByVente(id, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
      * {@code GET  /ligne-ventes/:id} : get the "id" ligneVente.
      *
      * @param id the id of the ligneVente to retrieve.
