@@ -1,7 +1,9 @@
 package com.sophatel.winpharm.service.impl;
 
 import com.sophatel.winpharm.service.EnteteVenteService;
+import com.sophatel.winpharm.service.LigneVenteService;
 import com.sophatel.winpharm.domain.EnteteVente;
+import com.sophatel.winpharm.domain.LigneVente;
 import com.sophatel.winpharm.repository.EnteteVenteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Service Implementation for managing {@link EnteteVente}.
@@ -23,9 +27,12 @@ public class EnteteVenteServiceImpl implements EnteteVenteService {
     private final Logger log = LoggerFactory.getLogger(EnteteVenteServiceImpl.class);
 
     private final EnteteVenteRepository enteteVenteRepository;
+    private final LigneVenteService ligneVenteService;
 
-    public EnteteVenteServiceImpl(EnteteVenteRepository enteteVenteRepository) {
+
+    public EnteteVenteServiceImpl(EnteteVenteRepository enteteVenteRepository, LigneVenteService ligneVenteService) {
         this.enteteVenteRepository = enteteVenteRepository;
+        this.ligneVenteService = ligneVenteService;
     }
 
     /**
@@ -76,7 +83,10 @@ public class EnteteVenteServiceImpl implements EnteteVenteService {
     @Transactional(readOnly = true)
     public Optional<EnteteVente> findOne(Long id) {
         log.debug("Request to get EnteteVente : {}", id);
-        return enteteVenteRepository.findById(id);
+        Optional<EnteteVente> vente = enteteVenteRepository.findById(id);
+        Set<LigneVente> ligneVentes = ligneVenteService.findAllByVente(id);
+        vente.get().ligneVentes(ligneVentes);
+        return vente;
     }
 
     /**
