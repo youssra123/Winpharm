@@ -19,8 +19,8 @@
         "stock": "Stock",
         "produit": "Produit",
         "client": "Client",
-        "enteteVente": "Entete Vente",
-        "ligneVente": "Ligne Vente",
+        "enteteVente": "Entete de Vente",
+        "ligneVente": "Ligne de Vente",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -112,7 +112,7 @@
       "edit": "Editer",
       "delete": "Supprimer",
       "open": "Ouvrir",
-      "save": "Sauvegarder",
+      "save": "Ajouter un stock",
       "view": "Voir"
     },
     "detail": {
