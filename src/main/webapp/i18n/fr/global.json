@@ -112,8 +112,9 @@
       "edit": "Editer",
       "delete": "Supprimer",
       "open": "Ouvrir",
-      "save": "Ajouter un stock",
-      "view": "Voir"
+      "save": "Sauvegarder",
+      "view": "Voir",
+      "add": "stock 1"
     },
     "detail": {
       "field": "Champs",

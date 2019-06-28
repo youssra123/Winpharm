@@ -1,8 +1,8 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="produit">
-            <h2><span jhiTranslate="winpharmApp.produit.detail.title">Produit</span> {{produit.id}}</h2>
-            <hr>
+            <h2 class="content"><span jhiTranslate="winpharmApp.produit.detail.title">Produit</span> {{produit.id}}: {{produit.produitLibelle}}</h2>
+             <br>
             <jhi-alert-error></jhi-alert-error>
              <div class="controls">
               <div class="row">
@@ -10,45 +10,11 @@
                     <div class="text-content">
                         <span jhiTranslate="winpharmApp.produit.produitLibelle">Produit Libelle</span>
                     </div>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produit_categorie">Produit Categorie</span></dt>
-                <dd>
-                    <div *ngIf="produit.produit_categorie">
-                        <a [routerLink]="['/categorie', produit.produit_categorie?.id, 'view']">{{produit.produit_categorie?.id}}</a>
+                    <div>   
+                        <span>{{produit.produitLibelle}}</span>
                     </div>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produit_fam_tar">Produit Fam Tar</span></dt>
-                <dd>
-                    <div *ngIf="produit.produit_fam_tar">
-                        <a [routerLink]="['/fammille-tarifaire', produit.produit_fam_tar?.id, 'view']">{{produit.produit_fam_tar?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produit_laboratoire">Produit Laboratoire</span></dt>
-                <dd>
-                    <div *ngIf="produit.produit_laboratoire">
-                        <a [routerLink]="['/laboratoire', produit.produit_laboratoire?.id, 'view']">{{produit.produit_laboratoire?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.produit_grossiste">Produit Grossiste</span></dt>
-                <dd>
-                    <div *ngIf="produit.produit_grossiste">
-                        <a [routerLink]="['/grossiste', produit.produit_grossiste?.id, 'view']">{{produit.produit_grossiste?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.proform">Proform</span></dt>
-                <dd>
-                    <div *ngIf="produit.proform">
-                        <a [routerLink]="['/forme', produit.proform?.id, 'view']">{{produit.proform?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.produit.stock">Stock</span></dt>
-                <dd>
-                    <div *ngIf="produit.stock">
-                        <a [routerLink]="['/stock', produit.stock?.id, 'view']">{{produit.stock?.id}}</a>
-                    </div>
-                </dd>
-            </dl>
 
+                    </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produitActif">Produit Actif</span>
@@ -102,7 +68,7 @@
                             <span jhiTranslate="winpharmApp.produit.produit_rayon">Produit Rayon</span>
                         </div>
                         <div *ngIf="produit.produit_rayon">
-                            <a [routerLink]="['/rayon', produit.produit_rayon?.id, 'view']">{{produit.produit_rayon?.id}}</a>
+                            <a [routerLink]="['/rayon', produit.produit_rayon?.id, 'view']">{{produit.produit_rayon?.rayonLibelle}}</a>
                         </div>
                           
                 </div>
@@ -111,7 +77,7 @@
                             <span jhiTranslate="winpharmApp.produit.produit_categorie">Produit Categorie</span>
                         </div>
                         <div *ngIf="produit.produit_categorie">
-                            <a [routerLink]="['/categorie', produit.produit_categorie?.id, 'view']">{{produit.produit_categorie?.id}}</a>
+                            <a [routerLink]="['/categorie', produit.produit_categorie?.id, 'view']">{{produit.produit_categorie?.categorieLibelle}}</a>
                         </div>    
                 </div>
                 <div class="col-md-6 bottom">
@@ -119,20 +85,23 @@
                             <span jhiTranslate="winpharmApp.produit.produit_fam_tar">Produit Fam Tar</span>
                         </div>
                         <div *ngIf="produit.produit_fam_tar">
-                                <a [routerLink]="['/fammille-tarifaire', produit.produit_fam_tar?.id, 'view']">{{produit.produit_fam_tar?.id}}</a>
+                                <a [routerLink]="['/fammille-tarifaire', produit.produit_fam_tar?.id, 'view']">{{produit.produit_fam_tar?.famiTarifLibelle}}</a>
                         </div>    
                 </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produit_laboratoire">Produit Laboratoire</span>
-                        </div>   
+                        </div>  
+                        <div>
+                            <a [routerLink]="['/Laboratoire', produit.produit_laboratoire?.id, 'view']">{{produit.produit_laboratoire?.laboratoireRaisSoc}}</a>
+                    </div> 
                 </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produit_grossiste">Produit Grossiste</span>
                         </div>
                         <div>
-                                <a [routerLink]="['/grossiste', produit.produit_grossiste?.id, 'view']">{{produit.produit_grossiste?.id}}</a>
+                                <a [routerLink]="['/grossiste', produit.produit_grossiste?.id, 'view']">{{produit.produit_grossiste?.grossisteRaisSoc}}</a>
                         </div> 
                 </div>
                 <div class="col-md-6 bottom">
@@ -140,15 +109,26 @@
                             <span jhiTranslate="winpharmApp.produit.proform">Proform</span>
                         </div>
                         <div *ngIf="produit.proform">
-                                <a [routerLink]="['/forme', produit.proform?.id, 'view']">{{produit.proform?.id}}</a>
+                                <a [routerLink]="['/forme', produit.proform?.id, 'view']">{{produit.proform?.formeLibelle}}</a>
                         </div>   
                 </div>
 
-            <button type="button"
-                    [routerLink]="['/produit', produit.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+
+            <div class="col-md-6 offset-md-3 bottom" >
+                <button type="submit"
+                (click)="previousState()"
+                class="btn back_color">
+                  <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                </button>
+        
+                
+                <button type="button"
+                [routerLink]="['/produit', produit.id, 'edit']"
+                class="btn btn-primary">
+                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                </button>
+            </div>
+
         </div>
     </div>
 </div>
