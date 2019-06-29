@@ -255,14 +255,26 @@ export class ProduitUpdateComponent implements OnInit {
   }
   Display() {
     this.count = this.count + 1;
-    if (this.count === 1) {
-      this.isCollapsed = false;
-    }
-    if (this.count === 2) {
-      this.isCollapsedd = false;
-    }
-    if (this.count === 3) {
-      this.isCollapseddd = false;
+    if (this.count < 4) {
+      if (this.count === 1) {
+        this.isCollapsed = false;
+      }
+      if (this.count === 2) {
+        this.isCollapsedd = false;
+      }
+      if (this.count === 3) {
+        this.isCollapseddd = false;
+      }
+    } else {
+      if (this.count === 6) {
+        this.isCollapsed = true;
+      }
+      if (this.count === 5) {
+        this.isCollapsedd = true;
+      }
+      if (this.count === 4) {
+        this.isCollapseddd = true;
+      }
     }
   }
 }

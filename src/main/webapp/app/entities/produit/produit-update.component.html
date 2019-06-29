@@ -154,9 +154,9 @@
 
         <div class="boutton">
                 
-                <button type="button" class="btn btn-outline-primary" (click)="Display()"
+                <button type="button" class="btn btn-outline-success" (click)="Display()"
                 [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample1"><fa-icon [icon]="'plus'"></fa-icon>
-          <span jhiTranslate="entity.action.add">stock 1</span></button>
+          <span jhiTranslate="entity.action.add">Ajouter un stock</span></button>
           
 
           
@@ -294,7 +294,7 @@
                
                     <br><br>
 
-                  <div>
+                  <div class="text-center">
                         <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                                 <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                         </button>
