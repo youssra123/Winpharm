@@ -25,18 +25,6 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="stockCouvertureMin"><span jhiTranslate="winpharmApp.stock.stockCouvertureMin">Stock Couverture Min</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="stockCouvertureMax"><span jhiTranslate="winpharmApp.stock.stockCouvertureMax">Stock Couverture Max</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockQte1"><span jhiTranslate="winpharmApp.stock.stockQte1">Stock Qte 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockQte2"><span jhiTranslate="winpharmApp.stock.stockQte2">Stock Qte 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockQte3"><span jhiTranslate="winpharmApp.stock.stockQte3">Stock Qte 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockPrix1"><span jhiTranslate="winpharmApp.stock.stockPrix1">Stock Prix 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockPrix2"><span jhiTranslate="winpharmApp.stock.stockPrix2">Stock Prix 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockPrix3"><span jhiTranslate="winpharmApp.stock.stockPrix3">Stock Prix 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockDatePeremption1"><span jhiTranslate="winpharmApp.stock.stockDatePeremption1">Stock Date Peremption 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockDatePeremption2"><span jhiTranslate="winpharmApp.stock.stockDatePeremption2">Stock Date Peremption 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockDatePeremption3"><span jhiTranslate="winpharmApp.stock.stockDatePeremption3">Stock Date Peremption 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockPrixHT1"><span jhiTranslate="winpharmApp.stock.stockPrixHT1">Stock Prix HT 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockPrixHT2"><span jhiTranslate="winpharmApp.stock.stockPrixHT2">Stock Prix HT 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="stockPrixHT3"><span jhiTranslate="winpharmApp.stock.stockPrixHT3">Stock Prix HT 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="stockDateCreation"><span jhiTranslate="winpharmApp.stock.stockDateCreation">Stock Date Creation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -46,18 +34,6 @@
                 <td><a [routerLink]="['/stock', stock.id, 'view' ]">{{stock.id}}</a></td>
                 <td>{{stock.stockCouvertureMin}}</td>
                 <td>{{stock.stockCouvertureMax}}</td>
-                <td>{{stock.stockQte1}}</td>
-                <td>{{stock.stockQte2}}</td>
-                <td>{{stock.stockQte3}}</td>
-                <td>{{stock.stockPrix1}}</td>
-                <td>{{stock.stockPrix2}}</td>
-                <td>{{stock.stockPrix3}}</td>
-                <td>{{stock.stockDatePeremption1 | date:'medium'}}</td>
-                <td>{{stock.stockDatePeremption2 | date:'medium'}}</td>
-                <td>{{stock.stockDatePeremption3 | date:'medium'}}</td>
-                <td>{{stock.stockPrixHT1}}</td>
-                <td>{{stock.stockPrixHT2}}</td>
-                <td>{{stock.stockPrixHT3}}</td>
                 <td>{{stock.stockDateCreation | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group">

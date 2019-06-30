@@ -14,10 +14,21 @@ import { ProduitService } from 'app/entities/produit';
 
 @Component({
   selector: 'jhi-stock-update',
-  templateUrl: './stock-update.component.html'
+  templateUrl: './stock-update.component.html',
+  styles: [
+    `
+      .col {
+        color: #00a46c;
+        font-weight: bold;
+      }
+    `
+  ]
 })
 export class StockUpdateComponent implements OnInit {
   isSaving: boolean;
+  isCollapsed = true;
+  isCollapsedd = true;
+  isCollapseddd = true;
 
   produits: IProduit[];
 
