@@ -1,9 +1,13 @@
-<div class="row justify-content-center">
-    <div class="col-8">
+<div class="container" >
+        <div class="row">
+            <div >
         <div *ngIf="produit">
-            <h2 class="content"><span jhiTranslate="winpharmApp.produit.detail.title">Produit</span> {{produit.id}}: {{produit.produitLibelle}}</h2>
-             <br>
+            <br>
+            <h4 class="text-center"><span jhiTranslate="winpharmApp.produit.detail.title">Produit</span> <span> {{produit.id}}:  {{produit.produitLibelle}}</span></h4>
+            <hr>
+            <br>
             <jhi-alert-error></jhi-alert-error>
+            <div class="messages"></div>
              <div class="controls">
               <div class="row">
                 <div class="col-md-6 bottom">
@@ -11,10 +15,10 @@
                         <span jhiTranslate="winpharmApp.produit.produitLibelle">Produit Libelle</span>
                     </div>
                     <div>   
-                        <span>{{produit.produitLibelle}}</span>
+                         <span>{{produit.produitLibelle}}</span>
                     </div>
+                </div>
 
-                    </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produitActif">Produit Actif</span>
@@ -91,16 +95,16 @@
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produit_laboratoire">Produit Laboratoire</span>
+                        </div> 
+                        <div *ngIf="produit.produit_laboratoire">
+                                <a [routerLink]="['/laboratoire', produit.produit_laboratoire?.id, 'view']">{{produit.produit_laboratoire?.laboratoireRaisSoc}}</a>
                         </div>  
-                        <div>
-                            <a [routerLink]="['/Laboratoire', produit.produit_laboratoire?.id, 'view']">{{produit.produit_laboratoire?.laboratoireRaisSoc}}</a>
-                    </div> 
                 </div>
                 <div class="col-md-6 bottom">
                         <div class="text-content">
                             <span jhiTranslate="winpharmApp.produit.produit_grossiste">Produit Grossiste</span>
                         </div>
-                        <div>
+                        <div *ngIf="produit.produit_grossiste">
                                 <a [routerLink]="['/grossiste', produit.produit_grossiste?.id, 'view']">{{produit.produit_grossiste?.grossisteRaisSoc}}</a>
                         </div> 
                 </div>
@@ -113,22 +117,30 @@
                         </div>   
                 </div>
 
-
-            <div class="col-md-6 offset-md-3 bottom" >
-                <button type="submit"
-                (click)="previousState()"
-                class="btn back_color">
-                  <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-                </button>
         
-                
-                <button type="button"
-                [routerLink]="['/produit', produit.id, 'edit']"
-                class="btn btn-primary">
-                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-                </button>
-            </div>
-
+            
         </div>
+        <div class="text-center">
+        <button type="submit"
+        (click)="previousState()"
+        class="btn back_color">
+          <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        </button>
+
+        <button type="button"
+           [routerLink]="['/produit', produit.id, 'edit']"
+           class="btn btn-primary">
+           <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        </button>
+    </div>
     </div>
 </div>
+</div>
+</div>
+</div>
+            
+
+
+
+
+      

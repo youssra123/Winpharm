@@ -82,7 +82,7 @@
                                         <label class="form-control-label" jhiTranslate="winpharmApp.produit.produit_rayon" for="field_produit_rayon">Produit Rayon</label>
                                         <select class="form-control" id="field_produit_rayon" name="produit_rayon" formControlName="produit_rayon">
                                             <option [ngValue]="null"></option>
-                                            <option [ngValue]="rayonOption.id === editForm.get('produit_rayon').value?.id ? editForm.get('produit_rayon').value : rayonOption" *ngFor="let rayonOption of rayons; trackBy: trackRayonById">{{rayonOption.id}}</option>
+                                            <option [ngValue]="rayonOption.id === editForm.get('produit_rayon').value?.id ? editForm.get('produit_rayon').value : rayonOption" *ngFor="let rayonOption of rayons; trackBy: trackRayonById">{{rayonOption.rayonLibelle}}</option>
                                         </select>
                                 </div>
                         </div> 
@@ -91,7 +91,7 @@
                                         <label class="form-control-label" jhiTranslate="winpharmApp.produit.produit_categorie" for="field_produit_categorie">Produit Categorie</label>
                                         <select class="form-control" id="field_produit_categorie" name="produit_categorie" formControlName="produit_categorie">
                                             <option *ngIf="!editForm.get('produit_categorie').value" [ngValue]="null" selected></option>
-                                            <option [ngValue]="categorieOption.id === editForm.get('produit_categorie').value?.id ? editForm.get('produit_categorie').value : categorieOption" *ngFor="let categorieOption of categories; trackBy: trackCategorieById">{{categorieOption.id}}</option>
+                                            <option [ngValue]="categorieOption.id === editForm.get('produit_categorie').value?.id ? editForm.get('produit_categorie').value : categorieOption" *ngFor="let categorieOption of categories; trackBy: trackCategorieById">{{categorieOption.categorieLibelle}}</option>
                                         </select>
                                         <div *ngIf="editForm.get('produit_categorie').invalid && (editForm.get('produit_categorie').dirty || editForm.get('produit_categorie').touched)">
                                                 <small class="form-text text-danger"
@@ -104,7 +104,7 @@
                                         <label class="form-control-label" jhiTranslate="winpharmApp.produit.produit_fam_tar" for="field_produit_fam_tar">Produit Fam Tar</label>
                                         <select class="form-control" id="field_produit_fam_tar" name="produit_fam_tar" formControlName="produit_fam_tar">
                                             <option *ngIf="!editForm.get('produit_fam_tar').value" [ngValue]="null" selected></option>
-                                            <option [ngValue]="fammilleTarifaireOption.id === editForm.get('produit_fam_tar').value?.id ? editForm.get('produit_fam_tar').value : fammilleTarifaireOption" *ngFor="let fammilleTarifaireOption of fammilletarifaires; trackBy: trackFammilleTarifaireById">{{fammilleTarifaireOption.id}}</option>
+                                            <option [ngValue]="fammilleTarifaireOption.id === editForm.get('produit_fam_tar').value?.id ? editForm.get('produit_fam_tar').value : fammilleTarifaireOption" *ngFor="let fammilleTarifaireOption of fammilletarifaires; trackBy: trackFammilleTarifaireById">{{fammilleTarifaireOption.famiTarifLibelle}}</option>
                                         </select>
                                         <div *ngIf="editForm.get('produit_fam_tar').invalid && (editForm.get('produit_fam_tar').dirty || editForm.get('produit_fam_tar').touched)">
                                                 <small class="form-text text-danger"
@@ -121,14 +121,14 @@
                                     <label class="form-control-label" jhiTranslate="winpharmApp.produit.produit_laboratoire" for="field_produit_laboratoire">Produit Laboratoire</label>
                                     <select class="form-control" id="field_produit_laboratoire" name="produit_laboratoire" formControlName="produit_laboratoire">
                                         <option [ngValue]="null"></option>
-                                        <option [ngValue]="laboratoireOption.id === editForm.get('produit_laboratoire').value?.id ? editForm.get('produit_laboratoire').value : laboratoireOption" *ngFor="let laboratoireOption of laboratoires; trackBy: trackLaboratoireById">{{laboratoireOption.id}}</option>
+                                        <option [ngValue]="laboratoireOption.id === editForm.get('produit_laboratoire').value?.id ? editForm.get('produit_laboratoire').value : laboratoireOption" *ngFor="let laboratoireOption of laboratoires; trackBy: trackLaboratoireById">{{laboratoireOption.laboratoireRaisSoc}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                         <label class="form-control-label" jhiTranslate="winpharmApp.produit.produit_grossiste" for="field_produit_grossiste">Produit Grossiste</label>
                                         <select class="form-control" id="field_produit_grossiste" name="produit_grossiste" formControlName="produit_grossiste">
                                             <option [ngValue]="null"></option>
-                                            <option [ngValue]="grossisteOption.id === editForm.get('produit_grossiste').value?.id ? editForm.get('produit_grossiste').value : grossisteOption" *ngFor="let grossisteOption of grossistes; trackBy: trackGrossisteById">{{grossisteOption.id}}</option>
+                                            <option [ngValue]="grossisteOption.id === editForm.get('produit_grossiste').value?.id ? editForm.get('produit_grossiste').value : grossisteOption" *ngFor="let grossisteOption of grossistes; trackBy: trackGrossisteById">{{grossisteOption.grossisteRaisSoc}}</option>
                                         </select>
                                 </div>
                         </div>
@@ -137,7 +137,7 @@
                                         <label class="form-control-label" jhiTranslate="winpharmApp.produit.proform" for="field_proform">Proform</label>
                                         <select class="form-control" id="field_proform" name="proform" formControlName="proform">
                                             <option *ngIf="!editForm.get('proform').value" [ngValue]="null" selected></option>
-                                            <option [ngValue]="formeOption.id === editForm.get('proform').value?.id ? editForm.get('proform').value : formeOption" *ngFor="let formeOption of formes; trackBy: trackFormeById">{{formeOption.id}}</option>
+                                            <option [ngValue]="formeOption.id === editForm.get('proform').value?.id ? editForm.get('proform').value : formeOption" *ngFor="let formeOption of formes; trackBy: trackFormeById">{{formeOption.formeLibelle}}</option>
                                         </select>
                                         <div *ngIf="editForm.get('proform').invalid && (editForm.get('proform').dirty || editForm.get('proform').touched)">
                                                 <small class="form-text text-danger"

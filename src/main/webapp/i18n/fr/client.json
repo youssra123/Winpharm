@@ -16,10 +16,10 @@
       "detail": {
         "title": "Client"
       },
-      "clientNom": "Client Nom",
-      "clientTelephone": "Client Telephone",
-      "clientAdresse": "Client Adresse",
-      "enteteVente": "Entete Vente"
+      "clientNom": "Nom",
+      "clientTelephone": "Telephone",
+      "clientAdresse": "Adresse",
+      "enteteVente": "Entete de Vente"
     }
   }
 }

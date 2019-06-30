@@ -1,7 +1,11 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-entete-vente-heading" jhiTranslate="winpharmApp.enteteVente.home.createOrEditLabel">Create or edit a Entete Vente</h2>
+            <br>
+            <h2 class="text-center" id="jhi-entete-vente-heading" jhiTranslate="winpharmApp.enteteVente.home.createOrEditLabel">Create or edit a Entete Vente</h2>
+           
+            <hr>
+            <br>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -9,80 +13,80 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalHT" for="field_enteteVenteTotalHT">Entete Vente Total HT</label>
-                    <input type="number" class="form-control" name="enteteVenteTotalHT" id="field_enteteVenteTotalHT"
-                           formControlName="enteteVenteTotalHT"/>
-                    <div *ngIf="editForm.get('enteteVenteTotalHT').invalid && (editForm.get('enteteVenteTotalHT').dirty || editForm.get('enteteVenteTotalHT').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('enteteVenteTotalHT').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('enteteVenteTotalHT')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalTTC" for="field_enteteVenteTotalTTC">Entete Vente Total TTC</label>
-                    <input type="number" class="form-control" name="enteteVenteTotalTTC" id="field_enteteVenteTotalTTC"
-                           formControlName="enteteVenteTotalTTC"/>
-                    <div *ngIf="editForm.get('enteteVenteTotalTTC').invalid && (editForm.get('enteteVenteTotalTTC').dirty || editForm.get('enteteVenteTotalTTC').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('enteteVenteTotalTTC').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('enteteVenteTotalTTC')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteType" for="field_enteteVenteType">Entete Vente Type</label>
-                    <input type="text" class="form-control" name="enteteVenteType" id="field_enteteVenteType"
-                           formControlName="enteteVenteType"/>
-                    <div *ngIf="editForm.get('enteteVenteType').invalid && (editForm.get('enteteVenteType').dirty || editForm.get('enteteVenteType').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('enteteVenteType').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation" for="field_enteteVenteDateCreation">Entete Vente Date Creation</label>
-                    <div class="d-flex">
-                        <input id="field_enteteVenteDateCreation" type="datetime-local" class="form-control" name="enteteVenteDateCreation" formControlName="enteteVenteDateCreation" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                    <div *ngIf="editForm.get('enteteVenteDateCreation').invalid && (editForm.get('enteteVenteDateCreation').dirty || editForm.get('enteteVenteDateCreation').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('enteteVenteDateCreation').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('enteteVenteDateCreation').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
-                            This field should be a date and time.
-                        </small>
-                    </div>
-                </div>
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalHT" for="field_enteteVenteTotalHT">Entete Vente Total HT</label>
+                                <input type="number" class="form-control" name="enteteVenteTotalHT" id="field_enteteVenteTotalHT"
+                                    formControlName="enteteVenteTotalHT"/>
+                                <div *ngIf="editForm.get('enteteVenteTotalHT').invalid && (editForm.get('enteteVenteTotalHT').dirty || editForm.get('enteteVenteTotalHT').touched)">
+                                    <small class="form-text text-danger"
+                                        *ngIf="editForm.get('enteteVenteTotalHT').errors.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                    </small>
+                                    <small class="form-text text-danger"
+                                        [hidden]="!editForm.get('enteteVenteTotalHT')?.errors?.number" jhiTranslate="entity.validation.number">
+                                        This field should be a number.
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteType" for="field_enteteVenteType">Entete Vente Type</label>
+                                    <input type="text" class="form-control" name="enteteVenteType" id="field_enteteVenteType"
+                                           formControlName="enteteVenteType"/>
+                                    <div *ngIf="editForm.get('enteteVenteType').invalid && (editForm.get('enteteVenteType').dirty || editForm.get('enteteVenteType').touched)">
+                                        <small class="form-text text-danger"
+                                               *ngIf="editForm.get('enteteVenteType').errors.required" jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                        </small>
+                                    </div>
+                            </div>
+                
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
-                    <select class="form-control" id="field_client" name="client" formControlName="client">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
-                    </select>
+
                 </div>
+                <div class="col-md-6">
+
+                        <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalTTC" for="field_enteteVenteTotalTTC">Entete Vente Total TTC</label>
+                                <input type="number" class="form-control" name="enteteVenteTotalTTC" id="field_enteteVenteTotalTTC"
+                                       formControlName="enteteVenteTotalTTC"/>
+                                <div *ngIf="editForm.get('enteteVenteTotalTTC').invalid && (editForm.get('enteteVenteTotalTTC').dirty || editForm.get('enteteVenteTotalTTC').touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="editForm.get('enteteVenteTotalTTC').errors.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                    </small>
+                                    <small class="form-text text-danger"
+                                        [hidden]="!editForm.get('enteteVenteTotalTTC')?.errors?.number" jhiTranslate="entity.validation.number">
+                                        This field should be a number.
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
+                                    <select class="form-control" id="field_client" name="client" formControlName="client">
+                                        <option [ngValue]="null"></option>
+                                        <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
+                                    </select>
+                                </div>
+                </div>
+                
+                        
+                            <div class=" col-12 text-center ">
+                                <br>
+                                    <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                                        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                    </button>
+                                    <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                                        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                    </button>
+                            </div>
+                    
+                
             </div>
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
+          
+           
         </form>
     </div>
 </div>

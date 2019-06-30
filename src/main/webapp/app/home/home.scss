@@ -12,6 +12,25 @@ Main page styles
   height: 180px;
 }
 
+.bg {
+  /* The image used */
+  background-image: url('../../content/images/pharmacie.jpg');
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.b {
+  font-size: 12px;
+  background-color: #00a46c;
+}
+.b:hover {
+  color: white;
+}
+
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (-moz-min-device-pixel-ratio: 2),

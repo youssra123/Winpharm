@@ -1,7 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-grossiste-heading" jhiTranslate="winpharmApp.grossiste.home.createOrEditLabel">Create or edit a Grossiste</h2>
+            <br>
+            <h2 class="text-center" id="jhi-grossiste-heading" jhiTranslate="winpharmApp.grossiste.home.createOrEditLabel">Create or edit a Grossiste</h2>
+            <hr>
+            <br>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -57,7 +60,7 @@
                     <label class="form-control-label" jhiTranslate="winpharmApp.grossiste.grossis_ville" for="field_grossis_ville">Grossis Ville</label>
                     <select class="form-control" id="field_grossis_ville" name="grossis_ville" formControlName="grossis_ville">
                         <option *ngIf="!editForm.get('grossis_ville').value" [ngValue]="null" selected></option>
-                        <option [ngValue]="villeOption.id === editForm.get('grossis_ville').value?.id ? editForm.get('grossis_ville').value : villeOption" *ngFor="let villeOption of villes; trackBy: trackVilleById">{{villeOption.id}}</option>
+                        <option [ngValue]="villeOption.id === editForm.get('grossis_ville').value?.id ? editForm.get('grossis_ville').value : villeOption" *ngFor="let villeOption of villes; trackBy: trackVilleById">{{villeOption.villeLibelle}}</option>
                     </select>
                 </div>
                 <div *ngIf="editForm.get('grossis_ville').invalid && (editForm.get('grossis_ville').dirty || editForm.get('grossis_ville').touched)">
@@ -67,7 +70,8 @@
                     </small>
                 </div>
             </div>
-            <div>
+            <div class="text-center">
+                <br>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
