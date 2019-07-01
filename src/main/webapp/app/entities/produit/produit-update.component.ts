@@ -63,7 +63,7 @@ export class ProduitUpdateComponent implements OnInit {
     produit_laboratoire: [],
     produit_grossiste: [],
     proform: [null, Validators.required],
-    stock: [null, Validators.required]
+    stock: []
   });
 
   constructor(

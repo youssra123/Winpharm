@@ -5,7 +5,6 @@ import com.sophatel.winpharm.domain.Produit;
 import com.sophatel.winpharm.domain.Categorie;
 import com.sophatel.winpharm.domain.FammilleTarifaire;
 import com.sophatel.winpharm.domain.Forme;
-import com.sophatel.winpharm.domain.Stock;
 import com.sophatel.winpharm.repository.ProduitRepository;
 import com.sophatel.winpharm.service.ProduitService;
 import com.sophatel.winpharm.web.rest.errors.ExceptionTranslator;
@@ -141,16 +140,6 @@ public class ProduitResourceIT {
             forme = TestUtil.findAll(em, Forme.class).get(0);
         }
         produit.setProform(forme);
-        // Add required entity
-        Stock stock;
-        if (TestUtil.findAll(em, Stock.class).isEmpty()) {
-            stock = StockResourceIT.createEntity(em);
-            em.persist(stock);
-            em.flush();
-        } else {
-            stock = TestUtil.findAll(em, Stock.class).get(0);
-        }
-        produit.setStock(stock);
         return produit;
     }
     /**
@@ -198,16 +187,6 @@ public class ProduitResourceIT {
             forme = TestUtil.findAll(em, Forme.class).get(0);
         }
         produit.setProform(forme);
-        // Add required entity
-        Stock stock;
-        if (TestUtil.findAll(em, Stock.class).isEmpty()) {
-            stock = StockResourceIT.createUpdatedEntity(em);
-            em.persist(stock);
-            em.flush();
-        } else {
-            stock = TestUtil.findAll(em, Stock.class).get(0);
-        }
-        produit.setStock(stock);
         return produit;
     }
 
