@@ -34,6 +34,8 @@ export class ProduitUpdateComponent implements OnInit {
   public isCollapsedd = true;
   public isCollapseddd = true;
 
+  msg: String;
+
   rayons: IRayon[];
 
   categories: ICategorie[];
@@ -152,6 +154,10 @@ export class ProduitUpdateComponent implements OnInit {
         },
         (res: HttpErrorResponse) => this.onError(res.message)
       );
+  }
+
+  msgReceived(msg: String) {
+    this.msg = msg;
   }
 
   updateForm(produit: IProduit) {

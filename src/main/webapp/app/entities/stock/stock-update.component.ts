@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -29,8 +29,10 @@ export class StockUpdateComponent implements OnInit {
   isCollapsed = true;
   isCollapsedd = true;
   isCollapseddd = true;
-
   produits: IProduit[];
+
+  @Input() name: string;
+  @Output() msg = new EventEmitter<String>();
 
   editForm = this.fb.group({
     id: [],
@@ -92,6 +94,10 @@ export class StockUpdateComponent implements OnInit {
       stockPrixHT3: stock.stockPrixHT3,
       stockDateCreation: stock.stockDateCreation != null ? stock.stockDateCreation.format(DATE_TIME_FORMAT) : null
     });
+  }
+
+  sendMsg(msg: String) {
+    this.msg.emit(msg);
   }
 
   previousState() {
