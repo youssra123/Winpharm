@@ -1,7 +1,9 @@
 package com.sophatel.winpharm.service.impl;
 
 import com.sophatel.winpharm.service.ProduitService;
+import com.sophatel.winpharm.service.StockService;
 import com.sophatel.winpharm.domain.Produit;
+import com.sophatel.winpharm.domain.Stock;
 import com.sophatel.winpharm.repository.ProduitRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +25,11 @@ public class ProduitServiceImpl implements ProduitService {
     private final Logger log = LoggerFactory.getLogger(ProduitServiceImpl.class);
 
     private final ProduitRepository produitRepository;
+    private final StockService stockService;
 
-    public ProduitServiceImpl(ProduitRepository produitRepository) {
+    public ProduitServiceImpl(ProduitRepository produitRepository, StockService stockService) {
         this.produitRepository = produitRepository;
+        this.stockService = stockService;
     }
 
     /**
@@ -37,7 +41,10 @@ public class ProduitServiceImpl implements ProduitService {
     @Override
     public Produit save(Produit produit) {
         log.debug("Request to save Produit : {}", produit);
-        return produitRepository.save(produit);
+        Produit newProduit = produitRepository.save(produit);
+        if (produit.getStock() != null)
+            stockService.save(produit.getStock());
+        return newProduit;
     }
 
     /**
@@ -77,7 +84,12 @@ public class ProduitServiceImpl implements ProduitService {
     @Transactional(readOnly = true)
     public Optional<Produit> findOne(Long id) {
         log.debug("Request to get Produit : {}", id);
-        return produitRepository.findById(id);
+        Optional<Produit> produit = produitRepository.findById(id);
+        if (produit.get().getStock() != null)
+            return produit;
+        Optional<Stock> stock = stockService.findOneByProduit(id);
+        produit.get().setStock(stock.get());
+        return produit;
     }
 
     /**

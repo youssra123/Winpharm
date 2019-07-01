@@ -28,13 +28,13 @@ public interface StockService {
      * @return the list of entities.
      */
     Page<Stock> findAll(Pageable pageable);
+    
     /**
      * Get all the StockDTO where Produit is {@code null}.
      *
      * @return the list of entities.
      */
     List<Stock> findAllWhereProduitIsNull();
-
 
     /**
      * Get the "id" stock.
@@ -43,6 +43,14 @@ public interface StockService {
      * @return the entity.
      */
     Optional<Stock> findOne(Long id);
+    
+    /**
+     * Get the "id" stock by produit.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
+    Optional<Stock> findOneByProduit(Long id);
 
     /**
      * Delete the "id" stock.
