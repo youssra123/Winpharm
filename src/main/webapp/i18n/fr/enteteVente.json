@@ -3,23 +3,23 @@
     "enteteVente": {
       "home": {
         "title": "EnteteVentes",
-        "createLabel": "Créer un nouveau Entete Vente",
-        "createOrEditLabel": "Créer ou éditer un Entete Vente",
-        "notFound": "Aucun Entete Vente trouvé"
+        "createLabel": "Créer un nouveau Entete de Vente",
+        "createOrEditLabel": "Créer ou éditer un Entete de  Vente",
+        "notFound": "Aucun Entete de Vente trouvé"
       },
-      "created": "Un nouveau Entete Vente a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Entete Vente avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Entete Vente avec l'identifiant {{ param }} a été supprimé",
+      "created": "Un nouveau Entete de Vente a été créé avec l'identifiant {{ param }}",
+      "updated": "L'Entete de Vente avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "L'Entete de Vente avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Entete Vente {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer l'Entete de Vente {{ id }} ?"
       },
       "detail": {
-        "title": "Entete Vente"
+        "title": "Entete de Vente"
       },
-      "enteteVenteTotalHT": "Entete Vente Total HT",
-      "enteteVenteTotalTTC": "Entete Vente Total TTC",
-      "enteteVenteType": "Entete Vente Type",
-      "enteteVenteDateCreation": "Entete Vente Date Creation",
+      "enteteVenteTotalHT": "Total HT",
+      "enteteVenteTotalTTC": "Total TTC",
+      "enteteVenteType": "Type",
+      "enteteVenteDateCreation": "Date Creation",
       "client": "Client",
       "ligneVente": "Ligne Vente"
     }

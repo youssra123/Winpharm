@@ -5,7 +5,8 @@ import { IProduit } from 'app/shared/model/produit.model';
 
 @Component({
   selector: 'jhi-produit-detail',
-  templateUrl: './produit-detail.component.html'
+  templateUrl: './produit-detail.component.html',
+  styleUrls: ['produit.scss']
 })
 export class ProduitDetailComponent implements OnInit {
   produit: IProduit;

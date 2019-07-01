@@ -24,10 +24,15 @@ import { StockService } from 'app/entities/stock';
 
 @Component({
   selector: 'jhi-produit-update',
-  templateUrl: './produit-update.component.html'
+  templateUrl: './produit-update.component.html',
+  styleUrls: ['produit.scss']
 })
 export class ProduitUpdateComponent implements OnInit {
   isSaving: boolean;
+  public isCollapsed = true;
+  public count = 0;
+  public isCollapsedd = true;
+  public isCollapseddd = true;
 
   rayons: IRayon[];
 
@@ -247,5 +252,29 @@ export class ProduitUpdateComponent implements OnInit {
 
   trackStockById(index: number, item: IStock) {
     return item.id;
+  }
+  Display() {
+    this.count = this.count + 1;
+    if (this.count < 4) {
+      if (this.count === 1) {
+        this.isCollapsed = false;
+      }
+      if (this.count === 2) {
+        this.isCollapsedd = false;
+      }
+      if (this.count === 3) {
+        this.isCollapseddd = false;
+      }
+    } else {
+      if (this.count === 6) {
+        this.isCollapsed = true;
+      }
+      if (this.count === 5) {
+        this.isCollapsedd = true;
+      }
+      if (this.count === 4) {
+        this.isCollapseddd = true;
+      }
+    }
   }
 }

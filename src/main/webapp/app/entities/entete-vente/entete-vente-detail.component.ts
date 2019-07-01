@@ -5,7 +5,8 @@ import { IEnteteVente } from 'app/shared/model/entete-vente.model';
 
 @Component({
   selector: 'jhi-entete-vente-detail',
-  templateUrl: './entete-vente-detail.component.html'
+  templateUrl: './entete-vente-detail.component.html',
+  styleUrls: ['enteteVente.scss']
 })
 export class EnteteVenteDetailComponent implements OnInit {
   enteteVente: IEnteteVente;

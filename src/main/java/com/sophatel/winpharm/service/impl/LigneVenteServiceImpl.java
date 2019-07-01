@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Service Implementation for managing {@link LigneVente}.
@@ -53,6 +54,31 @@ public class LigneVenteServiceImpl implements LigneVenteService {
         return ligneVenteRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the ligneVentes by vente.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<LigneVente> findAllByVente(Long vente, Pageable pageable) {
+        log.debug("Request to get all LigneVentes by vente");
+        return ligneVenteRepository.findAllByVente(vente, pageable);
+    }
+
+    /**
+     * Get all the ligneVentes by vente.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Set<LigneVente> findAllByVente(Long vente) {
+        log.debug("Request to get all LigneVentes by vente");
+        return ligneVenteRepository.findAllByVente(vente);
+    }
 
     /**
      * Get one ligneVente by id.

@@ -1,72 +1,145 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="stock">
+            <br>
             <h2><span jhiTranslate="winpharmApp.stock.detail.title">Stock</span> {{stock.id}}</h2>
             <hr>
+            <br>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="winpharmApp.stock.stockCouvertureMin">Stock Couverture Min</span></dt>
-                <dd>
-                    <span>{{stock.stockCouvertureMin}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockCouvertureMax">Stock Couverture Max</span></dt>
-                <dd>
-                    <span>{{stock.stockCouvertureMax}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockQte1">Stock Qte 1</span></dt>
-                <dd>
-                    <span>{{stock.stockQte1}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockQte2">Stock Qte 2</span></dt>
-                <dd>
-                    <span>{{stock.stockQte2}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockQte3">Stock Qte 3</span></dt>
-                <dd>
-                    <span>{{stock.stockQte3}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockPrix1">Stock Prix 1</span></dt>
-                <dd>
-                    <span>{{stock.stockPrix1}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockPrix2">Stock Prix 2</span></dt>
-                <dd>
-                    <span>{{stock.stockPrix2}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockPrix3">Stock Prix 3</span></dt>
-                <dd>
-                    <span>{{stock.stockPrix3}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockDatePeremption1">Stock Date Peremption 1</span></dt>
-                <dd>
-                    <span>{{stock.stockDatePeremption1}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockDatePeremption2">Stock Date Peremption 2</span></dt>
-                <dd>
-                    <span>{{stock.stockDatePeremption2}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockDatePeremption3">Stock Date Peremption 3</span></dt>
-                <dd>
-                    <span>{{stock.stockDatePeremption3}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockPrixHT1">Stock Prix HT 1</span></dt>
-                <dd>
-                    <span>{{stock.stockPrixHT1}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockPrixHT2">Stock Prix HT 2</span></dt>
-                <dd>
-                    <span>{{stock.stockPrixHT2}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockPrixHT3">Stock Prix HT 3</span></dt>
-                <dd>
-                    <span>{{stock.stockPrixHT3}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.stock.stockDateCreation">Stock Date Creation</span></dt>
-                <dd>
-                    <span>{{stock.stockDateCreation}}</span>
-                </dd>
-            </dl>
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockCouvertureMin">Stock Couverture Min</span>
+                                    </div>
+                                    <div>   
+                                            <span>{{stock.stockCouvertureMin}}</span>
+                                    </div>
+                        </div>
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockCouvertureMax">Stock Couverture Max</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockCouvertureMax}}</span>
+                                    </div>
+                        </div>
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockQte1">Stock Qte 1</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockQte1}}</span>
+                        </div>
+                        </div>
 
+                  
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockPrix1">Stock Prix 1</span>
+                                    </div>
+                                    <div>   
+                                       <span>{{stock.stockPrix1}}</span>
+                        </div>
+                        </div>
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockDatePeremption1">Stock Date Peremption 1</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockDatePeremption1}}</span>
+                                    </div>          
+                        </div>
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        
+                                        <span jhiTranslate="winpharmApp.stock.stockPrixHT1">Stock Prix HT 1</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockPrixHT1}}</span>
+                                    </div>   
+
+                        </div>
+                         <div class="col-12"><br><br></div>
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockQte2">Stock Qte 2</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockQte2}}</span>
+                                    </div>          
+                        </div>
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockPrix2">Stock Prix 2</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockPrix2}}</span>
+                                    </div>          
+                        </div>
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockDatePeremption2">Stock Date Peremption 2</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockDatePeremption2}}</span>
+                                    </div>          
+                        </div>
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        
+                                        <span jhiTranslate="winpharmApp.stock.stockPrixHT2">Stock Prix HT 2</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockPrixHT2}}</span>
+                                    </div>  
+                        </div>
+                                        
+                        <div class="col-12"><br><br></div> 
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockQte3">Stock Qte 3</span>
+                                    </div>
+                                    <div>   
+                                            <span>{{stock.stockQte3}}</span>
+                                    </div>          
+                        </div>
+                       
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.stock.stockPrix3">Stock Prix 3</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockPrix3}}</span>
+                                    </div>          
+                        </div>
+                        
+                      
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        
+                                        <span jhiTranslate="winpharmApp.stock.stockDatePeremption3">Stock Date Peremption 3</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockDatePeremption3}}</span>
+                                    </div>          
+                        </div>
+                       
+                      
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        
+                                        <span jhiTranslate="winpharmApp.stock.stockPrixHT3">Stock Prix HT 3</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{stock.stockPrixHT3}}</span>
+                                    </div>   
+
+                        </div>
+                        
+                </div>
+            </div>
+            <div  class="text-center">
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
@@ -78,6 +151,9 @@
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
+        </div>
+
+        
         </div>
     </div>
 </div>

@@ -44,7 +44,7 @@
                 <td>{{grossiste.grossisteTelephone}}</td>
                 <td>
                     <div *ngIf="grossiste.grossis_ville">
-                        <a [routerLink]="['../ville', grossiste.grossis_ville?.id, 'view' ]" >{{grossiste.grossis_ville?.id}}</a>
+                        <a [routerLink]="['../ville', grossiste.grossis_ville?.id, 'view' ]" >{{grossiste.grossis_ville?.villeLibelle}}</a>
                     </div>
                 </td>
                 <td class="text-right">

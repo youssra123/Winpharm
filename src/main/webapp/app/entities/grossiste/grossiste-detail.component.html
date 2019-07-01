@@ -1,8 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="grossiste">
-            <h2><span jhiTranslate="winpharmApp.grossiste.detail.title">Grossiste</span> {{grossiste.id}}</h2>
+            <br>
+            <h2><span jhiTranslate="winpharmApp.grossiste.detail.title">Grossiste</span> {{grossiste.id}}: {{grossiste.grossisteRaisSoc}}</h2>
             <hr>
+            <br>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="winpharmApp.grossiste.grossisteRaisSoc">Grossiste Rais Soc</span></dt>
@@ -20,11 +22,11 @@
                 <dt><span jhiTranslate="winpharmApp.grossiste.grossis_ville">Grossis Ville</span></dt>
                 <dd>
                     <div *ngIf="grossiste.grossis_ville">
-                        <a [routerLink]="['/ville', grossiste.grossis_ville?.id, 'view']">{{grossiste.grossis_ville?.id}}</a>
+                        <a [routerLink]="['/ville', grossiste.grossis_ville?.id, 'view']">{{grossiste.grossis_ville?.villeLibelle}}</a>
                     </div>
                 </dd>
             </dl>
-
+            <div class="text-center">
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
@@ -36,6 +38,7 @@
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
+        </div>
         </div>
     </div>
 </div>

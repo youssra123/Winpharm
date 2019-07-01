@@ -1,8 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-8">
+        <br>
         <div *ngIf="laboratoire">
-            <h2><span jhiTranslate="winpharmApp.laboratoire.detail.title">Laboratoire</span> {{laboratoire.id}}</h2>
+            <h2><span jhiTranslate="winpharmApp.laboratoire.detail.title">Laboratoire</span> {{laboratoire.id}}: {{laboratoire.laboratoireRaisSoc}}</h2>
             <hr>
+            <br>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="winpharmApp.laboratoire.laboratoireRaisSoc">Laboratoire Rais Soc</span></dt>
@@ -18,7 +20,8 @@
                     <span>{{laboratoire.laboratoireTelephone}}</span>
                 </dd>
             </dl>
-
+           <div class="text-center">
+               <br>
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
@@ -30,6 +33,7 @@
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
+        </div>
         </div>
     </div>
 </div>

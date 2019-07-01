@@ -2,27 +2,27 @@
   "winpharmApp": {
     "ligneVente": {
       "home": {
-        "title": "LigneVentes",
-        "createLabel": "Créer un nouveau Ligne Vente",
+        "title": "Ligne de Ventes",
+        "createLabel": "Créer une nouvelle Ligne de Vente",
         "createOrEditLabel": "Créer ou éditer un Ligne Vente",
         "notFound": "Aucun Ligne Vente trouvé"
       },
-      "created": "Un nouveau Ligne Vente a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Ligne Vente avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Ligne Vente avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle Ligne de Vente a été créé avec l'identifiant {{ param }}",
+      "updated": "La Ligne de Vente avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Ligne de Vente avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Ligne Vente {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la Ligne de Vente {{ id }} ?"
       },
       "detail": {
-        "title": "Ligne Vente"
+        "title": "Ligne de Vente"
       },
-      "ligneVenteQte": "Ligne Vente Qte",
-      "ligneVenteTotalHT": "Ligne Vente Total HT",
-      "ligneVenteTotalTTC": "Ligne Vente Total TTC",
-      "ligneVentePrixTTC": "Ligne Vente Prix TTC",
-      "ligneVentePrixHT": "Ligne Vente Prix HT",
-      "ligneVenteDesignation": "Ligne Vente Designation",
-      "enteteVente": "Entete Vente",
+      "ligneVenteQte": "Quantité",
+      "ligneVenteTotalHT": "Total HT",
+      "ligneVenteTotalTTC": "Total TTC",
+      "ligneVentePrixTTC": "Prix TTC",
+      "ligneVentePrixHT": "Prix HT",
+      "ligneVenteDesignation": "Designation",
+      "enteteVente": "Entete de Vente",
       "produit": "Produit"
     }
   }

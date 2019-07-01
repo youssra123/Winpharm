@@ -3,46 +3,80 @@
         <div *ngIf="ligneVente">
             <h2><span jhiTranslate="winpharmApp.ligneVente.detail.title">Ligne Vente</span> {{ligneVente.id}}</h2>
             <hr>
+            <br>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="winpharmApp.ligneVente.ligneVenteQte">Ligne Vente Qte</span></dt>
-                <dd>
-                    <span>{{ligneVente.ligneVenteQte}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalHT">Ligne Vente Total HT</span></dt>
-                <dd>
-                    <span>{{ligneVente.ligneVenteTotalHT}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalTTC">Ligne Vente Total TTC</span></dt>
-                <dd>
-                    <span>{{ligneVente.ligneVenteTotalTTC}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC">Ligne Vente Prix TTC</span></dt>
-                <dd>
-                    <span>{{ligneVente.ligneVentePrixTTC}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT">Ligne Vente Prix HT</span></dt>
-                <dd>
-                    <span>{{ligneVente.ligneVentePrixHT}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.ligneVente.ligneVenteDesignation">Ligne Vente Designation</span></dt>
-                <dd>
-                    <span>{{ligneVente.ligneVenteDesignation}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.ligneVente.enteteVente">Entete Vente</span></dt>
-                <dd>
-                    <div *ngIf="ligneVente.enteteVente">
-                        <a [routerLink]="['/entete-vente', ligneVente.enteteVente?.id, 'view']">{{ligneVente.enteteVente?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.ligneVente.produit">Produit</span></dt>
-                <dd>
-                    <div *ngIf="ligneVente.produit">
-                        <a [routerLink]="['/produit', ligneVente.produit?.id, 'view']">{{ligneVente.produit?.id}}</a>
-                    </div>
-                </dd>
-            </dl>
+            <div class="controls">
+                <div class="row">
+                        <div class="col-6 bottom">
+                                <div class="text-content">
+                                        
+                                        <span jhiTranslate="winpharmApp.ligneVente.ligneVenteQte">Ligne Vente Qte</span>
+                                    </div>
+                                    <div>   
+                                        <span>{{ligneVente.ligneVenteQte}}</span>
+                                    </div>
+                                    <br>
+                                <div class="text-content">
+                                        
+                                        <span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalHT">Ligne Vente Total HT</span>    
+                                        </div>
+                                        <div>   
+                                        <span>{{ligneVente.ligneVenteTotalHT}}</span>
+                                </div> 
+                                <br>
+                                <div class="text-content">
+                                        
+                                        <span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT">Ligne Vente Prix HT</span>    
+                                        </div>
+                                        <div>   
+                                        <span>{{ligneVente.ligneVentePrixHT}}</span>
+                                </div>
+                                <br>
+                                <div class="text-content">
+                                        
+                                        <span jhiTranslate="winpharmApp.ligneVente.enteteVente">Entete Vente</span>    
+                                        </div>
+                                         
+                                        <div *ngIf="ligneVente.enteteVente">
+                                            <a [routerLink]="['/entete-vente', ligneVente.enteteVente?.id, 'view']">{{ligneVente.enteteVente?.id}}</a>
+                                        </div>           
 
+                        </div>
+                        <div class="col-6">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.ligneVente.ligneVenteDesignation">Ligne Vente Designation</span>    
+                                </div>
+                                <div>
+                                 <span>{{ligneVente.ligneVenteDesignation}}</span>
+                                </div>
+                                <br>
+                                <div class="text-content">
+                                    <span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalTTC">Ligne Vente Total TTC</span>    
+                                </div>
+                                <div>
+                                    <span>{{ligneVente.ligneVenteTotalTTC}}</span>
+                                </div>
+                                <br>
+                                <div class="text-content">
+                                    <span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC">Ligne Vente Prix TTC</span>    
+                                </div>
+                                <div>
+                                    <span>{{ligneVente.ligneVentePrixTTC}}</span>
+                                </div>
+                                <br>
+                                <div class="text-content">
+                                    <span jhiTranslate="winpharmApp.ligneVente.produit">Produit</span>    
+                                </div>
+                                
+                                <div *ngIf="ligneVente.produit">
+                                    <a [routerLink]="['/produit', ligneVente.produit?.id, 'view']">{{ligneVente.produit?.id}}</a>
+                                </div>
+                                
+                        </div>
+                    </div>
+                </div>
+            <div class="text-center">
+                <br>
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
@@ -55,5 +89,7 @@
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
-    </div>
+       
+</div>
+</div>
 </div>

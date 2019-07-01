@@ -1,34 +1,58 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="enteteVente">
-            <h2><span jhiTranslate="winpharmApp.enteteVente.detail.title">Entete Vente</span> {{enteteVente.id}}</h2>
+            <br>
+            <h2 class="text-center"><span jhiTranslate="winpharmApp.enteteVente.detail.title">Entete Vente</span> {{enteteVente.id}}</h2>
             <hr>
+            <br>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalHT">Entete Vente Total HT</span></dt>
-                <dd>
-                    <span>{{enteteVente.enteteVenteTotalHT}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalTTC">Entete Vente Total TTC</span></dt>
-                <dd>
-                    <span>{{enteteVente.enteteVenteTotalTTC}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.enteteVente.enteteVenteType">Entete Vente Type</span></dt>
-                <dd>
-                    <span>{{enteteVente.enteteVenteType}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation">Entete Vente Date Creation</span></dt>
-                <dd>
-                    <span>{{enteteVente.enteteVenteDateCreation}}</span>
-                </dd>
-                <dt><span jhiTranslate="winpharmApp.enteteVente.client">Client</span></dt>
-                <dd>
-                    <div *ngIf="enteteVente.client">
-                        <a [routerLink]="['/client', enteteVente.client?.id, 'view']">{{enteteVente.client?.id}}</a>
-                    </div>
-                </dd>
-            </dl>
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-md-6 bottom">
+                            <div class="text-content">
+                                <span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalHT">Entete Vente Total HT</span>
+                            </div>
+                            <div>   
+                                <span>{{enteteVente.enteteVenteTotalHT}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 bottom">
+                                <div class="text-content">
+                                    <span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalTTC">Entete Vente Total TTC</span>
+                                </div>
+                                <div>   
+                                    <span>{{enteteVente.enteteVenteTotalTTC}}</span>
+                                </div>
+                        </div>
+                        <div class="col-md-6 bottom">
+                                <div class="text-content">
+                                    <span jhiTranslate="winpharmApp.enteteVente.enteteVenteType">Entete Vente Type</span>
+                                </div>
+                                <div>   
+                                    <span>{{enteteVente.enteteVenteType}}</span>
+                                </div>
+                        </div>
+                        <div class="col-md-6 bottom">
+                                <div class="text-content">
+                                    <span jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation">Entete Vente Date Creation</span>
+                                </div>
+                                <div>   
+                                        <span>{{enteteVente.enteteVenteDateCreation}}</span>
+                                </div>
+                        </div>
+                        <div class="col-md-6 bottom">
+                                <div class="text-content">
+                                        <span jhiTranslate="winpharmApp.enteteVente.client">Client</span>
+                                </div>
+                                <div *ngIf="enteteVente.client">
+                                        <a [routerLink]="['/client', enteteVente.client?.id, 'view']">{{enteteVente.client?.clientNom}}</a>
+                                </div>
+                        </div>
 
+
+
+                
+              <div class="col-12 text-center">
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
@@ -41,5 +65,8 @@
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
+        </div>
     </div>
+</div>
+</div>
 </div>

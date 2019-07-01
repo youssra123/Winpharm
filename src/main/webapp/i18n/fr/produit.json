@@ -16,19 +16,19 @@
       "detail": {
         "title": "Produit"
       },
-      "produitLibelle": "Produit Libelle",
-      "produitActif": "Produit Actif",
-      "produitCodeBarre": "Produit Code Barre",
-      "produitDosage": "Produit Dosage",
-      "produitUniDosage": "Produit Uni Dosage",
-      "produitVolume": "Produit Volume",
-      "produitUniVolume": "Produit Uni Volume",
-      "produit_rayon": "Produit Rayon",
-      "produit_categorie": "Produit Categorie",
-      "produit_fam_tar": "Produit Fam Tar",
-      "produit_laboratoire": "Produit Laboratoire",
-      "produit_grossiste": "Produit Grossiste",
-      "proform": "Proform",
+      "produitLibelle": "Libelle",
+      "produitActif": "Actif",
+      "produitCodeBarre": "Code à Barre",
+      "produitDosage": "Dosage",
+      "produitUniDosage": "Unité de Dosage",
+      "produitVolume": "Volume",
+      "produitUniVolume": "Unité de Volume",
+      "produit_rayon": "Rayon",
+      "produit_categorie": "Categorie",
+      "produit_fam_tar": "Famille Tarifaire",
+      "produit_laboratoire": "Laboratoire",
+      "produit_grossiste": "Grossiste",
+      "proform": "forme",
       "stock": "Stock"
     }
   }

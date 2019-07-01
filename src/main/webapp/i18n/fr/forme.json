@@ -4,19 +4,19 @@
       "home": {
         "title": "Formes",
         "createLabel": "Créer une nouvelle Forme",
-        "createOrEditLabel": "Créer ou éditer un Forme",
-        "notFound": "Aucun Forme trouvé"
+        "createOrEditLabel": "Créer ou éditer une Forme",
+        "notFound": "Aucune Forme trouvé"
       },
-      "created": "Un nouveau Forme a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Forme avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Forme avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle Forme a été créé avec l'identifiant {{ param }}",
+      "updated": "La Forme avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Forme avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Forme {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la Forme {{ id }} ?"
       },
       "detail": {
         "title": "Forme"
       },
-      "formeLibelle": "Forme Libelle"
+      "formeLibelle": "Libelle"
     }
   }
 }

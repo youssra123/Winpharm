@@ -4,19 +4,19 @@
       "home": {
         "title": "Categories",
         "createLabel": "Créer une nouvelle Categorie",
-        "createOrEditLabel": "Créer ou éditer un Categorie",
-        "notFound": "Aucun Categorie trouvé"
+        "createOrEditLabel": "Créer ou éditer une Categorie",
+        "notFound": "Aucune Categorie trouvé"
       },
-      "created": "Un nouveau Categorie a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Categorie avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Categorie avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle Categorie a été créé avec l'identifiant {{ param }}",
+      "updated": "La Categorie avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Categorie avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Categorie {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la Categorie {{ id }} ?"
       },
       "detail": {
         "title": "Categorie"
       },
-      "categorieLibelle": "Categorie Libelle"
+      "categorieLibelle": "Libelle"
     }
   }
 }

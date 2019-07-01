@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-dark">
+<nav class="navbar navbar-dark navbar-expand-md " style="background-color: #00A46C;">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
         <span jhiTranslate="global.title" class="navbar-title">Winpharm</span> 
@@ -106,7 +106,7 @@
              
      
                 <li *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-item dropdown pointer" dropdown>
-                    <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                     <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
                         <fa-icon icon="user-plus"></fa-icon>
                         <span jhiTranslate="global.menu.admin.main">
                             Administration
@@ -165,7 +165,7 @@
                 </ul>
             </li>
        
-            <li ngbDropdown class="nav-item dropdown btn-group" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" dropdown>
+            <li ngbDropdown class="nav-item dropdown btn-group" placement="bottom-left" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" dropdown>
                 <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" ngbDropdownToggle href="javascript:void(0);" id="account-menu" mdbWavesEffect>
                   <span *ngIf="!getImageUrl()">
                     <fa-icon icon="user"></fa-icon>
@@ -177,7 +177,7 @@
                       <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
                   </span>
                 </a>
-                <div class="dropdown-menudropdown-primary dropdown-menu-right" role="menu" ngbDropdownMenu aria-labelledby="account-menu">
+                <div class="dropdown-menudropdown-primary dropdown-menu-left" role="menu" ngbDropdownMenu aria-labelledby="account-menu">
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="wrench" fixedWidth="true"></fa-icon>

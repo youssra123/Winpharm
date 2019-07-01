@@ -2,16 +2,16 @@
   "winpharmApp": {
     "fammilleTarifaire": {
       "home": {
-        "title": "FammilleTarifaires",
+        "title": "Familles Tarifaires",
         "createLabel": "Créer une nouvelle Famille Tarifaire",
-        "createOrEditLabel": "Créer ou éditer un Famille Tarifaire",
-        "notFound": "Aucun Famille Tarifaire trouvé"
+        "createOrEditLabel": "Créer ou éditer une Famille Tarifaire",
+        "notFound": "Aucune Famille Tarifaire trouvé"
       },
-      "created": "Un nouveau Fammille Tarifaire a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Famille Tarifaire avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Famille Tarifaire avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle Famille Tarifaire a été créé avec l'identifiant {{ param }}",
+      "updated": "La Famille Tarifaire avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Famille Tarifaire avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer le Fammille Tarifaire {{ id }} ?"
+        "question": "Etes-vous certain de vouloir supprimer la Fammille Tarifaire {{ id }} ?"
       },
       "detail": {
         "title": "Famille Tarifaire"
