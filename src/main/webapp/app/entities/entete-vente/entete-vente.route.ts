@@ -12,6 +12,7 @@ import { EnteteVenteDetailComponent } from './entete-vente-detail.component';
 import { EnteteVenteUpdateComponent } from './entete-vente-update.component';
 import { EnteteVenteDeletePopupComponent } from './entete-vente-delete-dialog.component';
 import { IEnteteVente } from 'app/shared/model/entete-vente.model';
+import { LigneVenteComponent } from '../ligne-vente/ligne-vente.component';
 
 @Injectable({ providedIn: 'root' })
 export class EnteteVenteResolve implements Resolve<IEnteteVente> {

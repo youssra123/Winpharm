@@ -13,19 +13,38 @@ import {
   enteteVenteRoute,
   enteteVentePopupRoute
 } from './';
+import {
+  LigneVenteComponent,
+  //LigneVenteDetailComponent,
+  LigneVenteUpdateComponent
+  //LigneVenteDeletePopupComponent,
+  //LigneVenteDeleteDialogComponent,
+  //ligneVenteRoute,
+  //ligneVentePopupRoute
+} from '../ligne-vente/';
+import { WinpharmEntityModule } from 'app/entities/entity.module';
 
 const ENTITY_STATES = [...enteteVenteRoute, ...enteteVentePopupRoute];
 
 @NgModule({
-  imports: [WinpharmSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [WinpharmSharedModule, RouterModule.forChild(ENTITY_STATES), WinpharmEntityModule],
   declarations: [
     EnteteVenteComponent,
     EnteteVenteDetailComponent,
     EnteteVenteUpdateComponent,
+    LigneVenteComponent,
+    LigneVenteUpdateComponent,
     EnteteVenteDeleteDialogComponent,
     EnteteVenteDeletePopupComponent
   ],
-  entryComponents: [EnteteVenteComponent, EnteteVenteUpdateComponent, EnteteVenteDeleteDialogComponent, EnteteVenteDeletePopupComponent],
+  entryComponents: [
+    LigneVenteComponent,
+    LigneVenteUpdateComponent,
+    EnteteVenteComponent,
+    EnteteVenteUpdateComponent,
+    EnteteVenteDeleteDialogComponent,
+    EnteteVenteDeletePopupComponent
+  ],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
