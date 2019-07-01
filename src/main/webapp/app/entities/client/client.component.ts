@@ -60,7 +60,19 @@ export class ClientComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
-
+  onKey(libelle: string) {
+    this.clients = [];
+    this.clientService
+      .findByDes(libelle, {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IClient[]>) => this.paginateClients(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
   loadPage(page: number) {
     if (page !== this.previousPage) {
       this.previousPage = page;
