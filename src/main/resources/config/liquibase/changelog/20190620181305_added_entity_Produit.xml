@@ -67,7 +67,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="stock_id" type="bigint">
-                <constraints unique="true" nullable="false" uniqueConstraintName="ux_produit_stock_id" />
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_produit_stock_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -98,7 +98,6 @@
             <column name="produit_categorie_id" type="numeric"/>
             <column name="produit_fam_tar_id" type="numeric"/>
             <column name="proform_id" type="numeric"/>
-            <column name="stock_id" type="numeric"/>
         </loadData>
     </changeSet>
 
