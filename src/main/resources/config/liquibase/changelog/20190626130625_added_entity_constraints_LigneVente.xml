@@ -8,17 +8,17 @@
     -->
     <changeSet id="20190626130625-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="entete_vente_id"
-                                 baseTableName="ligne_vente"
-                                 constraintName="fk_ligne_vente_entete_vente_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="entete_vente"/>
-
         <addForeignKeyConstraint baseColumnNames="produit_id"
                                  baseTableName="ligne_vente"
                                  constraintName="fk_ligne_vente_produit_id"
                                  referencedColumnNames="id"
                                  referencedTableName="produit"/>
+
+        <addForeignKeyConstraint baseColumnNames="entete_vente_id"
+                                 baseTableName="ligne_vente"
+                                 constraintName="fk_ligne_vente_entete_vente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="entete_vente"/>
 
     </changeSet>
 </databaseChangeLog>

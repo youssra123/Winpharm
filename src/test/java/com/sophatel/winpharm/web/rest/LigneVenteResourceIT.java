@@ -2,7 +2,6 @@ package com.sophatel.winpharm.web.rest;
 
 import com.sophatel.winpharm.WinpharmApp;
 import com.sophatel.winpharm.domain.LigneVente;
-import com.sophatel.winpharm.domain.EnteteVente;
 import com.sophatel.winpharm.domain.Produit;
 import com.sophatel.winpharm.repository.LigneVenteRepository;
 import com.sophatel.winpharm.service.LigneVenteService;
@@ -45,11 +44,11 @@ public class LigneVenteResourceIT {
     private static final Double DEFAULT_LIGNE_VENTE_TOTAL_TTC = 1D;
     private static final Double UPDATED_LIGNE_VENTE_TOTAL_TTC = 2D;
 
-    private static final Double DEFAULT_LIGNE_VENTE_PRIX_TTC = 1D;
-    private static final Double UPDATED_LIGNE_VENTE_PRIX_TTC = 2D;
-
     private static final Double DEFAULT_LIGNE_VENTE_PRIX_HT = 1D;
     private static final Double UPDATED_LIGNE_VENTE_PRIX_HT = 2D;
+
+    private static final Double DEFAULT_LIGNE_VENTE_PRIX_TTC = 1D;
+    private static final Double UPDATED_LIGNE_VENTE_PRIX_TTC = 2D;
 
     private static final String DEFAULT_LIGNE_VENTE_DESIGNATION = "AAAAAAAAAA";
     private static final String UPDATED_LIGNE_VENTE_DESIGNATION = "BBBBBBBBBB";
@@ -102,19 +101,9 @@ public class LigneVenteResourceIT {
             .ligneVenteQte(DEFAULT_LIGNE_VENTE_QTE)
             .ligneVenteTotalHT(DEFAULT_LIGNE_VENTE_TOTAL_HT)
             .ligneVenteTotalTTC(DEFAULT_LIGNE_VENTE_TOTAL_TTC)
-            .ligneVentePrixTTC(DEFAULT_LIGNE_VENTE_PRIX_TTC)
             .ligneVentePrixHT(DEFAULT_LIGNE_VENTE_PRIX_HT)
+            .ligneVentePrixTTC(DEFAULT_LIGNE_VENTE_PRIX_TTC)
             .ligneVenteDesignation(DEFAULT_LIGNE_VENTE_DESIGNATION);
-        // Add required entity
-        EnteteVente enteteVente;
-        if (TestUtil.findAll(em, EnteteVente.class).isEmpty()) {
-            enteteVente = EnteteVenteResourceIT.createEntity(em);
-            em.persist(enteteVente);
-            em.flush();
-        } else {
-            enteteVente = TestUtil.findAll(em, EnteteVente.class).get(0);
-        }
-        ligneVente.setEnteteVente(enteteVente);
         // Add required entity
         Produit produit;
         if (TestUtil.findAll(em, Produit.class).isEmpty()) {
@@ -138,19 +127,9 @@ public class LigneVenteResourceIT {
             .ligneVenteQte(UPDATED_LIGNE_VENTE_QTE)
             .ligneVenteTotalHT(UPDATED_LIGNE_VENTE_TOTAL_HT)
             .ligneVenteTotalTTC(UPDATED_LIGNE_VENTE_TOTAL_TTC)
-            .ligneVentePrixTTC(UPDATED_LIGNE_VENTE_PRIX_TTC)
             .ligneVentePrixHT(UPDATED_LIGNE_VENTE_PRIX_HT)
+            .ligneVentePrixTTC(UPDATED_LIGNE_VENTE_PRIX_TTC)
             .ligneVenteDesignation(UPDATED_LIGNE_VENTE_DESIGNATION);
-        // Add required entity
-        EnteteVente enteteVente;
-        if (TestUtil.findAll(em, EnteteVente.class).isEmpty()) {
-            enteteVente = EnteteVenteResourceIT.createUpdatedEntity(em);
-            em.persist(enteteVente);
-            em.flush();
-        } else {
-            enteteVente = TestUtil.findAll(em, EnteteVente.class).get(0);
-        }
-        ligneVente.setEnteteVente(enteteVente);
         // Add required entity
         Produit produit;
         if (TestUtil.findAll(em, Produit.class).isEmpty()) {
@@ -187,8 +166,8 @@ public class LigneVenteResourceIT {
         assertThat(testLigneVente.getLigneVenteQte()).isEqualTo(DEFAULT_LIGNE_VENTE_QTE);
         assertThat(testLigneVente.getLigneVenteTotalHT()).isEqualTo(DEFAULT_LIGNE_VENTE_TOTAL_HT);
         assertThat(testLigneVente.getLigneVenteTotalTTC()).isEqualTo(DEFAULT_LIGNE_VENTE_TOTAL_TTC);
-        assertThat(testLigneVente.getLigneVentePrixTTC()).isEqualTo(DEFAULT_LIGNE_VENTE_PRIX_TTC);
         assertThat(testLigneVente.getLigneVentePrixHT()).isEqualTo(DEFAULT_LIGNE_VENTE_PRIX_HT);
+        assertThat(testLigneVente.getLigneVentePrixTTC()).isEqualTo(DEFAULT_LIGNE_VENTE_PRIX_TTC);
         assertThat(testLigneVente.getLigneVenteDesignation()).isEqualTo(DEFAULT_LIGNE_VENTE_DESIGNATION);
     }
 
@@ -232,96 +211,6 @@ public class LigneVenteResourceIT {
 
     @Test
     @Transactional
-    public void checkLigneVenteTotalHTIsRequired() throws Exception {
-        int databaseSizeBeforeTest = ligneVenteRepository.findAll().size();
-        // set the field null
-        ligneVente.setLigneVenteTotalHT(null);
-
-        // Create the LigneVente, which fails.
-
-        restLigneVenteMockMvc.perform(post("/api/ligne-ventes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(ligneVente)))
-            .andExpect(status().isBadRequest());
-
-        List<LigneVente> ligneVenteList = ligneVenteRepository.findAll();
-        assertThat(ligneVenteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkLigneVenteTotalTTCIsRequired() throws Exception {
-        int databaseSizeBeforeTest = ligneVenteRepository.findAll().size();
-        // set the field null
-        ligneVente.setLigneVenteTotalTTC(null);
-
-        // Create the LigneVente, which fails.
-
-        restLigneVenteMockMvc.perform(post("/api/ligne-ventes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(ligneVente)))
-            .andExpect(status().isBadRequest());
-
-        List<LigneVente> ligneVenteList = ligneVenteRepository.findAll();
-        assertThat(ligneVenteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkLigneVentePrixTTCIsRequired() throws Exception {
-        int databaseSizeBeforeTest = ligneVenteRepository.findAll().size();
-        // set the field null
-        ligneVente.setLigneVentePrixTTC(null);
-
-        // Create the LigneVente, which fails.
-
-        restLigneVenteMockMvc.perform(post("/api/ligne-ventes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(ligneVente)))
-            .andExpect(status().isBadRequest());
-
-        List<LigneVente> ligneVenteList = ligneVenteRepository.findAll();
-        assertThat(ligneVenteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkLigneVentePrixHTIsRequired() throws Exception {
-        int databaseSizeBeforeTest = ligneVenteRepository.findAll().size();
-        // set the field null
-        ligneVente.setLigneVentePrixHT(null);
-
-        // Create the LigneVente, which fails.
-
-        restLigneVenteMockMvc.perform(post("/api/ligne-ventes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(ligneVente)))
-            .andExpect(status().isBadRequest());
-
-        List<LigneVente> ligneVenteList = ligneVenteRepository.findAll();
-        assertThat(ligneVenteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkLigneVenteDesignationIsRequired() throws Exception {
-        int databaseSizeBeforeTest = ligneVenteRepository.findAll().size();
-        // set the field null
-        ligneVente.setLigneVenteDesignation(null);
-
-        // Create the LigneVente, which fails.
-
-        restLigneVenteMockMvc.perform(post("/api/ligne-ventes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(ligneVente)))
-            .andExpect(status().isBadRequest());
-
-        List<LigneVente> ligneVenteList = ligneVenteRepository.findAll();
-        assertThat(ligneVenteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllLigneVentes() throws Exception {
         // Initialize the database
         ligneVenteRepository.saveAndFlush(ligneVente);
@@ -334,8 +223,8 @@ public class LigneVenteResourceIT {
             .andExpect(jsonPath("$.[*].ligneVenteQte").value(hasItem(DEFAULT_LIGNE_VENTE_QTE)))
             .andExpect(jsonPath("$.[*].ligneVenteTotalHT").value(hasItem(DEFAULT_LIGNE_VENTE_TOTAL_HT.doubleValue())))
             .andExpect(jsonPath("$.[*].ligneVenteTotalTTC").value(hasItem(DEFAULT_LIGNE_VENTE_TOTAL_TTC.doubleValue())))
-            .andExpect(jsonPath("$.[*].ligneVentePrixTTC").value(hasItem(DEFAULT_LIGNE_VENTE_PRIX_TTC.doubleValue())))
             .andExpect(jsonPath("$.[*].ligneVentePrixHT").value(hasItem(DEFAULT_LIGNE_VENTE_PRIX_HT.doubleValue())))
+            .andExpect(jsonPath("$.[*].ligneVentePrixTTC").value(hasItem(DEFAULT_LIGNE_VENTE_PRIX_TTC.doubleValue())))
             .andExpect(jsonPath("$.[*].ligneVenteDesignation").value(hasItem(DEFAULT_LIGNE_VENTE_DESIGNATION.toString())));
     }
     
@@ -353,8 +242,8 @@ public class LigneVenteResourceIT {
             .andExpect(jsonPath("$.ligneVenteQte").value(DEFAULT_LIGNE_VENTE_QTE))
             .andExpect(jsonPath("$.ligneVenteTotalHT").value(DEFAULT_LIGNE_VENTE_TOTAL_HT.doubleValue()))
             .andExpect(jsonPath("$.ligneVenteTotalTTC").value(DEFAULT_LIGNE_VENTE_TOTAL_TTC.doubleValue()))
-            .andExpect(jsonPath("$.ligneVentePrixTTC").value(DEFAULT_LIGNE_VENTE_PRIX_TTC.doubleValue()))
             .andExpect(jsonPath("$.ligneVentePrixHT").value(DEFAULT_LIGNE_VENTE_PRIX_HT.doubleValue()))
+            .andExpect(jsonPath("$.ligneVentePrixTTC").value(DEFAULT_LIGNE_VENTE_PRIX_TTC.doubleValue()))
             .andExpect(jsonPath("$.ligneVenteDesignation").value(DEFAULT_LIGNE_VENTE_DESIGNATION.toString()));
     }
 
@@ -382,8 +271,8 @@ public class LigneVenteResourceIT {
             .ligneVenteQte(UPDATED_LIGNE_VENTE_QTE)
             .ligneVenteTotalHT(UPDATED_LIGNE_VENTE_TOTAL_HT)
             .ligneVenteTotalTTC(UPDATED_LIGNE_VENTE_TOTAL_TTC)
-            .ligneVentePrixTTC(UPDATED_LIGNE_VENTE_PRIX_TTC)
             .ligneVentePrixHT(UPDATED_LIGNE_VENTE_PRIX_HT)
+            .ligneVentePrixTTC(UPDATED_LIGNE_VENTE_PRIX_TTC)
             .ligneVenteDesignation(UPDATED_LIGNE_VENTE_DESIGNATION);
 
         restLigneVenteMockMvc.perform(put("/api/ligne-ventes")
@@ -398,8 +287,8 @@ public class LigneVenteResourceIT {
         assertThat(testLigneVente.getLigneVenteQte()).isEqualTo(UPDATED_LIGNE_VENTE_QTE);
         assertThat(testLigneVente.getLigneVenteTotalHT()).isEqualTo(UPDATED_LIGNE_VENTE_TOTAL_HT);
         assertThat(testLigneVente.getLigneVenteTotalTTC()).isEqualTo(UPDATED_LIGNE_VENTE_TOTAL_TTC);
-        assertThat(testLigneVente.getLigneVentePrixTTC()).isEqualTo(UPDATED_LIGNE_VENTE_PRIX_TTC);
         assertThat(testLigneVente.getLigneVentePrixHT()).isEqualTo(UPDATED_LIGNE_VENTE_PRIX_HT);
+        assertThat(testLigneVente.getLigneVentePrixTTC()).isEqualTo(UPDATED_LIGNE_VENTE_PRIX_TTC);
         assertThat(testLigneVente.getLigneVenteDesignation()).isEqualTo(UPDATED_LIGNE_VENTE_DESIGNATION);
     }
 

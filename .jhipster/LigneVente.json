@@ -3,8 +3,8 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "enteteVente",
-            "otherEntityName": "enteteVente",
+            "relationshipName": "produit",
+            "otherEntityName": "produit",
             "relationshipType": "many-to-one",
             "relationshipValidateRules": [
                 "required"
@@ -13,12 +13,9 @@
             "otherEntityRelationshipName": "ligneVente"
         },
         {
-            "relationshipName": "produit",
-            "otherEntityName": "produit",
+            "relationshipName": "enteteVente",
+            "otherEntityName": "enteteVente",
             "relationshipType": "many-to-one",
-            "relationshipValidateRules": [
-                "required"
-            ],
             "otherEntityField": "id",
             "otherEntityRelationshipName": "ligneVente"
         }
@@ -33,38 +30,23 @@
         },
         {
             "fieldName": "ligneVenteTotalHT",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Double"
         },
         {
             "fieldName": "ligneVenteTotalTTC",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "ligneVentePrixTTC",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Double"
         },
         {
             "fieldName": "ligneVentePrixHT",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ligneVentePrixTTC",
+            "fieldType": "Double"
         },
         {
             "fieldName": "ligneVenteDesignation",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20190626130625",

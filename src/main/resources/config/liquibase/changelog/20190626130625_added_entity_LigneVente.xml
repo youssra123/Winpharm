@@ -20,31 +20,31 @@
             </column>
 
             <column name="ligne_vente_total_ht" type="double">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="ligne_vente_total_ttc" type="double">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="ligne_vente_prix_ttc" type="double">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="ligne_vente_prix_ht" type="double">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ligne_vente_prix_ttc" type="double">
+                <constraints nullable="true" />
             </column>
 
             <column name="ligne_vente_designation" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="entete_vente_id" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="produit_id" type="bigint">
                 <constraints nullable="false" />
+            </column>
+
+            <column name="entete_vente_id" type="bigint">
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -69,10 +69,9 @@
             <column name="ligne_vente_qte" type="numeric"/>
             <column name="ligne_vente_total_ht" type="numeric"/>
             <column name="ligne_vente_total_ttc" type="numeric"/>
-            <column name="ligne_vente_prix_ttc" type="numeric"/>
             <column name="ligne_vente_prix_ht" type="numeric"/>
+            <column name="ligne_vente_prix_ttc" type="numeric"/>
             <column name="ligne_vente_designation" type="string"/>
-            <column name="entete_vente_id" type="numeric"/>
             <column name="produit_id" type="numeric"/>
         </loadData>
     </changeSet>

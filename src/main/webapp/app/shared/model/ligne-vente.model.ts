@@ -1,16 +1,16 @@
-import { IEnteteVente } from 'app/shared/model/entete-vente.model';
 import { IProduit } from 'app/shared/model/produit.model';
+import { IEnteteVente } from 'app/shared/model/entete-vente.model';
 
 export interface ILigneVente {
   id?: number;
   ligneVenteQte?: number;
   ligneVenteTotalHT?: number;
   ligneVenteTotalTTC?: number;
-  ligneVentePrixTTC?: number;
   ligneVentePrixHT?: number;
+  ligneVentePrixTTC?: number;
   ligneVenteDesignation?: string;
-  enteteVente?: IEnteteVente;
   produit?: IProduit;
+  enteteVente?: IEnteteVente;
 }
 
 export class LigneVente implements ILigneVente {
@@ -19,10 +19,10 @@ export class LigneVente implements ILigneVente {
     public ligneVenteQte?: number,
     public ligneVenteTotalHT?: number,
     public ligneVenteTotalTTC?: number,
-    public ligneVentePrixTTC?: number,
     public ligneVentePrixHT?: number,
+    public ligneVentePrixTTC?: number,
     public ligneVenteDesignation?: string,
-    public enteteVente?: IEnteteVente,
-    public produit?: IProduit
+    public produit?: IProduit,
+    public enteteVente?: IEnteteVente
   ) {}
 }
