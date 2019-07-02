@@ -31,9 +31,6 @@ export class StockUpdateComponent implements OnInit {
   isCollapseddd = true;
   produits: IProduit[];
 
-  @Input() name: string;
-  @Output() msg = new EventEmitter<String>();
-
   editForm = this.fb.group({
     id: [],
     stockCouvertureMin: [null, [Validators.required]],
@@ -53,6 +50,9 @@ export class StockUpdateComponent implements OnInit {
     stockDateCreation: [null, [Validators.required]]
   });
 
+  @Output() childEvent = new EventEmitter<String>();
+  public obj: any;
+
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected stockService: StockService,
@@ -60,6 +60,11 @@ export class StockUpdateComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
+
+  fireEvent() {
+    this.obj = this.createFromForm();
+    this.childEvent.emit(this.obj);
+  }
 
   ngOnInit() {
     this.isSaving = false;
@@ -94,10 +99,6 @@ export class StockUpdateComponent implements OnInit {
       stockPrixHT3: stock.stockPrixHT3,
       stockDateCreation: stock.stockDateCreation != null ? stock.stockDateCreation.format(DATE_TIME_FORMAT) : null
     });
-  }
-
-  sendMsg(msg: String) {
-    this.msg.emit(msg);
   }
 
   previousState() {

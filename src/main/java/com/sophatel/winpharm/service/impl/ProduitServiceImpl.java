@@ -41,9 +41,12 @@ public class ProduitServiceImpl implements ProduitService {
     @Override
     public Produit save(Produit produit) {
         log.debug("Request to save Produit : {}", produit);
+        Stock stock;
+        if (produit.getStock() != null){
+            stock = stockService.save(produit.getStock());
+            produit.getStock().setId(stock.getId());
+        }
         Produit newProduit = produitRepository.save(produit);
-        if (produit.getStock() != null)
-            stockService.save(produit.getStock());
         return newProduit;
     }
 

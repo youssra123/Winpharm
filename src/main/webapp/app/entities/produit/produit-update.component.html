@@ -148,12 +148,6 @@
                                 </div>
                                 
                   </div>
-                  
-                <div class="border-info">
-                  <h3>msg from stock : {{msg}}</h3>
-                  <jhi-stock-update [name]="prod1" (voted)="msgReceived($event)"></jhi-stock-update>
-                </div>              
-
 
                   <div class="text-center">
                         <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
@@ -162,10 +156,13 @@
                         <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn back_color" >
                                 <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                         </button>
-                  </div>  
-          
-          
+                  </div>
         </form>
+
+        <div class="border-info">
+        <jhi-stock-update (childEvent)="setInnerStock($event)"></jhi-stock-update>
+        </div> 
+
         </div>
     </div>
 
