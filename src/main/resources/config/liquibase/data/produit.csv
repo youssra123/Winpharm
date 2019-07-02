@@ -1,11 +1,11 @@
-id;produit_libelle;produit_actif;produit_code_barre;produit_dosage;produit_uni_dosage;produit_volume;produit_uni_volume;produit_categorie_id;produit_fam_tar_id;proform_id;stock_id
-1;mobile Fish;Home Loan Account Table Computer;5808;45924;seamless Metal deposit;5641;transmitter Implementation Electronics;10;2;7;1
-2;Albania web-readiness;Namibia;39986;13949;zero administration;36636;Common;8;7;2;2
-3;Planner Canyon;Credit Card Account Table Small Frozen Sausages;96563;56328;envisioneer Music Public-key;24102;Bahamian Dollar Investment Account;9;1;2;3
-4;Digitized invoice;convergence;20794;54671;Chair Facilitator;77513;Markets Chief;6;8;10;4
-5;Georgia;Tasty Plastic Pizza scale;27134;53969;Louisiana Specialist Home Loan Account;27599;scalable;2;1;1;5
-6;index orange;Jewelery;19884;70685;application quantify Unbranded Plastic Tuna;11586;IB Investment Account archive;1;4;4;6
-7;payment;withdrawal COM;47221;38292;Developer;84891;hard drive Robust Networked;1;6;8;7
-8;Grocery;red;89576;63641;knowledge base Buckinghamshire;90756;Phased;5;6;8;8
-9;Brand;neutral Salad;92969;62435;modular Refined Squares;21844;e-business;9;6;4;9
-10;National;Direct;27213;22793;synergies copying;86073;Games;6;6;5;10
+id;produit_libelle;produit_actif;produit_code_barre;produit_dosage;produit_uni_dosage;produit_volume;produit_uni_volume;produit_categorie_id;produit_fam_tar_id;proform_id
+1;mobile Fish;Home Loan Account Table Computer;5808;45924;seamless Metal deposit;5641;transmitter Implementation Electronics;10;2;7
+2;Albania web-readiness;Namibia;39986;13949;zero administration;36636;Common;8;7;2
+3;Planner Canyon;Credit Card Account Table Small Frozen Sausages;96563;56328;envisioneer Music Public-key;24102;Bahamian Dollar Investment Account;9;1;2
+4;Digitized invoice;convergence;20794;54671;Chair Facilitator;77513;Markets Chief;6;8;10
+5;Georgia;Tasty Plastic Pizza scale;27134;53969;Louisiana Specialist Home Loan Account;27599;scalable;2;1;1
+6;index orange;Jewelery;19884;70685;application quantify Unbranded Plastic Tuna;11586;IB Investment Account archive;1;4;4
+7;payment;withdrawal COM;47221;38292;Developer;84891;hard drive Robust Networked;1;6;8
+8;Grocery;red;89576;63641;knowledge base Buckinghamshire;90756;Phased;5;6;8
+9;Brand;neutral Salad;92969;62435;modular Refined Squares;21844;e-business;9;6;4
+10;National;Direct;27213;22793;synergies copying;86073;Games;6;6;5
