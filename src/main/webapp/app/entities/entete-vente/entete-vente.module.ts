@@ -15,8 +15,10 @@ import {
 } from './';
 import {
   LigneVenteComponent,
-  //LigneVenteDetailComponent,
-  LigneVenteUpdateComponent
+  LigneVenteDetailComponent,
+  LigneVenteUpdateComponent,
+  LigneVente2DetailComponent,
+  LigneVente2UpdateComponent
   //LigneVenteDeletePopupComponent,
   //LigneVenteDeleteDialogComponent,
   //ligneVenteRoute,
@@ -34,6 +36,9 @@ const ENTITY_STATES = [...enteteVenteRoute, ...enteteVentePopupRoute];
     EnteteVenteUpdateComponent,
     LigneVenteComponent,
     LigneVenteUpdateComponent,
+    LigneVenteDetailComponent,
+    LigneVente2DetailComponent,
+    LigneVente2UpdateComponent,
     EnteteVenteDeleteDialogComponent,
     EnteteVenteDeletePopupComponent
   ],
@@ -41,6 +46,7 @@ const ENTITY_STATES = [...enteteVenteRoute, ...enteteVentePopupRoute];
     LigneVenteComponent,
     LigneVenteUpdateComponent,
     EnteteVenteComponent,
+    LigneVente2UpdateComponent,
     EnteteVenteUpdateComponent,
     EnteteVenteDeleteDialogComponent,
     EnteteVenteDeletePopupComponent

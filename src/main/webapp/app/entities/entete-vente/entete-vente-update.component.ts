@@ -11,7 +11,8 @@ import { IEnteteVente, EnteteVente } from 'app/shared/model/entete-vente.model';
 import { EnteteVenteService } from './entete-vente.service';
 import { IClient } from 'app/shared/model/client.model';
 import { ClientService } from 'app/entities/client';
-
+import { IProduit } from 'app/shared/model/produit.model';
+import { ProduitService } from 'app/entities/produit';
 @Component({
   selector: 'jhi-entete-vente-update',
   templateUrl: './entete-vente-update.component.html'
@@ -21,6 +22,9 @@ export class EnteteVenteUpdateComponent implements OnInit {
 
   clients: IClient[];
 
+  enteteventes: IEnteteVente[];
+
+  produits: IProduit[];
   editForm = this.fb.group({
     id: [],
     enteteVenteTotalHT: [null, [Validators.required]],
@@ -35,6 +39,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
     protected enteteVenteService: EnteteVenteService,
     protected clientService: ClientService,
     protected activatedRoute: ActivatedRoute,
+    protected produitService: ProduitService,
     private fb: FormBuilder
   ) {}
 
@@ -50,6 +55,24 @@ export class EnteteVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IClient[]>) => response.body)
       )
       .subscribe((res: IClient[]) => (this.clients = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.isSaving = false;
+    this.activatedRoute.data.subscribe(({ ligneVente }) => {
+      this.updateForm(ligneVente);
+    });
+    this.enteteVenteService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IEnteteVente[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IEnteteVente[]>) => response.body)
+      )
+      .subscribe((res: IEnteteVente[]) => (this.enteteventes = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.produitService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IProduit[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IProduit[]>) => response.body)
+      )
+      .subscribe((res: IProduit[]) => (this.produits = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(enteteVente: IEnteteVente) {
