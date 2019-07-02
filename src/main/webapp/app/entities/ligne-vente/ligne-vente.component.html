@@ -1,5 +1,4 @@
 <div>
-    
     <h2 id="page-heading">
         <span jhiTranslate="winpharmApp.ligneVente.home.title">Ligne Ventes</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-ligne-vente" [routerLink]="['/ligne-vente/new']">
@@ -22,11 +21,11 @@
             <th jhiSortBy="ligneVenteQte"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteQte">Ligne Vente Qte</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="ligneVenteTotalHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalHT">Ligne Vente Total HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="ligneVenteTotalTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalTTC">Ligne Vente Total TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="ligneVentePrixTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC">Ligne Vente Prix TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="ligneVentePrixHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT">Ligne Vente Prix HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVentePrixTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC">Ligne Vente Prix TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="ligneVenteDesignation"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteDesignation">Ligne Vente Designation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="enteteVente.id"><span jhiTranslate="winpharmApp.ligneVente.enteteVente">Entete Vente</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="produit.id"><span jhiTranslate="winpharmApp.ligneVente.produit">Produit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="enteteVente.id"><span jhiTranslate="winpharmApp.ligneVente.enteteVente">Entete Vente</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -36,17 +35,17 @@
                 <td>{{ligneVente.ligneVenteQte}}</td>
                 <td>{{ligneVente.ligneVenteTotalHT}}</td>
                 <td>{{ligneVente.ligneVenteTotalTTC}}</td>
-                <td>{{ligneVente.ligneVentePrixTTC}}</td>
                 <td>{{ligneVente.ligneVentePrixHT}}</td>
+                <td>{{ligneVente.ligneVentePrixTTC}}</td>
                 <td>{{ligneVente.ligneVenteDesignation}}</td>
-                <td>
-                    <div *ngIf="ligneVente.enteteVente">
-                        <a [routerLink]="['../entete-vente', ligneVente.enteteVente?.id, 'view' ]" >{{ligneVente.enteteVente?.id}}</a>
-                    </div>
-                </td>
                 <td>
                     <div *ngIf="ligneVente.produit">
                         <a [routerLink]="['../produit', ligneVente.produit?.id, 'view' ]" >{{ligneVente.produit?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ligneVente.enteteVente">
+                        <a [routerLink]="['../entete-vente', ligneVente.enteteVente?.id, 'view' ]" >{{ligneVente.enteteVente?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

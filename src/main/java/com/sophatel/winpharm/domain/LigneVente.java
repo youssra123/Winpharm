@@ -27,35 +27,29 @@ public class LigneVente implements Serializable {
     @Column(name = "ligne_vente_qte", nullable = false)
     private Integer ligneVenteQte;
 
-    @NotNull
-    @Column(name = "ligne_vente_total_ht", nullable = false)
+    @Column(name = "ligne_vente_total_ht")
     private Double ligneVenteTotalHT;
 
-    @NotNull
-    @Column(name = "ligne_vente_total_ttc", nullable = false)
+    @Column(name = "ligne_vente_total_ttc")
     private Double ligneVenteTotalTTC;
 
-    @NotNull
-    @Column(name = "ligne_vente_prix_ttc", nullable = false)
-    private Double ligneVentePrixTTC;
-
-    @NotNull
-    @Column(name = "ligne_vente_prix_ht", nullable = false)
+    @Column(name = "ligne_vente_prix_ht")
     private Double ligneVentePrixHT;
 
-    @NotNull
-    @Column(name = "ligne_vente_designation", nullable = false)
+    @Column(name = "ligne_vente_prix_ttc")
+    private Double ligneVentePrixTTC;
+
+    @Column(name = "ligne_vente_designation")
     private String ligneVenteDesignation;
 
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("ligneVentes")
-    private EnteteVente enteteVente;
-
-    @ManyToOne(optional = false)
-    @NotNull
-    @JsonIgnoreProperties("ligneVentes")
     private Produit produit;
+
+    @ManyToOne
+    @JsonIgnoreProperties("ligneVentes")
+    private EnteteVente enteteVente;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -105,19 +99,6 @@ public class LigneVente implements Serializable {
         this.ligneVenteTotalTTC = ligneVenteTotalTTC;
     }
 
-    public Double getLigneVentePrixTTC() {
-        return ligneVentePrixTTC;
-    }
-
-    public LigneVente ligneVentePrixTTC(Double ligneVentePrixTTC) {
-        this.ligneVentePrixTTC = ligneVentePrixTTC;
-        return this;
-    }
-
-    public void setLigneVentePrixTTC(Double ligneVentePrixTTC) {
-        this.ligneVentePrixTTC = ligneVentePrixTTC;
-    }
-
     public Double getLigneVentePrixHT() {
         return ligneVentePrixHT;
     }
@@ -129,6 +110,19 @@ public class LigneVente implements Serializable {
 
     public void setLigneVentePrixHT(Double ligneVentePrixHT) {
         this.ligneVentePrixHT = ligneVentePrixHT;
+    }
+
+    public Double getLigneVentePrixTTC() {
+        return ligneVentePrixTTC;
+    }
+
+    public LigneVente ligneVentePrixTTC(Double ligneVentePrixTTC) {
+        this.ligneVentePrixTTC = ligneVentePrixTTC;
+        return this;
+    }
+
+    public void setLigneVentePrixTTC(Double ligneVentePrixTTC) {
+        this.ligneVentePrixTTC = ligneVentePrixTTC;
     }
 
     public String getLigneVenteDesignation() {
@@ -144,19 +138,6 @@ public class LigneVente implements Serializable {
         this.ligneVenteDesignation = ligneVenteDesignation;
     }
 
-    public EnteteVente getEnteteVente() {
-        return enteteVente;
-    }
-
-    public LigneVente enteteVente(EnteteVente enteteVente) {
-        this.enteteVente = enteteVente;
-        return this;
-    }
-
-    public void setEnteteVente(EnteteVente enteteVente) {
-        this.enteteVente = enteteVente;
-    }
-
     public Produit getProduit() {
         return produit;
     }
@@ -168,6 +149,19 @@ public class LigneVente implements Serializable {
 
     public void setProduit(Produit produit) {
         this.produit = produit;
+    }
+
+    public EnteteVente getEnteteVente() {
+        return enteteVente;
+    }
+
+    public LigneVente enteteVente(EnteteVente enteteVente) {
+        this.enteteVente = enteteVente;
+        return this;
+    }
+
+    public void setEnteteVente(EnteteVente enteteVente) {
+        this.enteteVente = enteteVente;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -194,8 +188,8 @@ public class LigneVente implements Serializable {
             ", ligneVenteQte=" + getLigneVenteQte() +
             ", ligneVenteTotalHT=" + getLigneVenteTotalHT() +
             ", ligneVenteTotalTTC=" + getLigneVenteTotalTTC() +
-            ", ligneVentePrixTTC=" + getLigneVentePrixTTC() +
             ", ligneVentePrixHT=" + getLigneVentePrixHT() +
+            ", ligneVentePrixTTC=" + getLigneVentePrixTTC() +
             ", ligneVenteDesignation='" + getLigneVenteDesignation() + "'" +
             "}";
     }

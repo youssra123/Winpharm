@@ -7,10 +7,10 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { ILigneVente, LigneVente } from 'app/shared/model/ligne-vente.model';
 import { LigneVenteService } from './ligne-vente.service';
-import { IEnteteVente } from 'app/shared/model/entete-vente.model';
-import { EnteteVenteService } from 'app/entities/entete-vente';
 import { IProduit } from 'app/shared/model/produit.model';
 import { ProduitService } from 'app/entities/produit';
+import { IEnteteVente } from 'app/shared/model/entete-vente.model';
+import { EnteteVenteService } from 'app/entities/entete-vente';
 
 @Component({
   selector: 'jhi-ligne-vente-update',
@@ -19,27 +19,27 @@ import { ProduitService } from 'app/entities/produit';
 export class LigneVenteUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  enteteventes: IEnteteVente[];
-
   produits: IProduit[];
+
+  enteteventes: IEnteteVente[];
 
   editForm = this.fb.group({
     id: [],
     ligneVenteQte: [null, [Validators.required]],
-    ligneVenteTotalHT: [null, [Validators.required]],
-    ligneVenteTotalTTC: [null, [Validators.required]],
-    ligneVentePrixTTC: [null, [Validators.required]],
-    ligneVentePrixHT: [null, [Validators.required]],
-    ligneVenteDesignation: [null, [Validators.required]],
-    enteteVente: [null, Validators.required],
-    produit: [null, Validators.required]
+    ligneVenteTotalHT: [],
+    ligneVenteTotalTTC: [],
+    ligneVentePrixHT: [],
+    ligneVentePrixTTC: [],
+    ligneVenteDesignation: [],
+    produit: [null, Validators.required],
+    enteteVente: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected ligneVenteService: LigneVenteService,
-    protected enteteVenteService: EnteteVenteService,
     protected produitService: ProduitService,
+    protected enteteVenteService: EnteteVenteService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -49,13 +49,6 @@ export class LigneVenteUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ ligneVente }) => {
       this.updateForm(ligneVente);
     });
-    this.enteteVenteService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IEnteteVente[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IEnteteVente[]>) => response.body)
-      )
-      .subscribe((res: IEnteteVente[]) => (this.enteteventes = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.produitService
       .query()
       .pipe(
@@ -63,6 +56,13 @@ export class LigneVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IProduit[]>) => response.body)
       )
       .subscribe((res: IProduit[]) => (this.produits = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.enteteVenteService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IEnteteVente[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IEnteteVente[]>) => response.body)
+      )
+      .subscribe((res: IEnteteVente[]) => (this.enteteventes = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(ligneVente: ILigneVente) {
@@ -71,11 +71,11 @@ export class LigneVenteUpdateComponent implements OnInit {
       ligneVenteQte: ligneVente.ligneVenteQte,
       ligneVenteTotalHT: ligneVente.ligneVenteTotalHT,
       ligneVenteTotalTTC: ligneVente.ligneVenteTotalTTC,
-      ligneVentePrixTTC: ligneVente.ligneVentePrixTTC,
       ligneVentePrixHT: ligneVente.ligneVentePrixHT,
+      ligneVentePrixTTC: ligneVente.ligneVentePrixTTC,
       ligneVenteDesignation: ligneVente.ligneVenteDesignation,
-      enteteVente: ligneVente.enteteVente,
-      produit: ligneVente.produit
+      produit: ligneVente.produit,
+      enteteVente: ligneVente.enteteVente
     });
   }
 
@@ -100,11 +100,11 @@ export class LigneVenteUpdateComponent implements OnInit {
       ligneVenteQte: this.editForm.get(['ligneVenteQte']).value,
       ligneVenteTotalHT: this.editForm.get(['ligneVenteTotalHT']).value,
       ligneVenteTotalTTC: this.editForm.get(['ligneVenteTotalTTC']).value,
-      ligneVentePrixTTC: this.editForm.get(['ligneVentePrixTTC']).value,
       ligneVentePrixHT: this.editForm.get(['ligneVentePrixHT']).value,
+      ligneVentePrixTTC: this.editForm.get(['ligneVentePrixTTC']).value,
       ligneVenteDesignation: this.editForm.get(['ligneVenteDesignation']).value,
-      enteteVente: this.editForm.get(['enteteVente']).value,
-      produit: this.editForm.get(['produit']).value
+      produit: this.editForm.get(['produit']).value,
+      enteteVente: this.editForm.get(['enteteVente']).value
     };
     return entity;
   }
@@ -125,11 +125,11 @@ export class LigneVenteUpdateComponent implements OnInit {
     this.jhiAlertService.error(errorMessage, null, null);
   }
 
-  trackEnteteVenteById(index: number, item: IEnteteVente) {
+  trackProduitById(index: number, item: IProduit) {
     return item.id;
   }
 
-  trackProduitById(index: number, item: IProduit) {
+  trackEnteteVenteById(index: number, item: IEnteteVente) {
     return item.id;
   }
 }
