@@ -1,48 +1,125 @@
-
-                <h2 class="text-center" id="jhi-ligne-vente-heading" jhiTranslate="winpharmApp.ligneVente.home.createOrEditLabel">Create or edit a Ligne Vente</h2>
-                <hr>
-                <br>
-                <div>
-                    <jhi-alert-error></jhi-alert-error>
-                 
-                    <div class="controls">
-                        <div class="row">
-                            <div class="col-6">
-                                    <div class="form-group">
-                                            <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteQte" for="field_ligneVenteQte">Ligne Vente Qte</label>
-                                            <input type="number" class="form-control" name="ligneVenteQte" id="field_ligneVenteQte" ng-model="ligneVenteQte"
-                                                   formControlName="ligneVenteQte"/>
-                                            <div *ngIf="editForm.get('ligneVenteQte').invalid && (editForm.get('ligneVenteQte').dirty || editForm.get('ligneVenteQte').touched)">
-                                                <small class="form-text text-danger"
-                                                       *ngIf="editForm.get('ligneVenteQte').errors.required" jhiTranslate="entity.validation.required">
-                                                This field is required.
-                                                </small>
-                                                <small class="form-text text-danger"
-                                                    [hidden]="!editForm.get('ligneVenteQte')?.errors?.number" jhiTranslate="entity.validation.number">
-                                                    This field should be a number.
-                                                </small>
-                                            </div>
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+        <h2 class="text-center" id="jhi-ligne-vente-heading" jhiTranslate="winpharmApp.ligneVente.home.createOrEditLabel">Create or edit a Ligne Vente</h2>
+        <hr>
+        <br>
+        <div>
+            <jhi-alert-error></jhi-alert-error>
+            <div class="form-group" [hidden]="!editForm.get('id').value">
+                <label for="id" jhiTranslate="global.field.id">ID</label>
+                <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                    readonly />
+            </div>
+            <div class="controls">
+                <div class="row">
+                    <div class="col-6">
+                            <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteQte" for="field_ligneVenteQte">Ligne Vente Qte</label>
+                                    <input type="number" class="form-control" name="ligneVenteQte" id="field_ligneVenteQte"
+                                           formControlName="ligneVenteQte"/>
+                                    <div *ngIf="editForm.get('ligneVenteQte').invalid && (editForm.get('ligneVenteQte').dirty || editForm.get('ligneVenteQte').touched)">
+                                        <small class="form-text text-danger"
+                                               *ngIf="editForm.get('ligneVenteQte').errors.required" jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                        </small>
+                                        <small class="form-text text-danger"
+                                            [hidden]="!editForm.get('ligneVenteQte')?.errors?.number" jhiTranslate="entity.validation.number">
+                                            This field should be a number.
+                                        </small>
                                     </div>
-                                  
-                    
-                    <div class="form-group">
-                        <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">Produit</label>
-                        <select class="form-control" id="field_produit" name="produit" formControlName="produit">
-                            <option *ngIf="!editForm.get('produit').value" [ngValue]="null" selected></option>
-                            <option [ngValue]="produitOption.id === editForm.get('produit').value?.id ? editForm.get('produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.id}}</option>
-                        </select>
-                    </div>
-                    <div *ngIf="editForm.get('produit').invalid && (editForm.get('produit').dirty || editForm.get('produit').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('produit').errors.required" jhiTranslate="entity.validation.required">
-                            This field is required.
-                        </small>
-                    </div>
-                    <button type="submit" (click)="addligne()" >insert</button>
-                </div>
+                            </div>
+                         
+           
+            
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">Produit</label>
+                <select class="form-control" id="field_produit" name="produit" formControlName="produit">
+                    <option *ngIf="!editForm.get('produit').value" [ngValue]="null" selected></option>
+                    <option [ngValue]="produitOption.id === editForm.get('produit').value?.id ? editForm.get('produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.id}}</option>
+                </select>
             </div>
-               
+            <div *ngIf="editForm.get('produit').invalid && (editForm.get('produit').dirty || editForm.get('produit').touched)">
+                <small class="form-text text-danger"
+                       *ngIf="editForm.get('produit').errors.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
             </div>
-           </div>
+        </div>
+    </div>
+        <div class="text-center">
+            <br>
     
+            <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>
+    </div>
+   </div>
+    </form>
+                    <button type="submit" (click)="addligne(1,2)" >insert</button>
+         
+   
+<div class="row justify-content-center">
+    
+        <h2 id="page-heading">
+            <span jhiTranslate="winpharmApp.ligneVente.home.title">Ligne Ventes</span>
+       
+        </h2>
+        <jhi-alert></jhi-alert>
+        <div class="alert alert-warning" *ngIf="ligneVentes?.length === 0">
+            <span jhiTranslate="winpharmApp.ligneVente.home.notFound">No ligneVentes found</span>
+        </div>
+        <div class="table-responsive" *ngIf="ligneVentes?.length > 0">
+            <table class="table table-striped">
+                <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="produit.Designation"><span jhiTranslate="winpharmApp.ligneVente.produit.Designation">Produit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ligneVentePrixTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC">Ligne Vente Prix TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ligneVentePrixHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT">Ligne Vente Prix HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ligneVenteQte"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteQte">Ligne Vente Qte</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ligneVenteTotalHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalHT">Ligne Vente Total HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="ligneVenteTotalTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalTTC">Ligne Vente Total TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ligneVente of ligneVentes ;trackBy: trackId">
+                    <td><a [routerLink]="['/ligne-vente', ligneVente.id, 'view' ]">{{ligneVente.id}}</a></td>
+                    <td>
+                            <div *ngIf="ligneVente.produit">
+                                <a [routerLink]="['../produit', ligneVente.produit?.Designation, 'view' ]" >{{ligneVente.produit?.Designation}}</a>
+                            </div>
+                        </td>
+                    <td>{{ligneVente.ligneVentePrixTTC}}</td>
+                    <td>{{ligneVente.ligneVentePrixHT}}</td>
+                    <td>{{ligneVente.ligneVenteQte}}</td>
+                    <td>{{ligneVente.ligneVenteTotalHT}}</td>
+                    <td>{{ligneVente.ligneVenteTotalTTC}}</td>
+                 
+                    <td class="text-right">
+                        <div class="btn-group">
+                           
+                            <button type="submit"
+                                    [routerLink]="['/', 'ligne-vente', { outlets: { popup: ligneVente.id + '/delete'} }]"
+                                    replaceUrl="true"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div [hidden]="ligneVentes?.length === 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+    </div>
     

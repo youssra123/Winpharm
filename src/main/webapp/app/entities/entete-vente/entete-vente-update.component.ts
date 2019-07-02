@@ -10,6 +10,7 @@ import { JhiAlertService } from 'ng-jhipster';
 import { IEnteteVente, EnteteVente } from 'app/shared/model/entete-vente.model';
 import { EnteteVenteService } from './entete-vente.service';
 import { IClient } from 'app/shared/model/client.model';
+import { ILigneVente } from 'app/shared/model/ligne-vente.model';
 import { ClientService } from 'app/entities/client';
 import { IProduit } from 'app/shared/model/produit.model';
 import { ProduitService } from 'app/entities/produit';
@@ -25,6 +26,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
   enteteventes: IEnteteVente[];
 
   produits: IProduit[];
+
   editForm = this.fb.group({
     id: [],
     enteteVenteTotalHT: [null, [Validators.required]],
