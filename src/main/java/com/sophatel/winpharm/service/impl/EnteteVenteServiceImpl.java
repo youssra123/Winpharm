@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -84,6 +83,8 @@ public class EnteteVenteServiceImpl implements EnteteVenteService {
     public Optional<EnteteVente> findOne(Long id) {
         log.debug("Request to get EnteteVente : {}", id);
         Optional<EnteteVente> vente = enteteVenteRepository.findById(id);
+        if (vente.get().getLigneVentes() != null)
+            return vente;
         Set<LigneVente> ligneVentes = ligneVenteService.findAllByVente(id);
         vente.get().ligneVentes(ligneVentes);
         return vente;

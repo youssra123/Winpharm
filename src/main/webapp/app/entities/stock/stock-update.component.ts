@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -29,7 +29,6 @@ export class StockUpdateComponent implements OnInit {
   isCollapsed = true;
   isCollapsedd = true;
   isCollapseddd = true;
-
   produits: IProduit[];
 
   editForm = this.fb.group({
@@ -51,6 +50,9 @@ export class StockUpdateComponent implements OnInit {
     stockDateCreation: [null, [Validators.required]]
   });
 
+  @Output() childEvent = new EventEmitter<String>();
+  public obj: any;
+
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected stockService: StockService,
@@ -58,6 +60,11 @@ export class StockUpdateComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
+
+  fireEvent() {
+    this.obj = this.createFromForm();
+    this.childEvent.emit(this.obj);
+  }
 
   ngOnInit() {
     this.isSaving = false;

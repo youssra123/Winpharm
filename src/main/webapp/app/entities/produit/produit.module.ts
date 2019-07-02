@@ -13,16 +13,18 @@ import {
   produitRoute,
   produitPopupRoute
 } from './';
-
+import { WinpharmEntityModule } from '../entity.module';
+import { StockUpdateComponent } from '../stock/stock-update.component';
 const ENTITY_STATES = [...produitRoute, ...produitPopupRoute];
 
 @NgModule({
-  imports: [WinpharmSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [WinpharmSharedModule, RouterModule.forChild(ENTITY_STATES), WinpharmEntityModule],
   declarations: [
     ProduitComponent,
     ProduitDetailComponent,
     ProduitUpdateComponent,
     ProduitDeleteDialogComponent,
+    StockUpdateComponent,
     ProduitDeletePopupComponent
   ],
   entryComponents: [ProduitComponent, ProduitUpdateComponent, ProduitDeleteDialogComponent, ProduitDeletePopupComponent],

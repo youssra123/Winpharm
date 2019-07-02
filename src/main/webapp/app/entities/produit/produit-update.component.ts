@@ -21,6 +21,8 @@ import { IForme } from 'app/shared/model/forme.model';
 import { FormeService } from 'app/entities/forme';
 import { IStock } from 'app/shared/model/stock.model';
 import { StockService } from 'app/entities/stock';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 @Component({
   selector: 'jhi-produit-update',
@@ -63,8 +65,28 @@ export class ProduitUpdateComponent implements OnInit {
     produit_laboratoire: [],
     produit_grossiste: [],
     proform: [null, Validators.required],
-    stock: [null, Validators.required]
+    stock: []
   });
+
+  public innerStock = {
+    id: 100,
+    stockCouvertureMax: 0,
+    stockCouvertureMin: 0,
+    stockDateCreation: null,
+    stockDatePeremption1: null,
+    stockDatePeremption2: null,
+    stockDatePeremption3: null,
+    stockPrix1: 0,
+    stockPrix2: 0,
+    stockPrix3: 0,
+    stockPrixHT1: 0,
+    stockPrixHT2: 0,
+    stockPrixHT3: 0,
+    stockQte1: 0,
+    stockQte2: 0,
+    stockQte3: 0,
+    produit: null
+  };
 
   constructor(
     protected jhiAlertService: JhiAlertService,
@@ -79,6 +101,25 @@ export class ProduitUpdateComponent implements OnInit {
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
+
+  setInnerStock(data) {
+    if (data.stockCouvertureMin != null) this.innerStock.stockCouvertureMin = data.stockCouvertureMin;
+    if (data.stockCouvertureMax != null) this.innerStock.stockCouvertureMax = data.stockCouvertureMax;
+    if (data.stockDatePeremption1 != null) this.innerStock.stockDatePeremption1 = data.stockDatePeremption1;
+    if (data.stockDatePeremption2 != null) this.innerStock.stockDatePeremption2 = data.stockDatePeremption2;
+    if (data.stockDatePeremption3 != null) this.innerStock.stockDatePeremption3 = data.stockDatePeremption3;
+    if (data.stockPrix1 != null) this.innerStock.stockPrix1 = data.stockPrix1;
+    if (data.stockPrix2 != null) this.innerStock.stockPrix2 = data.stockPrix2;
+    if (data.stockPrix3 != null) this.innerStock.stockPrix3 = data.stockPrix3;
+    if (data.stockPrixHT1 != null) this.innerStock.stockPrixHT1 = data.stockPrixHT1;
+    if (data.stockPrixHT2 != null) this.innerStock.stockPrixHT2 = data.stockPrixHT2;
+    if (data.stockPrixHT3 != null) this.innerStock.stockPrixHT3 = data.stockPrixHT3;
+    if (data.stockQte1 != null) this.innerStock.stockQte1 = data.stockQte1;
+    if (data.stockQte2 != null) this.innerStock.stockQte2 = data.stockQte2;
+    if (data.stockQte3 != null) this.innerStock.stockQte3 = data.stockQte3;
+    if (data.produit != null) this.innerStock.produit = data.produit;
+    this.innerStock.stockDateCreation = moment(new Date(), DATE_TIME_FORMAT);
+  }
 
   ngOnInit() {
     this.isSaving = false;
@@ -205,7 +246,7 @@ export class ProduitUpdateComponent implements OnInit {
       produit_laboratoire: this.editForm.get(['produit_laboratoire']).value,
       produit_grossiste: this.editForm.get(['produit_grossiste']).value,
       proform: this.editForm.get(['proform']).value,
-      stock: this.editForm.get(['stock']).value
+      stock: this.innerStock
     };
     return entity;
   }

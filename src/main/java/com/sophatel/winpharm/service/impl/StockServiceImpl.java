@@ -56,8 +56,6 @@ public class StockServiceImpl implements StockService {
         return stockRepository.findAll(pageable);
     }
 
-
-
     /**
     *  Get all the stocks where Produit is {@code null}.
      *  @return the list of entities.
@@ -82,6 +80,19 @@ public class StockServiceImpl implements StockService {
     public Optional<Stock> findOne(Long id) {
         log.debug("Request to get Stock : {}", id);
         return stockRepository.findById(id);
+    }
+
+    /**
+     * Get one stock by produit.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Stock> findOneByProduit(Long id) {
+        log.debug("Request to get Stock with produit : {}", id);
+        return stockRepository.findOneByProduit(id);
     }
 
     /**

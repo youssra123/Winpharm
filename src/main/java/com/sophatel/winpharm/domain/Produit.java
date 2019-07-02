@@ -74,8 +74,7 @@ public class Produit implements Serializable {
     @JsonIgnoreProperties("produits")
     private Forme proform;
 
-    @OneToOne(optional = false)    @NotNull
-
+    @OneToOne
     @JoinColumn(unique = true)
     private Stock stock;
 
