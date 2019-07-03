@@ -30,96 +30,14 @@
                                             </small>
                                         </div>
                                 </div>
-                                <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT" for="field_ligneVentePrixHT">Ligne Vente Prix HT</label>
-                                        <input type="number" class="form-control" name="ligneVentePrixHT" id="field_ligneVentePrixHT"
-                                               formControlName="ligneVentePrixHT"/>
-                                        <div *ngIf="editForm.get('ligneVentePrixHT').invalid && (editForm.get('ligneVentePrixHT').dirty || editForm.get('ligneVentePrixHT').touched)">
-                                            <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('ligneVentePrixHT').errors.required" jhiTranslate="entity.validation.required">
-                                            This field is required.
-                                            </small>
-                                            <small class="form-text text-danger"
-                                                [hidden]="!editForm.get('ligneVentePrixHT')?.errors?.number" jhiTranslate="entity.validation.number">
-                                                This field should be a number.
-                                            </small>
-                                        </div>
-                                    </div>
-                                     
-                                        <div class="form-group">
-                                                <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalHT" for="field_ligneVenteTotalHT">Ligne Vente Total HT</label>
-                                                <input type="number" class="form-control" name="ligneVenteTotalHT" id="field_ligneVenteTotalHT"
-                                                    formControlName="ligneVenteTotalHT"/>
-                                                <div *ngIf="editForm.get('ligneVenteTotalHT').invalid && (editForm.get('ligneVenteTotalHT').dirty || editForm.get('ligneVenteTotalHT').touched)">
-                                                    <small class="form-text text-danger"
-                                                        *ngIf="editForm.get('ligneVenteTotalHT').errors.required" jhiTranslate="entity.validation.required">
-                                                    This field is required.
-                                                    </small>
-                                                    <small class="form-text text-danger"
-                                                        [hidden]="!editForm.get('ligneVenteTotalHT')?.errors?.number" jhiTranslate="entity.validation.number">
-                                                        This field should be a number.
-                                                    </small>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.enteteVente" for="field_enteteVente">Entete Vente</label>
-                                                    <select class="form-control" id="field_enteteVente" name="enteteVente" formControlName="enteteVente">
-                                                        <option *ngIf="!editForm.get('enteteVente').value" [ngValue]="null" selected></option>
-                                                        <option [ngValue]="enteteVenteOption.id === editForm.get('enteteVente').value?.id ? editForm.get('enteteVente').value : enteteVenteOption" *ngFor="let enteteVenteOption of enteteventes; trackBy: trackEnteteVenteById">{{enteteVenteOption.id}}</option>
-                                                    </select>
-                                                </div>
-                                                <div *ngIf="editForm.get('enteteVente').invalid && (editForm.get('enteteVente').dirty || editForm.get('enteteVente').touched)">
-                                                    <small class="form-text text-danger"
-                                                           *ngIf="editForm.get('enteteVente').errors.required" jhiTranslate="entity.validation.required">
-                                                        This field is required.
-                                                    </small>
-                                            </div>       
+                              
+     
 
                         </div>
                 <div class="col-6">
-                        <div class="form-group">
-                                <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteDesignation" for="field_ligneVenteDesignation">Ligne Vente Designation</label>
-                                <input type="text" class="form-control" name="ligneVenteDesignation" id="field_ligneVenteDesignation"
-                                       formControlName="ligneVenteDesignation"/>
-                                <div *ngIf="editForm.get('ligneVenteDesignation').invalid && (editForm.get('ligneVenteDesignation').dirty || editForm.get('ligneVenteDesignation').touched)">
-                                    <small class="form-text text-danger"
-                                           *ngIf="editForm.get('ligneVenteDesignation').errors.required" jhiTranslate="entity.validation.required">
-                                    This field is required.
-                                    </small>
-                                </div>
-                            </div>
+                      
              
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalTTC" for="field_ligneVenteTotalTTC">Ligne Vente Total TTC</label>
-                    <input type="number" class="form-control" name="ligneVenteTotalTTC" id="field_ligneVenteTotalTTC"
-                           formControlName="ligneVenteTotalTTC"/>
-                    <div *ngIf="editForm.get('ligneVenteTotalTTC').invalid && (editForm.get('ligneVenteTotalTTC').dirty || editForm.get('ligneVenteTotalTTC').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('ligneVenteTotalTTC').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('ligneVenteTotalTTC')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC" for="field_ligneVentePrixTTC">Ligne Vente Prix TTC</label>
-                    <input type="number" class="form-control" name="ligneVentePrixTTC" id="field_ligneVentePrixTTC"
-                           formControlName="ligneVentePrixTTC"/>
-                    <div *ngIf="editForm.get('ligneVentePrixTTC').invalid && (editForm.get('ligneVentePrixTTC').dirty || editForm.get('ligneVentePrixTTC').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('ligneVentePrixTTC').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('ligneVentePrixTTC')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
+          
                
                
                 
@@ -150,5 +68,70 @@
         </div>
        </div>
         </form>
+    </div>
+</div>
+   
+<div class="row justify-content-center">
+    
+    <h2 id="page-heading">
+        <span jhiTranslate="winpharmApp.ligneVente.home.title">Ligne Ventes</span>
+   
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="alert alert-warning" *ngIf="ligneVentes?.length === 0">
+        <span jhiTranslate="winpharmApp.ligneVente.home.notFound">No ligneVentes found</span>
+    </div>
+    <div class="table-responsive" *ngIf="ligneVentes?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="produit.id"><span jhiTranslate="winpharmApp.ligneVente.produit">Produit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVentePrixTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC">Ligne Vente Prix TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVentePrixHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT">Ligne Vente Prix HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVenteQte"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteQte">Ligne Vente Qte</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVenteTotalHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalHT">Ligne Vente Total HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ligneVenteTotalTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteTotalTTC">Ligne Vente Total TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ligneVente of ligneVentes ;trackBy: trackId">
+                <td><a [routerLink]="['/ligne-vente', ligneVente.id, 'view' ]">{{ligneVente.id}}</a></td>
+                <td>
+                        <div *ngIf="ligneVente.produit">
+                            <a [routerLink]="['../produit', ligneVente.produit?.produitLibelle, 'view' ]" >{{ligneVente.produit.produitLibelle}}</a>
+                        </div>
+                    </td>
+                <td>{{ligneVente.ligneVentePrixTTC}}</td>
+                <td>{{ligneVente.ligneVentePrixHT}}</td>
+                <td>{{ligneVente.ligneVenteQte}}</td>
+                <td>{{ligneVente.ligneVenteTotalHT}}</td>
+                <td>{{ligneVente.ligneVenteTotalTTC}}</td>
+             
+                <td class="text-right">
+                    <div class="btn-group">
+                       
+                        <button type="submit"
+                                [routerLink]="['/', 'ligne-vente', { outlets: { popup: ligneVente.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="ligneVentes?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
     </div>
 </div>

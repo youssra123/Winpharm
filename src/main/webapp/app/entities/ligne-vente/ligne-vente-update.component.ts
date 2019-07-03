@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { ILigneVente, LigneVente } from 'app/shared/model/ligne-vente.model';
@@ -12,15 +12,31 @@ import { ProduitService } from 'app/entities/produit';
 import { IEnteteVente } from 'app/shared/model/entete-vente.model';
 import { EnteteVenteService } from 'app/entities/entete-vente';
 
+import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
+import { AccountService } from 'app/core';
+import { ITEMS_PER_PAGE } from 'app/shared';
 @Component({
   selector: 'jhi-ligne-vente-update',
   templateUrl: './ligne-vente-update.component.html'
 })
-export class LigneVenteUpdateComponent implements OnInit {
+export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   isSaving: boolean;
-
+  currentAccount: any;
+  ligneVentes: ILigneVente[];
+  error: any;
+  success: any;
+  eventSubscriber: Subscription;
+  routeData: any;
+  links: any;
+  totalItems: any;
+  itemsPerPage: any;
+  page: any;
+  predicate: any;
+  previousPage: any;
+  reverse: any;
   produits: IProduit[];
-
+  public count: number = 0;
+  public ligneVente1: any;
   enteteventes: IEnteteVente[];
 
   editForm = this.fb.group({
@@ -41,7 +57,11 @@ export class LigneVenteUpdateComponent implements OnInit {
     protected produitService: ProduitService,
     protected enteteVenteService: EnteteVenteService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    protected accountService: AccountService,
+    protected router: Router,
+    protected parseLinks: JhiParseLinks,
+    protected eventManager: JhiEventManager
   ) {}
 
   ngOnInit() {
@@ -56,13 +76,18 @@ export class LigneVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IProduit[]>) => response.body)
       )
       .subscribe((res: IProduit[]) => (this.produits = res), (res: HttpErrorResponse) => this.onError(res.message));
-    this.enteteVenteService
+    /* this.enteteVenteService
       .query()
       .pipe(
         filter((mayBeOk: HttpResponse<IEnteteVente[]>) => mayBeOk.ok),
         map((response: HttpResponse<IEnteteVente[]>) => response.body)
       )
       .subscribe((res: IEnteteVente[]) => (this.enteteventes = res), (res: HttpErrorResponse) => this.onError(res.message));
+      this.loadAll();
+      this.accountService.identity().then(account => {
+        this.currentAccount = account;
+      });
+      this.registerChangeInLigneVentes();*/
   }
 
   updateForm(ligneVente: ILigneVente) {
@@ -86,11 +111,25 @@ export class LigneVenteUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const ligneVente = this.createFromForm();
-    if (ligneVente.id !== undefined) {
-      this.subscribeToSaveResponse(this.ligneVenteService.update(ligneVente));
-    } else {
-      this.subscribeToSaveResponse(this.ligneVenteService.create(ligneVente));
-    }
+    console.log('ligneVente.id ' + ligneVente.id);
+    console.log('ligneVente.ligneVenteQte ' + ligneVente.ligneVenteQte);
+    console.log('ligneVente.produit ' + ligneVente.produit.id);
+    console.log('ligneVente.produit.designiation ' + ligneVente.produit.produitLibelle);
+    this.ligneVentes = [
+      {
+        id: ligneVente.id,
+        ligneVenteDesignation: 'string',
+        ligneVentePrixHT: 0,
+        ligneVentePrixTTC: 0,
+        ligneVenteQte: ligneVente.ligneVenteQte,
+        ligneVenteTotalHT: 0,
+        ligneVenteTotalTTC: 0,
+        produit: ligneVente.produit
+      }
+    ];
+    // this.ligneVentes[this.count]=this.ligneVente1;
+    // this.count++;
+    this.loadAll();
   }
 
   private createFromForm(): ILigneVente {
@@ -131,5 +170,74 @@ export class LigneVenteUpdateComponent implements OnInit {
 
   trackEnteteVenteById(index: number, item: IEnteteVente) {
     return item.id;
+  }
+
+  loadAll() {
+    this.ligneVenteService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<ILigneVente[]>) => this.paginateLigneVentes(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+    this.ngOnInit();
+  }
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.transition();
+    }
+  }
+
+  transition() {
+    this.router.navigate(['/ligne-vente'], {
+      queryParams: {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    });
+    this.loadAll();
+  }
+
+  clear() {
+    this.page = 0;
+    this.router.navigate([
+      '/ligne-vente',
+      {
+        page: this.page,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    ]);
+    this.loadAll();
+  }
+
+  ngOnDestroy() {
+    this.eventManager.destroy(this.eventSubscriber);
+  }
+
+  trackId(index: number, item: ILigneVente) {
+    return item.id;
+  }
+
+  registerChangeInLigneVentes() {
+    this.eventSubscriber = this.eventManager.subscribe('ligneVenteListModification', response => this.loadAll());
+  }
+
+  sort() {
+    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
+  protected paginateLigneVentes(data: ILigneVente[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.ligneVentes = data;
   }
 }
