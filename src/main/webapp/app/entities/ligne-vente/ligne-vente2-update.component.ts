@@ -23,7 +23,7 @@ export class LigneVente2UpdateComponent implements OnInit {
   enteteventes: IEnteteVente[];
 
   produits: IProduit[];
-
+  ligneVentes: ILigneVente[];
   ligneVenteQte: number;
   editForm = this.fb.group({
     id: [],
@@ -91,6 +91,8 @@ export class LigneVente2UpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const ligneVente = this.createFromForm();
+    console.log('ligneVente: ' + ligneVente);
+
     if (ligneVente.id !== undefined) {
       this.subscribeToSaveResponse(this.ligneVenteService.update(ligneVente));
     } else {
