@@ -18,20 +18,6 @@
     ],
     "fields": [
         {
-            "fieldName": "enteteVenteTotalHT",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "enteteVenteTotalTTC",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "enteteVenteType",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -39,11 +25,16 @@
             ]
         },
         {
+            "fieldName": "enteteVenteTotalHT",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "enteteVenteTotalTTC",
+            "fieldType": "Double"
+        },
+        {
             "fieldName": "enteteVenteDateCreation",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "ZonedDateTime"
         }
     ],
     "changelogDate": "20190626125719",

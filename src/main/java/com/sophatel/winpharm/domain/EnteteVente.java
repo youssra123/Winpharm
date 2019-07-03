@@ -27,19 +27,16 @@ public class EnteteVente implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "entete_vente_total_ht", nullable = false)
-    private Double enteteVenteTotalHT;
-
-    @NotNull
-    @Column(name = "entete_vente_total_ttc", nullable = false)
-    private Double enteteVenteTotalTTC;
-
-    @NotNull
     @Column(name = "entete_vente_type", nullable = false)
     private String enteteVenteType;
 
-    @NotNull
-    @Column(name = "entete_vente_date_creation", nullable = false)
+    @Column(name = "entete_vente_total_ht")
+    private Double enteteVenteTotalHT;
+
+    @Column(name = "entete_vente_total_ttc")
+    private Double enteteVenteTotalTTC;
+
+    @Column(name = "entete_vente_date_creation")
     private ZonedDateTime enteteVenteDateCreation;
 
     @ManyToOne
@@ -57,6 +54,19 @@ public class EnteteVente implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEnteteVenteType() {
+        return enteteVenteType;
+    }
+
+    public EnteteVente enteteVenteType(String enteteVenteType) {
+        this.enteteVenteType = enteteVenteType;
+        return this;
+    }
+
+    public void setEnteteVenteType(String enteteVenteType) {
+        this.enteteVenteType = enteteVenteType;
     }
 
     public Double getEnteteVenteTotalHT() {
@@ -83,19 +93,6 @@ public class EnteteVente implements Serializable {
 
     public void setEnteteVenteTotalTTC(Double enteteVenteTotalTTC) {
         this.enteteVenteTotalTTC = enteteVenteTotalTTC;
-    }
-
-    public String getEnteteVenteType() {
-        return enteteVenteType;
-    }
-
-    public EnteteVente enteteVenteType(String enteteVenteType) {
-        this.enteteVenteType = enteteVenteType;
-        return this;
-    }
-
-    public void setEnteteVenteType(String enteteVenteType) {
-        this.enteteVenteType = enteteVenteType;
     }
 
     public ZonedDateTime getEnteteVenteDateCreation() {
@@ -170,9 +167,9 @@ public class EnteteVente implements Serializable {
     public String toString() {
         return "EnteteVente{" +
             "id=" + getId() +
+            ", enteteVenteType='" + getEnteteVenteType() + "'" +
             ", enteteVenteTotalHT=" + getEnteteVenteTotalHT() +
             ", enteteVenteTotalTTC=" + getEnteteVenteTotalTTC() +
-            ", enteteVenteType='" + getEnteteVenteType() + "'" +
             ", enteteVenteDateCreation='" + getEnteteVenteDateCreation() + "'" +
             "}";
     }

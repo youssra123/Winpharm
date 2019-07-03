@@ -39,14 +39,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = WinpharmApp.class)
 public class EnteteVenteResourceIT {
 
+    private static final String DEFAULT_ENTETE_VENTE_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_ENTETE_VENTE_TYPE = "BBBBBBBBBB";
+
     private static final Double DEFAULT_ENTETE_VENTE_TOTAL_HT = 1D;
     private static final Double UPDATED_ENTETE_VENTE_TOTAL_HT = 2D;
 
     private static final Double DEFAULT_ENTETE_VENTE_TOTAL_TTC = 1D;
     private static final Double UPDATED_ENTETE_VENTE_TOTAL_TTC = 2D;
-
-    private static final String DEFAULT_ENTETE_VENTE_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_ENTETE_VENTE_TYPE = "BBBBBBBBBB";
 
     private static final ZonedDateTime DEFAULT_ENTETE_VENTE_DATE_CREATION = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_ENTETE_VENTE_DATE_CREATION = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -96,9 +96,9 @@ public class EnteteVenteResourceIT {
      */
     public static EnteteVente createEntity(EntityManager em) {
         EnteteVente enteteVente = new EnteteVente()
+            .enteteVenteType(DEFAULT_ENTETE_VENTE_TYPE)
             .enteteVenteTotalHT(DEFAULT_ENTETE_VENTE_TOTAL_HT)
             .enteteVenteTotalTTC(DEFAULT_ENTETE_VENTE_TOTAL_TTC)
-            .enteteVenteType(DEFAULT_ENTETE_VENTE_TYPE)
             .enteteVenteDateCreation(DEFAULT_ENTETE_VENTE_DATE_CREATION);
         return enteteVente;
     }
@@ -110,9 +110,9 @@ public class EnteteVenteResourceIT {
      */
     public static EnteteVente createUpdatedEntity(EntityManager em) {
         EnteteVente enteteVente = new EnteteVente()
+            .enteteVenteType(UPDATED_ENTETE_VENTE_TYPE)
             .enteteVenteTotalHT(UPDATED_ENTETE_VENTE_TOTAL_HT)
             .enteteVenteTotalTTC(UPDATED_ENTETE_VENTE_TOTAL_TTC)
-            .enteteVenteType(UPDATED_ENTETE_VENTE_TYPE)
             .enteteVenteDateCreation(UPDATED_ENTETE_VENTE_DATE_CREATION);
         return enteteVente;
     }
@@ -137,9 +137,9 @@ public class EnteteVenteResourceIT {
         List<EnteteVente> enteteVenteList = enteteVenteRepository.findAll();
         assertThat(enteteVenteList).hasSize(databaseSizeBeforeCreate + 1);
         EnteteVente testEnteteVente = enteteVenteList.get(enteteVenteList.size() - 1);
+        assertThat(testEnteteVente.getEnteteVenteType()).isEqualTo(DEFAULT_ENTETE_VENTE_TYPE);
         assertThat(testEnteteVente.getEnteteVenteTotalHT()).isEqualTo(DEFAULT_ENTETE_VENTE_TOTAL_HT);
         assertThat(testEnteteVente.getEnteteVenteTotalTTC()).isEqualTo(DEFAULT_ENTETE_VENTE_TOTAL_TTC);
-        assertThat(testEnteteVente.getEnteteVenteType()).isEqualTo(DEFAULT_ENTETE_VENTE_TYPE);
         assertThat(testEnteteVente.getEnteteVenteDateCreation()).isEqualTo(DEFAULT_ENTETE_VENTE_DATE_CREATION);
     }
 
@@ -165,64 +165,10 @@ public class EnteteVenteResourceIT {
 
     @Test
     @Transactional
-    public void checkEnteteVenteTotalHTIsRequired() throws Exception {
-        int databaseSizeBeforeTest = enteteVenteRepository.findAll().size();
-        // set the field null
-        enteteVente.setEnteteVenteTotalHT(null);
-
-        // Create the EnteteVente, which fails.
-
-        restEnteteVenteMockMvc.perform(post("/api/entete-ventes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(enteteVente)))
-            .andExpect(status().isBadRequest());
-
-        List<EnteteVente> enteteVenteList = enteteVenteRepository.findAll();
-        assertThat(enteteVenteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkEnteteVenteTotalTTCIsRequired() throws Exception {
-        int databaseSizeBeforeTest = enteteVenteRepository.findAll().size();
-        // set the field null
-        enteteVente.setEnteteVenteTotalTTC(null);
-
-        // Create the EnteteVente, which fails.
-
-        restEnteteVenteMockMvc.perform(post("/api/entete-ventes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(enteteVente)))
-            .andExpect(status().isBadRequest());
-
-        List<EnteteVente> enteteVenteList = enteteVenteRepository.findAll();
-        assertThat(enteteVenteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkEnteteVenteTypeIsRequired() throws Exception {
         int databaseSizeBeforeTest = enteteVenteRepository.findAll().size();
         // set the field null
         enteteVente.setEnteteVenteType(null);
-
-        // Create the EnteteVente, which fails.
-
-        restEnteteVenteMockMvc.perform(post("/api/entete-ventes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(enteteVente)))
-            .andExpect(status().isBadRequest());
-
-        List<EnteteVente> enteteVenteList = enteteVenteRepository.findAll();
-        assertThat(enteteVenteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkEnteteVenteDateCreationIsRequired() throws Exception {
-        int databaseSizeBeforeTest = enteteVenteRepository.findAll().size();
-        // set the field null
-        enteteVente.setEnteteVenteDateCreation(null);
 
         // Create the EnteteVente, which fails.
 
@@ -246,9 +192,9 @@ public class EnteteVenteResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(enteteVente.getId().intValue())))
+            .andExpect(jsonPath("$.[*].enteteVenteType").value(hasItem(DEFAULT_ENTETE_VENTE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].enteteVenteTotalHT").value(hasItem(DEFAULT_ENTETE_VENTE_TOTAL_HT.doubleValue())))
             .andExpect(jsonPath("$.[*].enteteVenteTotalTTC").value(hasItem(DEFAULT_ENTETE_VENTE_TOTAL_TTC.doubleValue())))
-            .andExpect(jsonPath("$.[*].enteteVenteType").value(hasItem(DEFAULT_ENTETE_VENTE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].enteteVenteDateCreation").value(hasItem(sameInstant(DEFAULT_ENTETE_VENTE_DATE_CREATION))));
     }
     
@@ -263,9 +209,9 @@ public class EnteteVenteResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(enteteVente.getId().intValue()))
+            .andExpect(jsonPath("$.enteteVenteType").value(DEFAULT_ENTETE_VENTE_TYPE.toString()))
             .andExpect(jsonPath("$.enteteVenteTotalHT").value(DEFAULT_ENTETE_VENTE_TOTAL_HT.doubleValue()))
             .andExpect(jsonPath("$.enteteVenteTotalTTC").value(DEFAULT_ENTETE_VENTE_TOTAL_TTC.doubleValue()))
-            .andExpect(jsonPath("$.enteteVenteType").value(DEFAULT_ENTETE_VENTE_TYPE.toString()))
             .andExpect(jsonPath("$.enteteVenteDateCreation").value(sameInstant(DEFAULT_ENTETE_VENTE_DATE_CREATION)));
     }
 
@@ -290,9 +236,9 @@ public class EnteteVenteResourceIT {
         // Disconnect from session so that the updates on updatedEnteteVente are not directly saved in db
         em.detach(updatedEnteteVente);
         updatedEnteteVente
+            .enteteVenteType(UPDATED_ENTETE_VENTE_TYPE)
             .enteteVenteTotalHT(UPDATED_ENTETE_VENTE_TOTAL_HT)
             .enteteVenteTotalTTC(UPDATED_ENTETE_VENTE_TOTAL_TTC)
-            .enteteVenteType(UPDATED_ENTETE_VENTE_TYPE)
             .enteteVenteDateCreation(UPDATED_ENTETE_VENTE_DATE_CREATION);
 
         restEnteteVenteMockMvc.perform(put("/api/entete-ventes")
@@ -304,9 +250,9 @@ public class EnteteVenteResourceIT {
         List<EnteteVente> enteteVenteList = enteteVenteRepository.findAll();
         assertThat(enteteVenteList).hasSize(databaseSizeBeforeUpdate);
         EnteteVente testEnteteVente = enteteVenteList.get(enteteVenteList.size() - 1);
+        assertThat(testEnteteVente.getEnteteVenteType()).isEqualTo(UPDATED_ENTETE_VENTE_TYPE);
         assertThat(testEnteteVente.getEnteteVenteTotalHT()).isEqualTo(UPDATED_ENTETE_VENTE_TOTAL_HT);
         assertThat(testEnteteVente.getEnteteVenteTotalTTC()).isEqualTo(UPDATED_ENTETE_VENTE_TOTAL_TTC);
-        assertThat(testEnteteVente.getEnteteVenteType()).isEqualTo(UPDATED_ENTETE_VENTE_TYPE);
         assertThat(testEnteteVente.getEnteteVenteDateCreation()).isEqualTo(UPDATED_ENTETE_VENTE_DATE_CREATION);
     }
 
