@@ -160,7 +160,7 @@
         </form>
 
         <div class="border-info">
-        <jhi-stock-update (childEvent)="setInnerStock($event)"></jhi-stock-update>
+        <jhi-stock-update [stockFromParent]="produitStock" (childEvent)="setInnerStock($event)"></jhi-stock-update>
         </div> 
 
         </div>
