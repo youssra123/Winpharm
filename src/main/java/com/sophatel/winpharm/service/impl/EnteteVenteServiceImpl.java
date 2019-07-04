@@ -43,6 +43,14 @@ public class EnteteVenteServiceImpl implements EnteteVenteService {
     @Override
     public EnteteVente save(EnteteVente enteteVente) {
         log.debug("Request to save EnteteVente : {}", enteteVente);
+        Set<LigneVente> ligneVentes;
+        if (enteteVente.getLigneVentes() != null){
+            ligneVentes = enteteVente.getLigneVentes();
+            for (LigneVente lv : ligneVentes){
+                ligneVenteService.save(lv);
+                lv.setEnteteVente(enteteVente);
+            }
+        }
         return enteteVenteRepository.save(enteteVente);
     }
 
