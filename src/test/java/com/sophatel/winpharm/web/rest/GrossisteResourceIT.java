@@ -41,8 +41,8 @@ public class GrossisteResourceIT {
     private static final String DEFAULT_GROSSISTE_ADRESSE = "AAAAAAAAAA";
     private static final String UPDATED_GROSSISTE_ADRESSE = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_GROSSISTE_TELEPHONE = 1;
-    private static final Integer UPDATED_GROSSISTE_TELEPHONE = 2;
+    private static final String DEFAULT_GROSSISTE_TELEPHONE = "AAAAAAAAAA";
+    private static final String UPDATED_GROSSISTE_TELEPHONE = "BBBBBBBBBB";
 
     @Autowired
     private GrossisteRepository grossisteRepository;
@@ -211,6 +211,24 @@ public class GrossisteResourceIT {
 
     @Test
     @Transactional
+    public void checkGrossisteTelephoneIsRequired() throws Exception {
+        int databaseSizeBeforeTest = grossisteRepository.findAll().size();
+        // set the field null
+        grossiste.setGrossisteTelephone(null);
+
+        // Create the Grossiste, which fails.
+
+        restGrossisteMockMvc.perform(post("/api/grossistes")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(grossiste)))
+            .andExpect(status().isBadRequest());
+
+        List<Grossiste> grossisteList = grossisteRepository.findAll();
+        assertThat(grossisteList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllGrossistes() throws Exception {
         // Initialize the database
         grossisteRepository.saveAndFlush(grossiste);
@@ -222,7 +240,7 @@ public class GrossisteResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(grossiste.getId().intValue())))
             .andExpect(jsonPath("$.[*].grossisteRaisSoc").value(hasItem(DEFAULT_GROSSISTE_RAIS_SOC.toString())))
             .andExpect(jsonPath("$.[*].grossisteAdresse").value(hasItem(DEFAULT_GROSSISTE_ADRESSE.toString())))
-            .andExpect(jsonPath("$.[*].grossisteTelephone").value(hasItem(DEFAULT_GROSSISTE_TELEPHONE)));
+            .andExpect(jsonPath("$.[*].grossisteTelephone").value(hasItem(DEFAULT_GROSSISTE_TELEPHONE.toString())));
     }
     
     @Test
@@ -238,7 +256,7 @@ public class GrossisteResourceIT {
             .andExpect(jsonPath("$.id").value(grossiste.getId().intValue()))
             .andExpect(jsonPath("$.grossisteRaisSoc").value(DEFAULT_GROSSISTE_RAIS_SOC.toString()))
             .andExpect(jsonPath("$.grossisteAdresse").value(DEFAULT_GROSSISTE_ADRESSE.toString()))
-            .andExpect(jsonPath("$.grossisteTelephone").value(DEFAULT_GROSSISTE_TELEPHONE));
+            .andExpect(jsonPath("$.grossisteTelephone").value(DEFAULT_GROSSISTE_TELEPHONE.toString()));
     }
 
     @Test

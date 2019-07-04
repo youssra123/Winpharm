@@ -19,12 +19,12 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="client_telephone" type="integer">
-                <constraints nullable="false" />
-            </column>
-
             <column name="client_adresse" type="varchar(255)">
                 <constraints nullable="true" />
+            </column>
+
+            <column name="client_telephone" type="varchar(20)">
+                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -47,8 +47,8 @@
                   tableName="client">
             <column name="id" type="numeric"/>
             <column name="client_nom" type="string"/>
-            <column name="client_telephone" type="numeric"/>
             <column name="client_adresse" type="string"/>
+            <column name="client_telephone" type="string"/>
         </loadData>
     </changeSet>
 

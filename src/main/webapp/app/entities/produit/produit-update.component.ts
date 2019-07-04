@@ -19,7 +19,7 @@ import { IGrossiste } from 'app/shared/model/grossiste.model';
 import { GrossisteService } from 'app/entities/grossiste';
 import { IForme } from 'app/shared/model/forme.model';
 import { FormeService } from 'app/entities/forme';
-import { IStock } from 'app/shared/model/stock.model';
+import { IStock, Stock } from 'app/shared/model/stock.model';
 import { StockService } from 'app/entities/stock';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
@@ -68,14 +68,14 @@ export class ProduitUpdateComponent implements OnInit {
     stock: []
   });
 
-  public innerStock = {
+  public innerStock: IStock = {
     id: 100,
     stockCouvertureMax: 0,
     stockCouvertureMin: 0,
-    stockDateCreation: null,
-    stockDatePeremption1: null,
-    stockDatePeremption2: null,
-    stockDatePeremption3: null,
+    stockDateCreation: undefined,
+    stockDatePeremption1: undefined,
+    stockDatePeremption2: undefined,
+    stockDatePeremption3: undefined,
     stockPrix1: 0,
     stockPrix2: 0,
     stockPrix3: 0,
@@ -85,8 +85,9 @@ export class ProduitUpdateComponent implements OnInit {
     stockQte1: 0,
     stockQte2: 0,
     stockQte3: 0,
-    produit: null
+    produit: undefined
   };
+  public produitStock: IStock;
 
   constructor(
     protected jhiAlertService: JhiAlertService,
@@ -102,22 +103,22 @@ export class ProduitUpdateComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
-  setInnerStock(data) {
-    if (data.stockCouvertureMin != null) this.innerStock.stockCouvertureMin = data.stockCouvertureMin;
-    if (data.stockCouvertureMax != null) this.innerStock.stockCouvertureMax = data.stockCouvertureMax;
-    if (data.stockDatePeremption1 != null) this.innerStock.stockDatePeremption1 = data.stockDatePeremption1;
-    if (data.stockDatePeremption2 != null) this.innerStock.stockDatePeremption2 = data.stockDatePeremption2;
-    if (data.stockDatePeremption3 != null) this.innerStock.stockDatePeremption3 = data.stockDatePeremption3;
-    if (data.stockPrix1 != null) this.innerStock.stockPrix1 = data.stockPrix1;
-    if (data.stockPrix2 != null) this.innerStock.stockPrix2 = data.stockPrix2;
-    if (data.stockPrix3 != null) this.innerStock.stockPrix3 = data.stockPrix3;
-    if (data.stockPrixHT1 != null) this.innerStock.stockPrixHT1 = data.stockPrixHT1;
-    if (data.stockPrixHT2 != null) this.innerStock.stockPrixHT2 = data.stockPrixHT2;
-    if (data.stockPrixHT3 != null) this.innerStock.stockPrixHT3 = data.stockPrixHT3;
-    if (data.stockQte1 != null) this.innerStock.stockQte1 = data.stockQte1;
-    if (data.stockQte2 != null) this.innerStock.stockQte2 = data.stockQte2;
-    if (data.stockQte3 != null) this.innerStock.stockQte3 = data.stockQte3;
-    if (data.produit != null) this.innerStock.produit = data.produit;
+  setInnerStock(data: IStock) {
+    this.innerStock.stockCouvertureMin = data.stockCouvertureMin ? data.stockCouvertureMin : 0;
+    this.innerStock.stockCouvertureMax = data.stockCouvertureMax ? data.stockCouvertureMax : 0;
+    this.innerStock.stockDatePeremption1 = data.stockDatePeremption1 ? data.stockDatePeremption1 : undefined;
+    this.innerStock.stockDatePeremption2 = data.stockDatePeremption2 ? data.stockDatePeremption2 : undefined;
+    this.innerStock.stockDatePeremption3 = data.stockDatePeremption3 ? data.stockDatePeremption3 : undefined;
+    this.innerStock.stockPrix1 = data.stockPrix1 ? data.stockPrix1 : 0;
+    this.innerStock.stockPrix2 = data.stockPrix2 ? data.stockPrix2 : 0;
+    this.innerStock.stockPrix3 = data.stockPrix3 ? data.stockPrix3 : 0;
+    this.innerStock.stockPrixHT1 = data.stockPrixHT1 ? data.stockPrixHT1 : 0;
+    this.innerStock.stockPrixHT2 = data.stockPrixHT2 ? data.stockPrixHT2 : 0;
+    this.innerStock.stockPrixHT3 = data.stockPrixHT3 ? data.stockPrixHT3 : 0;
+    this.innerStock.stockQte1 = data.stockQte1 ? data.stockQte1 : 0;
+    this.innerStock.stockQte2 = data.stockQte2 ? data.stockQte2 : 0;
+    this.innerStock.stockQte3 = data.stockQte3 ? data.stockQte3 : 0;
+    this.innerStock.produit = data.produit ? data.produit : undefined;
     this.innerStock.stockDateCreation = moment(new Date(), DATE_TIME_FORMAT);
   }
 
@@ -213,6 +214,28 @@ export class ProduitUpdateComponent implements OnInit {
       proform: produit.proform,
       stock: produit.stock
     });
+    const stockFromProduit = {
+      ...new Stock(),
+      id: produit.stock.id,
+      stockCouvertureMin: produit.stock.stockCouvertureMin,
+      stockCouvertureMax: produit.stock.stockCouvertureMax,
+      stockQte1: produit.stock.stockQte1,
+      stockQte2: produit.stock.stockQte2,
+      stockQte3: produit.stock.stockQte3,
+      stockPrix1: produit.stock.stockPrix1,
+      stockPrix2: produit.stock.stockPrix2,
+      stockPrix3: produit.stock.stockPrix3,
+      stockPrixHT1: produit.stock.stockPrixHT1,
+      stockPrixHT2: produit.stock.stockPrixHT2,
+      stockPrixHT3: produit.stock.stockPrixHT3,
+      stockDatePeremption1: moment(produit.stock.stockDatePeremption1, DATE_TIME_FORMAT),
+      stockDatePeremption2: moment(produit.stock.stockDatePeremption2, DATE_TIME_FORMAT),
+      stockDatePeremption3: moment(produit.stock.stockDatePeremption3, DATE_TIME_FORMAT),
+      stockDateCreation: moment(produit.stock.stockDateCreation, DATE_TIME_FORMAT)
+    };
+    this.produitStock = stockFromProduit;
+    console.log('produit-stock : ');
+    console.log(this.produitStock);
   }
 
   previousState() {

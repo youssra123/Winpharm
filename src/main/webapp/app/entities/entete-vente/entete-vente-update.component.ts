@@ -29,9 +29,9 @@ export class EnteteVenteUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    enteteVenteTotalHT: [null, [Validators.required]],
-    enteteVenteTotalTTC: [null, [Validators.required]],
-    enteteVenteType: [null, [Validators.required]],
+    enteteVenteTotalHT: [],
+    enteteVenteTotalTTC: [],
+    enteteVenteType: [],
     enteteVenteDateCreation: [null, [Validators.required]],
     client: []
   });

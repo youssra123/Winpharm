@@ -2,7 +2,7 @@ export interface ILaboratoire {
   id?: number;
   laboratoireRaisSoc?: string;
   laboratoireAdresse?: string;
-  laboratoireTelephone?: number;
+  laboratoireTelephone?: string;
 }
 
 export class Laboratoire implements ILaboratoire {
@@ -10,6 +10,6 @@ export class Laboratoire implements ILaboratoire {
     public id?: number,
     public laboratoireRaisSoc?: string,
     public laboratoireAdresse?: string,
-    public laboratoireTelephone?: number
+    public laboratoireTelephone?: string
   ) {}
 }

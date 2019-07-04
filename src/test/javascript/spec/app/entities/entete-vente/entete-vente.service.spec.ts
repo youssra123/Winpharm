@@ -27,7 +27,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new EnteteVente(0, 0, 0, 'AAAAAAA', currentDate);
+      elemDefault = new EnteteVente(0, 'AAAAAAA', 0, 0, currentDate);
     });
 
     describe('Service methods', () => {
@@ -74,9 +74,9 @@ describe('Service Tests', () => {
       it('should update a EnteteVente', async () => {
         const returnedFromService = Object.assign(
           {
+            enteteVenteType: 'BBBBBB',
             enteteVenteTotalHT: 1,
             enteteVenteTotalTTC: 1,
-            enteteVenteType: 'BBBBBB',
             enteteVenteDateCreation: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault
@@ -100,9 +100,9 @@ describe('Service Tests', () => {
       it('should return a list of EnteteVente', async () => {
         const returnedFromService = Object.assign(
           {
+            enteteVenteType: 'BBBBBB',
             enteteVenteTotalHT: 1,
             enteteVenteTotalTTC: 1,
-            enteteVenteType: 'BBBBBB',
             enteteVenteDateCreation: currentDate.format(DATE_TIME_FORMAT)
           },
           elemDefault

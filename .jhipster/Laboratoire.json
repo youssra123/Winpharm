@@ -27,14 +27,14 @@
         },
         {
             "fieldName": "laboratoireTelephone",
-            "fieldType": "Integer",
+            "fieldType": "String",
             "fieldValidateRules": [
                 "required",
-                "min",
-                "max"
+                "minlength",
+                "maxlength"
             ],
-            "fieldValidateRulesMin": "10",
-            "fieldValidateRulesMax": "10"
+            "fieldValidateRulesMinlength": "10",
+            "fieldValidateRulesMaxlength": 20
         }
     ],
     "changelogDate": "20190620175404",

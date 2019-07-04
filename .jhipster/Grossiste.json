@@ -38,8 +38,14 @@
         },
         {
             "fieldName": "grossisteTelephone",
-            "fieldType": "Integer",
-            "fieldValidateRules": []
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "10",
+            "fieldValidateRulesMaxlength": 20
         }
     ],
     "changelogDate": "20190620172747",

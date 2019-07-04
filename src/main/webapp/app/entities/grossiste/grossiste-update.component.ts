@@ -23,7 +23,7 @@ export class GrossisteUpdateComponent implements OnInit {
     id: [],
     grossisteRaisSoc: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
     grossisteAdresse: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-    grossisteTelephone: [],
+    grossisteTelephone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(20)]],
     grossis_ville: [null, Validators.required]
   });
 

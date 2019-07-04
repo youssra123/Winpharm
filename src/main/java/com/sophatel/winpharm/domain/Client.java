@@ -28,14 +28,13 @@ public class Client implements Serializable {
     @Column(name = "client_nom", nullable = false)
     private String clientNom;
 
-    @NotNull
-    @Min(value = 10)
-    @Max(value = 10)
-    @Column(name = "client_telephone", nullable = false)
-    private Integer clientTelephone;
-
     @Column(name = "client_adresse")
     private String clientAdresse;
+
+    @NotNull
+    @Size(min = 10, max = 20)
+    @Column(name = "client_telephone", length = 20, nullable = false)
+    private String clientTelephone;
 
     @OneToMany(mappedBy = "client")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -63,19 +62,6 @@ public class Client implements Serializable {
         this.clientNom = clientNom;
     }
 
-    public Integer getClientTelephone() {
-        return clientTelephone;
-    }
-
-    public Client clientTelephone(Integer clientTelephone) {
-        this.clientTelephone = clientTelephone;
-        return this;
-    }
-
-    public void setClientTelephone(Integer clientTelephone) {
-        this.clientTelephone = clientTelephone;
-    }
-
     public String getClientAdresse() {
         return clientAdresse;
     }
@@ -87,6 +73,19 @@ public class Client implements Serializable {
 
     public void setClientAdresse(String clientAdresse) {
         this.clientAdresse = clientAdresse;
+    }
+
+    public String getClientTelephone() {
+        return clientTelephone;
+    }
+
+    public Client clientTelephone(String clientTelephone) {
+        this.clientTelephone = clientTelephone;
+        return this;
+    }
+
+    public void setClientTelephone(String clientTelephone) {
+        this.clientTelephone = clientTelephone;
     }
 
     public Set<EnteteVente> getEnteteVentes() {
@@ -136,8 +135,8 @@ public class Client implements Serializable {
         return "Client{" +
             "id=" + getId() +
             ", clientNom='" + getClientNom() + "'" +
-            ", clientTelephone=" + getClientTelephone() +
             ", clientAdresse='" + getClientAdresse() + "'" +
+            ", clientTelephone='" + getClientTelephone() + "'" +
             "}";
     }
 }

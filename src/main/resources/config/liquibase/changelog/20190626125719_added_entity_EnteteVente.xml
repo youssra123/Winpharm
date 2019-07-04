@@ -15,20 +15,20 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="entete_vente_total_ht" type="double">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="entete_vente_total_ttc" type="double">
-                <constraints nullable="false" />
-            </column>
-
             <column name="entete_vente_type" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
+            <column name="entete_vente_total_ht" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="entete_vente_total_ttc" type="double">
+                <constraints nullable="true" />
+            </column>
+
             <column name="entete_vente_date_creation" type="datetime">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="client_id" type="bigint">
@@ -55,9 +55,9 @@
                   separator=";"
                   tableName="entete_vente">
             <column name="id" type="numeric"/>
+            <column name="entete_vente_type" type="string"/>
             <column name="entete_vente_total_ht" type="numeric"/>
             <column name="entete_vente_total_ttc" type="numeric"/>
-            <column name="entete_vente_type" type="string"/>
             <column name="entete_vente_date_creation" type="datetime"/>
         </loadData>
     </changeSet>

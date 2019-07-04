@@ -33,10 +33,9 @@ public class Laboratoire implements Serializable {
     private String laboratoireAdresse;
 
     @NotNull
-    @Min(value = 10)
-    @Max(value = 10)
-    @Column(name = "laboratoire_telephone", nullable = false)
-    private Integer laboratoireTelephone;
+    @Size(min = 10, max = 20)
+    @Column(name = "laboratoire_telephone", length = 20, nullable = false)
+    private String laboratoireTelephone;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -73,16 +72,16 @@ public class Laboratoire implements Serializable {
         this.laboratoireAdresse = laboratoireAdresse;
     }
 
-    public Integer getLaboratoireTelephone() {
+    public String getLaboratoireTelephone() {
         return laboratoireTelephone;
     }
 
-    public Laboratoire laboratoireTelephone(Integer laboratoireTelephone) {
+    public Laboratoire laboratoireTelephone(String laboratoireTelephone) {
         this.laboratoireTelephone = laboratoireTelephone;
         return this;
     }
 
-    public void setLaboratoireTelephone(Integer laboratoireTelephone) {
+    public void setLaboratoireTelephone(String laboratoireTelephone) {
         this.laboratoireTelephone = laboratoireTelephone;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
@@ -109,7 +108,7 @@ public class Laboratoire implements Serializable {
             "id=" + getId() +
             ", laboratoireRaisSoc='" + getLaboratoireRaisSoc() + "'" +
             ", laboratoireAdresse='" + getLaboratoireAdresse() + "'" +
-            ", laboratoireTelephone=" + getLaboratoireTelephone() +
+            ", laboratoireTelephone='" + getLaboratoireTelephone() + "'" +
             "}";
     }
 }

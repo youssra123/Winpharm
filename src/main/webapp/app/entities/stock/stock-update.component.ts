@@ -50,8 +50,9 @@ export class StockUpdateComponent implements OnInit {
     stockDateCreation: [null, [Validators.required]]
   });
 
-  @Output() childEvent = new EventEmitter<String>();
-  public obj: any;
+  @Input() stockFromParent: IStock;
+  @Output() childEvent = new EventEmitter<IStock>();
+  public obj: IStock;
 
   constructor(
     protected jhiAlertService: JhiAlertService,
@@ -71,6 +72,10 @@ export class StockUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ stock }) => {
       this.updateForm(stock);
     });
+    if (this.stockFromParent) {
+      console.log(this.stockFromParent);
+      this.updateForm(this.stockFromParent);
+    }
     this.produitService
       .query()
       .pipe(
@@ -81,6 +86,7 @@ export class StockUpdateComponent implements OnInit {
   }
 
   updateForm(stock: IStock) {
+    console.log(stock);
     this.editForm.patchValue({
       id: stock.id,
       stockCouvertureMin: stock.stockCouvertureMin,

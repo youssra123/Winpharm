@@ -28,6 +28,13 @@ public interface ClientService {
      */
     Page<Client> findAll(Pageable pageable);
 
+    /**
+     * Get all the clients by name.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Client> findAllByName(String str, Pageable pageable);
 
     /**
      * Get the "id" client.

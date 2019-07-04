@@ -88,10 +88,10 @@ public class ProduitServiceImpl implements ProduitService {
     public Optional<Produit> findOne(Long id) {
         log.debug("Request to get Produit : {}", id);
         Optional<Produit> produit = produitRepository.findById(id);
-        if (produit.get().getStock() != null)
-            return produit;
-        Optional<Stock> stock = stockService.findOneByProduit(id);
-        produit.get().setStock(stock.get());
+        // if (produit.get().getStock() != null)
+        //     return produit;
+        // Optional<Stock> stock = stockService.findOneByProduit(id);
+        // produit.get().setStock(stock.get());
         return produit;
     }
 

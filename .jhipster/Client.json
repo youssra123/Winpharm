@@ -18,19 +18,19 @@
             ]
         },
         {
-            "fieldName": "clientTelephone",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required",
-                "min",
-                "max"
-            ],
-            "fieldValidateRulesMin": "10",
-            "fieldValidateRulesMax": "10"
-        },
-        {
             "fieldName": "clientAdresse",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "clientTelephone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "10",
+            "fieldValidateRulesMaxlength": 20
         }
     ],
     "changelogDate": "20190626124848",
