@@ -53,6 +53,18 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.findAll(pageable);
     }
 
+    /**
+     * Get all the clients by name.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Client> findAllByName(String str, Pageable pageable) {
+        log.debug("Request to get all Clients by name");
+        return clientRepository.findAllByName("%"+str+"%", pageable);
+    }
 
     /**
      * Get one client by id.
