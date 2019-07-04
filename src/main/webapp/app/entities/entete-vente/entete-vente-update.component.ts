@@ -47,7 +47,6 @@ export class EnteteVenteUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.obj = this.createFromForm();
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ enteteVente }) => {
       this.updateForm(enteteVente);
@@ -97,13 +96,13 @@ export class EnteteVenteUpdateComponent implements OnInit {
 
   save() {
     this.isSaving = true;
-
-    const enteteVente = this.createFromForm();
+    this.obj = this.createFromForm();
+    /* const enteteVente = this.createFromForm();
     if (enteteVente.id !== undefined) {
       this.subscribeToSaveResponse(this.enteteVenteService.update(enteteVente));
     } else {
       this.subscribeToSaveResponse(this.enteteVenteService.create(enteteVente));
-    }
+    }*/
   }
 
   private createFromForm(): IEnteteVente {

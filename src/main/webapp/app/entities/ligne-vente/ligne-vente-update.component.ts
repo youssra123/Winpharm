@@ -11,7 +11,6 @@ import { IProduit } from 'app/shared/model/produit.model';
 import { ProduitService } from 'app/entities/produit';
 import { IEnteteVente } from 'app/shared/model/entete-vente.model';
 import { EnteteVenteService } from 'app/entities/entete-vente';
-
 import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 import { AccountService } from 'app/core';
 import { ITEMS_PER_PAGE } from 'app/shared';
@@ -152,6 +151,7 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
   save2() {
+    this.subscribeToSaveResponse(this.enteteVenteService.create(this.childMessage));
     for (var i = 0; i < this.ligneVentes.length; i++) {
       this.subscribeToSaveResponse(this.ligneVenteService.create(this.ligneVentes[i]));
     }
