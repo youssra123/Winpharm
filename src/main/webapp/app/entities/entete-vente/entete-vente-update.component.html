@@ -1,13 +1,12 @@
 <div class="row justify-content-center">
     
     <div class="col-8">
-        
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <br>
             <h2 class="text-center" id="jhi-entete-vente-heading" jhiTranslate="winpharmApp.enteteVente.home.createOrEditLabel">Create or edit a Entete Vente</h2>
            
             <hr>
             <br>
+          
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -15,147 +14,69 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
                 </div>
-                <div class="row">
-                        <div class="col">
-                                <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation" for="field_enteteVenteDateCreation">Entete Vente Date Creation</label>
-                                        <div class="d-flex">
-                                            <input id="field_enteteVenteDateCreation" type="datetime-local" class="form-control" name="enteteVenteDateCreation" formControlName="enteteVenteDateCreation" placeholder="YYYY-MM-DD HH:mm"/>
-                                        </div>
-                                        <div *ngIf="editForm.get('enteteVenteDateCreation').invalid && (editForm.get('enteteVenteDateCreation').dirty || editForm.get('enteteVenteDateCreation').touched)">
-                                            <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('enteteVenteDateCreation').errors.required" jhiTranslate="entity.validation.required">
-                                            This field is required.
-                                            </small>
-                                            <small class="form-text text-danger"
-                                                [hidden]="!editForm.get('enteteVenteDateCreation').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
-                                                This field should be a date and time.
-                                            </small>
-                                        </div>
-                                    </div>
-                       </div>
-                       <div class="col">
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-6">
+                         
                             <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
-                                    <select class="form-control" id="field_client" name="client" formControlName="client">
-                                        <option [ngValue]="null"></option>
-                                        <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
-                                    </select>
+                                <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation" for="field_enteteVenteDateCreation">Entete Vente Date Creation</label>
+                                <div class="d-flex">
+                                    <input id="field_enteteVenteDateCreation" type="datetime-local" class="form-control" name="enteteVenteDateCreation" formControlName="enteteVenteDateCreation" placeholder="YYYY-MM-DD HH:mm"/>
                                 </div>
+                                <div *ngIf="editForm.get('enteteVenteDateCreation').invalid && (editForm.get('enteteVenteDateCreation').dirty || editForm.get('enteteVenteDateCreation').touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="editForm.get('enteteVenteDateCreation').errors.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                    </small>
+                                    <small class="form-text text-danger"
+                                        [hidden]="!editForm.get('enteteVenteDateCreation').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                                        This field should be a date and time.
+                                    </small>
+                                </div>
+                            </div>    
+     
+
                         </div>
-                        <div class="col">
-                                <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteType" for="field_enteteVenteType">Entete Vente Type</label>
-                                        <input type="text" class="form-control" name="enteteVenteType" id="field_enteteVenteType"
-                                               formControlName="enteteVenteType"/>
-                                        <div *ngIf="editForm.get('enteteVenteType').invalid && (editForm.get('enteteVenteType').dirty || editForm.get('enteteVenteType').touched)">
-                                            <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('enteteVenteType').errors.required" jhiTranslate="entity.validation.required">
-                                            This field is required.
-                                            </small>
-                                        </div>
-                                    </div>
-                            </div>
-             </div>
-
-
- <!-- 
-        <div class="row justify-content-center">
-    
-            <h2 id="page-heading">
-                <span jhiTranslate="winpharmApp.ligneVente.home.title">Ligne Ventes</span>
-           
-            </h2>
-            <jhi-alert></jhi-alert>
-            <div class="alert alert-warning" *ngIf="ligneVentes?.length === 0">
-                <span jhiTranslate="winpharmApp.ligneVente.home.notFound">No ligneVentes found</span>
+                <div class="col-6">
+                      
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
+                        <select class="form-control" id="field_client" name="client" formControlName="client">
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
+                        </select>
+                    </div>
+          
+               
+             
             </div>
-            <div class="table-responsive" *ngIf="ligneVentes?.length > 0">
-                <table class="table table-striped">
-                    <thead>
-                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                    <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                    <th jhiSortBy="ligneVenteQte"><span jhiTranslate="winpharmApp.ligneVente.ligneVenteQte">Ligne Vente Qte</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                    <th jhiSortBy="ligneVentePrixTTC"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixTTC">Ligne Vente Prix TTC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                    <th jhiSortBy="ligneVentePrixHT"><span jhiTranslate="winpharmApp.ligneVente.ligneVentePrixHT">Ligne Vente Prix HT</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                    <th jhiSortBy="produit.id"><span jhiTranslate="winpharmApp.ligneVente.produit">Produit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                    <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let ligneVente of ligneVentes ;trackBy: trackId">
-                        <td><a [routerLink]="['/ligne-vente', ligneVente.id, 'view' ]">{{ligneVente.id}}</a></td>
-                        <td>{{ligneVente.ligneVenteQte}}</td>
-                        <td>{{ligneVente.ligneVentePrixTTC}}</td>
-                        <td>{{ligneVente.ligneVentePrixHT}}</td>
-                        <td>
-                            <div *ngIf="ligneVente.enteteVente">
-                                <a [routerLink]="['../entete-vente', ligneVente.enteteVente?.id, 'view' ]" >{{ligneVente.enteteVente?.id}}</a>
-                            </div>
-                        </td>
-                        <td>
-                            <div *ngIf="ligneVente.produit">
-                                <a [routerLink]="['../produit', ligneVente.produit?.id, 'view' ]" >{{ligneVente.produit?.id}}</a>
-                            </div>
-                        </td>
-                        <td class="text-right">
-                            <div class="btn-group">
-                                <button type="submit"
-                                        [routerLink]="['/ligne-vente', ligneVente.id, 'view' ]"
-                                        class="btn btn-info btn-sm">
-                                    <fa-icon [icon]="'eye'"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                                </button>
-                                <button type="submit"
-                                        [routerLink]="['/ligne-vente', ligneVente.id, 'edit']"
-                                        class="btn btn-primary btn-sm">
-                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                                </button>
-                                <button type="submit"
-                                        [routerLink]="['/', 'ligne-vente', { outlets: { popup: ligneVente.id + '/delete'} }]"
-                                        replaceUrl="true"
-                                        queryParamsHandling="merge"
-                                        class="btn btn-danger btn-sm">
-                                    <fa-icon [icon]="'times'"></fa-icon>
-                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div [hidden]="ligneVentes?.length === 0">
-                <div class="row justify-content-center">
-                    <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-                </div>
-                <div class="row justify-content-center">
-                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-                </div>
+            <div class="col">
+                <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteType" for="field_enteteVenteType">Entete Vente Type</label>
+                        <input type="text" class="form-control" name="enteteVenteType" id="field_enteteVenteType"
+                               formControlName="enteteVenteType"/>
+                        <div *ngIf="editForm.get('enteteVenteType').invalid && (editForm.get('enteteVenteType').dirty || editForm.get('enteteVenteType').touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('enteteVenteType').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                            </small>
+                        </div>
+                    </div>
             </div>
         </div>
-        
-        
-        
-
-
-
-                <div class="text-center">
-                    <br>
-                    <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                    </button>
-                    <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                    </button>
-                </div>
-            
+            <div class="text-center">
+                <br>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
             </div>
-        
-           
-        </form>  -->
-        <jhi-ligne-vente2-update ></jhi-ligne-vente2-update>
+        </div>
+       </div>
+        </form>
+        <jhi-ligne-vente-update [childMessage]="obj"></jhi-ligne-vente-update>
    
       
     </div>

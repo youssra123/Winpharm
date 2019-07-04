@@ -1,10 +1,13 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <br>
+        <span>  {{childMessage}}</span>
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 class="text-center" id="jhi-ligne-vente-heading" jhiTranslate="winpharmApp.ligneVente.home.createOrEditLabel">Create or edit a Ligne Vente</h2>
+         
             <hr>
             <br>
+          
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -70,7 +73,7 @@
         </form>
     </div>
 </div>
-   
+
 <div class="row justify-content-center">
     
     <h2 id="page-heading">
@@ -135,3 +138,4 @@
         </div>
     </div>
 </div>
+<button (click)="save2()"></button>

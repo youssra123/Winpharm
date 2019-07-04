@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -36,6 +36,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
     client: []
   });
 
+  public obj: any;
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected enteteVenteService: EnteteVenteService,
@@ -46,6 +47,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.obj = this.createFromForm();
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ enteteVente }) => {
       this.updateForm(enteteVente);
@@ -95,6 +97,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
 
   save() {
     this.isSaving = true;
+
     const enteteVente = this.createFromForm();
     if (enteteVente.id !== undefined) {
       this.subscribeToSaveResponse(this.enteteVenteService.update(enteteVente));

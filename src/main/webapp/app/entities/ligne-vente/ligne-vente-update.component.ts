@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter, Input } from '@angular/core';
 import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,7 +22,9 @@ import { ITEMS_PER_PAGE } from 'app/shared';
 export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   isSaving: boolean;
   currentAccount: any;
+  // ligneVentes: ILigneVente[]=new LigneVente[10];
   ligneVentes: ILigneVente[];
+  //tableau:any = new ligneVente3[3];
   error: any;
   success: any;
   eventSubscriber: Subscription;
@@ -37,6 +39,7 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   produits: IProduit[];
   public count: number = 0;
   public ligneVente1: any;
+  @Input() childMessage: any;
   enteteventes: IEnteteVente[];
 
   editForm = this.fb.group({
@@ -65,6 +68,8 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log('parent ' + this.childMessage.enteteVenteType);
+
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ ligneVente }) => {
       this.updateForm(ligneVente);
@@ -115,8 +120,22 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
     console.log('ligneVente.ligneVenteQte ' + ligneVente.ligneVenteQte);
     console.log('ligneVente.produit ' + ligneVente.produit.id);
     console.log('ligneVente.produit.designiation ' + ligneVente.produit.produitLibelle);
-    this.ligneVentes = [
-      {
+    if (this.ligneVentes == null) {
+      this.ligneVentes = [
+        {
+          id: ligneVente.id,
+          ligneVenteDesignation: 'string',
+          ligneVentePrixHT: 0,
+          ligneVentePrixTTC: 0,
+          ligneVenteQte: ligneVente.ligneVenteQte,
+          ligneVenteTotalHT: 0,
+          ligneVenteTotalTTC: 0,
+          produit: ligneVente.produit,
+          enteteVente: this.childMessage
+        }
+      ];
+    } else {
+      this.ligneVentes.push({
         id: ligneVente.id,
         ligneVenteDesignation: 'string',
         ligneVentePrixHT: 0,
@@ -124,14 +143,19 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
         ligneVenteQte: ligneVente.ligneVenteQte,
         ligneVenteTotalHT: 0,
         ligneVenteTotalTTC: 0,
-        produit: ligneVente.produit
-      }
-    ];
-    // this.ligneVentes[this.count]=this.ligneVente1;
-    // this.count++;
+        produit: ligneVente.produit,
+        enteteVente: this.childMessage
+      });
+    }
+    //   console.log("JSON.stringify(ligneVentes)"+JSON.stringify(this.ligneVente1));
+
     this.loadAll();
   }
-
+  save2() {
+    for (var i = 0; i < this.ligneVentes.length; i++) {
+      this.subscribeToSaveResponse(this.ligneVenteService.create(this.ligneVentes[i]));
+    }
+  }
   private createFromForm(): ILigneVente {
     const entity = {
       ...new LigneVente(),
@@ -238,6 +262,6 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   protected paginateLigneVentes(data: ILigneVente[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    this.ligneVentes = data;
+    //this.ligneVentes = data;
   }
 }
