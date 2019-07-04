@@ -33,8 +33,10 @@ public class Grossiste implements Serializable {
     @Column(name = "grossiste_adresse", length = 40, nullable = false)
     private String grossisteAdresse;
 
-    @Column(name = "grossiste_telephone")
-    private Integer grossisteTelephone;
+    @NotNull
+    @Size(min = 10, max = 20)
+    @Column(name = "grossiste_telephone", length = 20, nullable = false)
+    private String grossisteTelephone;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -76,16 +78,16 @@ public class Grossiste implements Serializable {
         this.grossisteAdresse = grossisteAdresse;
     }
 
-    public Integer getGrossisteTelephone() {
+    public String getGrossisteTelephone() {
         return grossisteTelephone;
     }
 
-    public Grossiste grossisteTelephone(Integer grossisteTelephone) {
+    public Grossiste grossisteTelephone(String grossisteTelephone) {
         this.grossisteTelephone = grossisteTelephone;
         return this;
     }
 
-    public void setGrossisteTelephone(Integer grossisteTelephone) {
+    public void setGrossisteTelephone(String grossisteTelephone) {
         this.grossisteTelephone = grossisteTelephone;
     }
 
@@ -125,7 +127,7 @@ public class Grossiste implements Serializable {
             "id=" + getId() +
             ", grossisteRaisSoc='" + getGrossisteRaisSoc() + "'" +
             ", grossisteAdresse='" + getGrossisteAdresse() + "'" +
-            ", grossisteTelephone=" + getGrossisteTelephone() +
+            ", grossisteTelephone='" + getGrossisteTelephone() + "'" +
             "}";
     }
 }

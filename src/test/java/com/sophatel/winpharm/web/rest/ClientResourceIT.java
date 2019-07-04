@@ -37,11 +37,11 @@ public class ClientResourceIT {
     private static final String DEFAULT_CLIENT_NOM = "AAAAAAAAAA";
     private static final String UPDATED_CLIENT_NOM = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_CLIENT_TELEPHONE = 10;
-    private static final Integer UPDATED_CLIENT_TELEPHONE = 11;
-
     private static final String DEFAULT_CLIENT_ADRESSE = "AAAAAAAAAA";
     private static final String UPDATED_CLIENT_ADRESSE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CLIENT_TELEPHONE = "AAAAAAAAAA";
+    private static final String UPDATED_CLIENT_TELEPHONE = "BBBBBBBBBB";
 
     @Autowired
     private ClientRepository clientRepository;
@@ -89,8 +89,8 @@ public class ClientResourceIT {
     public static Client createEntity(EntityManager em) {
         Client client = new Client()
             .clientNom(DEFAULT_CLIENT_NOM)
-            .clientTelephone(DEFAULT_CLIENT_TELEPHONE)
-            .clientAdresse(DEFAULT_CLIENT_ADRESSE);
+            .clientAdresse(DEFAULT_CLIENT_ADRESSE)
+            .clientTelephone(DEFAULT_CLIENT_TELEPHONE);
         return client;
     }
     /**
@@ -102,8 +102,8 @@ public class ClientResourceIT {
     public static Client createUpdatedEntity(EntityManager em) {
         Client client = new Client()
             .clientNom(UPDATED_CLIENT_NOM)
-            .clientTelephone(UPDATED_CLIENT_TELEPHONE)
-            .clientAdresse(UPDATED_CLIENT_ADRESSE);
+            .clientAdresse(UPDATED_CLIENT_ADRESSE)
+            .clientTelephone(UPDATED_CLIENT_TELEPHONE);
         return client;
     }
 
@@ -128,8 +128,8 @@ public class ClientResourceIT {
         assertThat(clientList).hasSize(databaseSizeBeforeCreate + 1);
         Client testClient = clientList.get(clientList.size() - 1);
         assertThat(testClient.getClientNom()).isEqualTo(DEFAULT_CLIENT_NOM);
-        assertThat(testClient.getClientTelephone()).isEqualTo(DEFAULT_CLIENT_TELEPHONE);
         assertThat(testClient.getClientAdresse()).isEqualTo(DEFAULT_CLIENT_ADRESSE);
+        assertThat(testClient.getClientTelephone()).isEqualTo(DEFAULT_CLIENT_TELEPHONE);
     }
 
     @Test
@@ -200,8 +200,8 @@ public class ClientResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(client.getId().intValue())))
             .andExpect(jsonPath("$.[*].clientNom").value(hasItem(DEFAULT_CLIENT_NOM.toString())))
-            .andExpect(jsonPath("$.[*].clientTelephone").value(hasItem(DEFAULT_CLIENT_TELEPHONE)))
-            .andExpect(jsonPath("$.[*].clientAdresse").value(hasItem(DEFAULT_CLIENT_ADRESSE.toString())));
+            .andExpect(jsonPath("$.[*].clientAdresse").value(hasItem(DEFAULT_CLIENT_ADRESSE.toString())))
+            .andExpect(jsonPath("$.[*].clientTelephone").value(hasItem(DEFAULT_CLIENT_TELEPHONE.toString())));
     }
     
     @Test
@@ -216,8 +216,8 @@ public class ClientResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(client.getId().intValue()))
             .andExpect(jsonPath("$.clientNom").value(DEFAULT_CLIENT_NOM.toString()))
-            .andExpect(jsonPath("$.clientTelephone").value(DEFAULT_CLIENT_TELEPHONE))
-            .andExpect(jsonPath("$.clientAdresse").value(DEFAULT_CLIENT_ADRESSE.toString()));
+            .andExpect(jsonPath("$.clientAdresse").value(DEFAULT_CLIENT_ADRESSE.toString()))
+            .andExpect(jsonPath("$.clientTelephone").value(DEFAULT_CLIENT_TELEPHONE.toString()));
     }
 
     @Test
@@ -242,8 +242,8 @@ public class ClientResourceIT {
         em.detach(updatedClient);
         updatedClient
             .clientNom(UPDATED_CLIENT_NOM)
-            .clientTelephone(UPDATED_CLIENT_TELEPHONE)
-            .clientAdresse(UPDATED_CLIENT_ADRESSE);
+            .clientAdresse(UPDATED_CLIENT_ADRESSE)
+            .clientTelephone(UPDATED_CLIENT_TELEPHONE);
 
         restClientMockMvc.perform(put("/api/clients")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -255,8 +255,8 @@ public class ClientResourceIT {
         assertThat(clientList).hasSize(databaseSizeBeforeUpdate);
         Client testClient = clientList.get(clientList.size() - 1);
         assertThat(testClient.getClientNom()).isEqualTo(UPDATED_CLIENT_NOM);
-        assertThat(testClient.getClientTelephone()).isEqualTo(UPDATED_CLIENT_TELEPHONE);
         assertThat(testClient.getClientAdresse()).isEqualTo(UPDATED_CLIENT_ADRESSE);
+        assertThat(testClient.getClientTelephone()).isEqualTo(UPDATED_CLIENT_TELEPHONE);
     }
 
     @Test

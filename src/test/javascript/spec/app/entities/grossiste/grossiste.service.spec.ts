@@ -23,7 +23,7 @@ describe('Service Tests', () => {
       service = injector.get(GrossisteService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Grossiste(0, 'AAAAAAA', 'AAAAAAA', 0);
+      elemDefault = new Grossiste(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -61,7 +61,7 @@ describe('Service Tests', () => {
           {
             grossisteRaisSoc: 'BBBBBB',
             grossisteAdresse: 'BBBBBB',
-            grossisteTelephone: 1
+            grossisteTelephone: 'BBBBBB'
           },
           elemDefault
         );
@@ -81,7 +81,7 @@ describe('Service Tests', () => {
           {
             grossisteRaisSoc: 'BBBBBB',
             grossisteAdresse: 'BBBBBB',
-            grossisteTelephone: 1
+            grossisteTelephone: 'BBBBBB'
           },
           elemDefault
         );

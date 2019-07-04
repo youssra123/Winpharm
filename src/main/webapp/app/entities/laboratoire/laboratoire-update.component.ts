@@ -17,7 +17,7 @@ export class LaboratoireUpdateComponent implements OnInit {
     id: [],
     laboratoireRaisSoc: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
     laboratoireAdresse: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-    laboratoireTelephone: [null, [Validators.required, Validators.min(10), Validators.max(10)]]
+    laboratoireTelephone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(20)]]
   });
 
   constructor(protected laboratoireService: LaboratoireService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}

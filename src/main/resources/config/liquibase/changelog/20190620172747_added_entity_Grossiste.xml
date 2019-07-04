@@ -23,8 +23,8 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="grossiste_telephone" type="integer">
-                <constraints nullable="true" />
+            <column name="grossiste_telephone" type="varchar(20)">
+                <constraints nullable="false" />
             </column>
 
             <column name="grossis_ville_id" type="bigint">
@@ -52,7 +52,7 @@
             <column name="id" type="numeric"/>
             <column name="grossiste_rais_soc" type="string"/>
             <column name="grossiste_adresse" type="string"/>
-            <column name="grossiste_telephone" type="numeric"/>
+            <column name="grossiste_telephone" type="string"/>
             <column name="grossis_ville_id" type="numeric"/>
         </loadData>
     </changeSet>

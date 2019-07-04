@@ -4,7 +4,7 @@ export interface IGrossiste {
   id?: number;
   grossisteRaisSoc?: string;
   grossisteAdresse?: string;
-  grossisteTelephone?: number;
+  grossisteTelephone?: string;
   grossis_ville?: IVille;
 }
 
@@ -13,7 +13,7 @@ export class Grossiste implements IGrossiste {
     public id?: number,
     public grossisteRaisSoc?: string,
     public grossisteAdresse?: string,
-    public grossisteTelephone?: number,
+    public grossisteTelephone?: string,
     public grossis_ville?: IVille
   ) {}
 }

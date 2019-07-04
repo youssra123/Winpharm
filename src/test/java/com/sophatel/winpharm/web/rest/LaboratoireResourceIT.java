@@ -40,8 +40,8 @@ public class LaboratoireResourceIT {
     private static final String DEFAULT_LABORATOIRE_ADRESSE = "AAAAAAAAAA";
     private static final String UPDATED_LABORATOIRE_ADRESSE = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_LABORATOIRE_TELEPHONE = 10;
-    private static final Integer UPDATED_LABORATOIRE_TELEPHONE = 11;
+    private static final String DEFAULT_LABORATOIRE_TELEPHONE = "AAAAAAAAAA";
+    private static final String UPDATED_LABORATOIRE_TELEPHONE = "BBBBBBBBBB";
 
     @Autowired
     private LaboratoireRepository laboratoireRepository;
@@ -219,7 +219,7 @@ public class LaboratoireResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(laboratoire.getId().intValue())))
             .andExpect(jsonPath("$.[*].laboratoireRaisSoc").value(hasItem(DEFAULT_LABORATOIRE_RAIS_SOC.toString())))
             .andExpect(jsonPath("$.[*].laboratoireAdresse").value(hasItem(DEFAULT_LABORATOIRE_ADRESSE.toString())))
-            .andExpect(jsonPath("$.[*].laboratoireTelephone").value(hasItem(DEFAULT_LABORATOIRE_TELEPHONE)));
+            .andExpect(jsonPath("$.[*].laboratoireTelephone").value(hasItem(DEFAULT_LABORATOIRE_TELEPHONE.toString())));
     }
     
     @Test
@@ -235,7 +235,7 @@ public class LaboratoireResourceIT {
             .andExpect(jsonPath("$.id").value(laboratoire.getId().intValue()))
             .andExpect(jsonPath("$.laboratoireRaisSoc").value(DEFAULT_LABORATOIRE_RAIS_SOC.toString()))
             .andExpect(jsonPath("$.laboratoireAdresse").value(DEFAULT_LABORATOIRE_ADRESSE.toString()))
-            .andExpect(jsonPath("$.laboratoireTelephone").value(DEFAULT_LABORATOIRE_TELEPHONE));
+            .andExpect(jsonPath("$.laboratoireTelephone").value(DEFAULT_LABORATOIRE_TELEPHONE.toString()));
     }
 
     @Test

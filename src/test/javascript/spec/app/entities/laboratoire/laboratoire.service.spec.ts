@@ -23,7 +23,7 @@ describe('Service Tests', () => {
       service = injector.get(LaboratoireService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Laboratoire(0, 'AAAAAAA', 'AAAAAAA', 0);
+      elemDefault = new Laboratoire(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -61,7 +61,7 @@ describe('Service Tests', () => {
           {
             laboratoireRaisSoc: 'BBBBBB',
             laboratoireAdresse: 'BBBBBB',
-            laboratoireTelephone: 1
+            laboratoireTelephone: 'BBBBBB'
           },
           elemDefault
         );
@@ -81,7 +81,7 @@ describe('Service Tests', () => {
           {
             laboratoireRaisSoc: 'BBBBBB',
             laboratoireAdresse: 'BBBBBB',
-            laboratoireTelephone: 1
+            laboratoireTelephone: 'BBBBBB'
           },
           elemDefault
         );
