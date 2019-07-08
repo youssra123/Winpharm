@@ -43,11 +43,7 @@
                             <span jhiTranslate="global.menu.entities.enteteVente">Entete de Vente</span>
                         </a>
                     </li>
-            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                        <a class="nav-link" routerLink="ligne-vente"  (click)="collapseNavbar()">
-                            <span jhiTranslate="global.menu.entities.ligneVente">Ligne de Vente</span>
-                        </a>
-                    </li>
+          
                     <li *ngSwitchCase="true" class="nav-item dropdown" dropdown>
                         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
                                 <span>

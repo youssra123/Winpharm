@@ -41,16 +41,22 @@
                       
              
           
-               
-               
-                
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">Produit</label>
-                    <select class="form-control" id="field_produit" name="produit" formControlName="produit">
-                        <option *ngIf="!editForm.get('produit').value" [ngValue]="null" selected></option>
-                        <option [ngValue]="produitOption.id === editForm.get('produit').value?.id ? editForm.get('produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.id}}</option>
-                    </select>
-                </div>
+              
+                  <!-- 
+                        <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">produit</label>
+                        <select class="form-control" id="field_produit" name="produit" formControlName="produit">
+                            <option [ngValue]="null"></option>
+                            <option [ngValue]="produitOption.id === editForm.get('produit').value?.id ? editForm.get('produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.id}}</option>
+                        </select>
+                    </div>-->
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">produit</label>
+                        <input class="form-control" class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un produit" list="field_produit" name="produit">
+                        <datalist  id="field_produit"  formControlName="produit">    
+                            <option [ngValue]="produitOption.id === editForm.get('produit').value?.id ? editForm.get('produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.produitLibelle}}</option>
+                        </datalist>
+                    </div>   
                 <div *ngIf="editForm.get('produit').invalid && (editForm.get('produit').dirty || editForm.get('produit').touched)">
                     <small class="form-text text-danger"
                            *ngIf="editForm.get('produit').errors.required" jhiTranslate="entity.validation.required">

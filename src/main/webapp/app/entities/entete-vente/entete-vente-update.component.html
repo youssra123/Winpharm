@@ -39,14 +39,31 @@
                         </div>
                 <div class="col-6">
                       
-                    <div class="form-group">
+                    <!--
+                           
                         <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
-                        <select class="form-control" id="field_client" name="client" formControlName="client">
+                        <input   class="form-control form-control-sm ml-3 w-75" list="field_client" type="text" placeholder="Chercher un categorie" aria-label="Search"
+                        mdbInput>
+                     <datalist  class="form-control" id="field_client" name="client" formControlName="client">
                             <option [ngValue]="null"></option>
-                            <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
-                        </select>
+                            <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientNom}}</option>
+                        </datalist>
                     </div>
-          
+                -->
+                <!--  <div class="form-group">
+                <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
+                <input class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un client" list="field_client"  name="client">
+                <datalist id="field_client"  name="client" formControlName="client">
+                    <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
+                </datalist>
+            </div> -->
+                   <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">client</label>
+                        <input class="form-control" class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un client" list="field_client" name="client">
+                        <datalist  id="field_client"  formControlName="client">    
+                            <option name="client" class="form-control" [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientNom}}</option>
+                        </datalist>
+                    </div>     
                
              
             </div>

@@ -47,6 +47,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('*******************************affichage1**********************');
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ enteteVente }) => {
       this.updateForm(enteteVente);
@@ -58,6 +59,9 @@ export class EnteteVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IClient[]>) => response.body)
       )
       .subscribe((res: IClient[]) => (this.clients = res), (res: HttpErrorResponse) => this.onError(res.message));
+    console.log('*******************************affichage2**********************');
+    console.log('*************************clients*************:  ' + this.clients);
+
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ ligneVente }) => {
       this.updateForm(ligneVente);
@@ -69,6 +73,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IEnteteVente[]>) => response.body)
       )
       .subscribe((res: IEnteteVente[]) => (this.enteteventes = res), (res: HttpErrorResponse) => this.onError(res.message));
+    console.log('*******************************affichage3**********************');
     this.produitService
       .query()
       .pipe(
@@ -76,6 +81,14 @@ export class EnteteVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IProduit[]>) => response.body)
       )
       .subscribe((res: IProduit[]) => (this.produits = res), (res: HttpErrorResponse) => this.onError(res.message));
+    console.log('*******************************affichage4**********************');
+    console.log('*************************produits*************:  ' + this.produits);
+  }
+  onKey(libelle: string) {
+    this.clients = [];
+    this.clientService
+      .findByDes(libelle, {})
+      .subscribe((res: HttpResponse<IClient[]>) => this.paginateClients(res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(enteteVente: IEnteteVente) {
@@ -93,10 +106,16 @@ export class EnteteVenteUpdateComponent implements OnInit {
   previousState() {
     window.history.back();
   }
-
+  protected paginateClients(data: IClient[]) {
+    this.clients = data;
+  }
   save() {
     this.isSaving = true;
     this.obj = this.createFromForm();
+    console.log('*********************clients*********************:' + this.clients);
+    console.log('*********************produits*********************:' + this.produits);
+    console.log('clients: ' + this.editForm.get(['client']).value);
+    console.log('enteteVenteType: ' + this.editForm.get(['enteteVenteType']).value);
     /* const enteteVente = this.createFromForm();
     if (enteteVente.id !== undefined) {
       this.subscribeToSaveResponse(this.enteteVenteService.update(enteteVente));
@@ -138,6 +157,9 @@ export class EnteteVenteUpdateComponent implements OnInit {
   }
 
   trackClientById(index: number, item: IClient) {
+    return item.id;
+  }
+  trackProduitById(index: number, item: IProduit) {
     return item.id;
   }
 }

@@ -67,8 +67,7 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log('parent ' + this.childMessage.enteteVenteType);
-
+    console.log('*******************************affichage3**********************');
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ ligneVente }) => {
       this.updateForm(ligneVente);
@@ -80,18 +79,21 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
         map((response: HttpResponse<IProduit[]>) => response.body)
       )
       .subscribe((res: IProduit[]) => (this.produits = res), (res: HttpErrorResponse) => this.onError(res.message));
-    /* this.enteteVenteService
+    console.log('*******************************affichage1**********************');
+
+    this.enteteVenteService
       .query()
       .pipe(
         filter((mayBeOk: HttpResponse<IEnteteVente[]>) => mayBeOk.ok),
         map((response: HttpResponse<IEnteteVente[]>) => response.body)
       )
       .subscribe((res: IEnteteVente[]) => (this.enteteventes = res), (res: HttpErrorResponse) => this.onError(res.message));
-      this.loadAll();
-      this.accountService.identity().then(account => {
-        this.currentAccount = account;
-      });
-      this.registerChangeInLigneVentes();*/
+    this.loadAll();
+    this.accountService.identity().then(account => {
+      this.currentAccount = account;
+    });
+    this.registerChangeInLigneVentes();
+    console.log('*******************************affichage2**********************');
   }
 
   updateForm(ligneVente: ILigneVente) {
@@ -113,6 +115,7 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    console.log('*********************produits*********************:' + this.produits);
     this.isSaving = true;
     const ligneVente = this.createFromForm();
     console.log('ligneVente.id ' + ligneVente.id);
@@ -146,13 +149,14 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
         enteteVente: this.childMessage
       });
     }
-    //   console.log("JSON.stringify(ligneVentes)"+JSON.stringify(this.ligneVente1));
+    console.log('JSON.stringify(ligneVentes)' + JSON.stringify(this.ligneVente1));
 
-    this.loadAll();
+    // this.loadAll();
   }
   save2() {
+    console.log('*********************produits*********************:' + this.produits);
     this.subscribeToSaveResponse(this.enteteVenteService.create(this.childMessage));
-    for (var i = 0; i < this.ligneVentes.length; i++) {
+    for (let i = 0; i < this.ligneVentes.length; i++) {
       this.subscribeToSaveResponse(this.ligneVenteService.create(this.ligneVentes[i]));
     }
   }
@@ -207,7 +211,7 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
         (res: HttpResponse<ILigneVente[]>) => this.paginateLigneVentes(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-    this.ngOnInit();
+    // this.ngOnInit();
   }
   loadPage(page: number) {
     if (page !== this.previousPage) {
@@ -262,6 +266,6 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   protected paginateLigneVentes(data: ILigneVente[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    //this.ligneVentes = data;
+    this.ligneVentes = data;
   }
 }
