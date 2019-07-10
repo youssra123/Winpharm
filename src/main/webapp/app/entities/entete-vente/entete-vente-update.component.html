@@ -1,12 +1,7 @@
 <div class="row justify-content-center">
-    
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 class="text-center" id="jhi-entete-vente-heading" jhiTranslate="winpharmApp.enteteVente.home.createOrEditLabel">Create or edit a Entete Vente</h2>
-           
-            <hr>
-            <br>
-          
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -17,7 +12,6 @@
                 <div class="controls">
                     <div class="row">
                         <div class="col-6">
-                         
                             <div class="form-group">
                                 <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation" for="field_enteteVenteDateCreation">Entete Vente Date Creation</label>
                                 <div class="d-flex">
@@ -33,68 +27,67 @@
                                         This field should be a date and time.
                                     </small>
                                 </div>
-                            </div>    
-     
-
+                            </div>
                         </div>
-                <div class="col-6">
-                      
-                    <!--
-                           
+                        <div class="col-6">
+                            
+                            <!--
+                                
+                                <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
+                                <input   class="form-control form-control-sm ml-3 w-75" list="field_client" type="text" placeholder="Chercher un categorie" aria-label="Search"
+                                mdbInput>
+                            <datalist  class="form-control" id="field_client" name="client" formControlName="client">
+                                    <option [ngValue]="null"></option>
+                                    <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientNom}}</option>
+                                </datalist>
+                            </div>
+                        -->
+                        <!--  <div class="form-group">
                         <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
-                        <input   class="form-control form-control-sm ml-3 w-75" list="field_client" type="text" placeholder="Chercher un categorie" aria-label="Search"
-                        mdbInput>
-                     <datalist  class="form-control" id="field_client" name="client" formControlName="client">
-                            <option [ngValue]="null"></option>
-                            <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientNom}}</option>
+                        <input class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un client" list="field_client"  name="client">
+                        <datalist id="field_client"  name="client" formControlName="client">
+                            <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
                         </datalist>
-                    </div>
-                -->
-                <!--  <div class="form-group">
-                <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">Client</label>
-                <input class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un client" list="field_client"  name="client">
-                <datalist id="field_client"  name="client" formControlName="client">
-                    <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
-                </datalist>
-            </div> -->
-                   <div class="form-group">
-                        <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">client</label>
-                        <input class="form-control" class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un client" list="field_client" name="client">
-                        <datalist  id="field_client"  formControlName="client">    
-                            <option name="client" class="form-control" [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientNom}}</option>
-                        </datalist>
-                    </div>     
-               
-             
-            </div>
-            <div class="col">
-                <div class="form-group">
-                        <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteType" for="field_enteteVenteType">Entete Vente Type</label>
-                        <input type="text" class="form-control" name="enteteVenteType" id="field_enteteVenteType"
-                               formControlName="enteteVenteType"/>
-                        <div *ngIf="editForm.get('enteteVenteType').invalid && (editForm.get('enteteVenteType').dirty || editForm.get('enteteVenteType').touched)">
-                            <small class="form-text text-danger"
-                                   *ngIf="editForm.get('enteteVenteType').errors.required" jhiTranslate="entity.validation.required">
-                            This field is required.
-                            </small>
+                    </div> -->
+                        <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">client</label>
+                                <input class="form-control" class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un client" list="field_client" name="client">
+                                <datalist  id="field_client"  formControlName="client">    
+                                    <option name="client" class="form-control" [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientNom}}</option>
+                                </datalist>
+                            </div>     
+                    
+                    
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.enteteVenteType" for="field_enteteVenteType">Entete Vente Type</label>
+                                <input type="text" class="form-control" name="enteteVenteType" id="field_enteteVenteType"
+                                        formControlName="enteteVenteType"/>
+                                <div *ngIf="editForm.get('enteteVenteType').invalid && (editForm.get('enteteVenteType').dirty || editForm.get('enteteVenteType').touched)">
+                                    <small class="form-text text-danger"
+                                            *ngIf="editForm.get('enteteVenteType').errors.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                    </small>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="text-center">
+                        <br>
+                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-            <div class="text-center">
-                <br>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
-        </div>
-       </div>
         </form>
-        <jhi-ligne-vente-update [childMessage]="obj"></jhi-ligne-vente-update>
-   
-      
+        <p>one LV : {{ ligneVenteFromLV | json }}</p>
+        <p>List LV : </p>
+        <ul><li *ngFor="let lv of listLV">{{ lv | json }}</li></ul>
+        <jhi-ligne-vente-update (produitID)="deleteLigneVente($event)" (sentLigneVentes)="sendLigneVentes($event)"></jhi-ligne-vente-update>
     </div>
 </div>

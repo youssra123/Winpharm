@@ -10,7 +10,7 @@ import { JhiAlertService } from 'ng-jhipster';
 import { IEnteteVente, EnteteVente } from 'app/shared/model/entete-vente.model';
 import { EnteteVenteService } from './entete-vente.service';
 import { IClient } from 'app/shared/model/client.model';
-import { ILigneVente } from 'app/shared/model/ligne-vente.model';
+import { ILigneVente, LigneVente } from 'app/shared/model/ligne-vente.model';
 import { ClientService } from 'app/entities/client';
 import { IProduit } from 'app/shared/model/produit.model';
 import { ProduitService } from 'app/entities/produit';
@@ -36,7 +36,8 @@ export class EnteteVenteUpdateComponent implements OnInit {
     client: []
   });
 
-  public obj: any;
+  public listLV: ILigneVente[] = [];
+
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected enteteVenteService: EnteteVenteService,
@@ -84,6 +85,44 @@ export class EnteteVenteUpdateComponent implements OnInit {
     console.log('*******************************affichage4**********************');
     console.log('*************************produits*************:  ' + this.produits);
   }
+
+  sendLigneVentes(data: ILigneVente) {
+    console.log('Vente : sendLigneVentes() : ' + JSON.stringify(data));
+    // test if produit existe deja
+    for (let i = 0; i < this.listLV.length; i++) {
+      if (this.listLV[i].produit == data.produit) {
+        this.listLV[i].ligneVenteQte += data.ligneVenteQte;
+        return;
+      }
+    }
+    // add ligneVente to the list
+    this.listLV.push({
+      ...new LigneVente(),
+      id: null,
+      ligneVenteDesignation: null,
+      ligneVentePrixHT: 0,
+      ligneVentePrixTTC: 0,
+      ligneVenteTotalHT: 0,
+      ligneVenteTotalTTC: 0,
+      ligneVenteQte: data.ligneVenteQte,
+      enteteVente: undefined,
+      produit: data.produit
+    });
+    for (let i = 0; i < this.listLV.length; i++) {
+      console.log('lv : ' + JSON.stringify(this.listLV[i]));
+    }
+  }
+
+  deleteLigneVente(id: number) {
+    console.log('event received ! - id : ' + id);
+    for (let i = 0; i < this.listLV.length; i++) {
+      if (this.listLV[i].produit.id == id) {
+        this.listLV.splice(i, 1);
+        return;
+      }
+    }
+  }
+
   onKey(libelle: string) {
     this.clients = [];
     this.clientService
@@ -111,7 +150,6 @@ export class EnteteVenteUpdateComponent implements OnInit {
   }
   save() {
     this.isSaving = true;
-    this.obj = this.createFromForm();
     console.log('*********************clients*********************:' + this.clients);
     console.log('*********************produits*********************:' + this.produits);
     console.log('clients: ' + this.editForm.get(['client']).value);

@@ -23,7 +23,6 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   currentAccount: any;
   // ligneVentes: ILigneVente[]=new LigneVente[10];
   ligneVentes: ILigneVente[];
-  //tableau:any = new ligneVente3[3];
   error: any;
   success: any;
   eventSubscriber: Subscription;
@@ -38,7 +37,6 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   produits: IProduit[];
   public count: number = 0;
   public ligneVente1: any;
-  @Input() childMessage: any;
   enteteventes: IEnteteVente[];
 
   editForm = this.fb.group({
@@ -52,6 +50,10 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
     produit: [null, Validators.required],
     enteteVente: []
   });
+
+  @Output() sentLigneVentes = new EventEmitter<ILigneVente>();
+  @Output() produitID = new EventEmitter<number>();
+  public LVSample: ILigneVente;
 
   constructor(
     protected jhiAlertService: JhiAlertService,
@@ -110,12 +112,30 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
     });
   }
 
+  addLigneVente() {
+    this.LVSample = this.createFromForm();
+    this.LVSample.ligneVenteDesignation = this.LVSample.produit.produitLibelle;
+    this.sentLigneVentes.emit(this.LVSample);
+  }
+
+  sendProduitToDelete(id: number) {
+    console.log('delete btn clicked ! - id : ' + id);
+    this.produitID.emit(id);
+    for (let i = 0; i < this.ligneVentes.length; i++) {
+      if (this.ligneVentes[i].produit.id == id) {
+        this.ligneVentes.splice(i, 1);
+        console.log(' and ligneVente Deleted !');
+        return;
+      }
+    }
+  }
+
   previousState() {
     window.history.back();
   }
 
   save() {
-    console.log('*********************produits*********************:' + this.produits);
+    console.log('*********************produits********************* : ' + this.produits);
     this.isSaving = true;
     const ligneVente = this.createFromForm();
     console.log('ligneVente.id ' + ligneVente.id);
@@ -133,10 +153,16 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
           ligneVenteTotalHT: 0,
           ligneVenteTotalTTC: 0,
           produit: ligneVente.produit,
-          enteteVente: this.childMessage
+          enteteVente: null
         }
       ];
     } else {
+      for (let i = 0; i < this.ligneVentes.length; i++) {
+        if (this.ligneVentes[i].produit == ligneVente.produit) {
+          this.ligneVentes[i].ligneVenteQte += ligneVente.ligneVenteQte;
+          return;
+        }
+      }
       this.ligneVentes.push({
         id: ligneVente.id,
         ligneVenteDesignation: 'string',
@@ -146,20 +172,18 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
         ligneVenteTotalHT: 0,
         ligneVenteTotalTTC: 0,
         produit: ligneVente.produit,
-        enteteVente: this.childMessage
+        enteteVente: null
       });
     }
     console.log('JSON.stringify(ligneVentes)' + JSON.stringify(this.ligneVente1));
-
     // this.loadAll();
   }
-  save2() {
-    console.log('*********************produits*********************:' + this.produits);
-    this.subscribeToSaveResponse(this.enteteVenteService.create(this.childMessage));
-    for (let i = 0; i < this.ligneVentes.length; i++) {
-      this.subscribeToSaveResponse(this.ligneVenteService.create(this.ligneVentes[i]));
-    }
-  }
+  // save2() {
+  //   console.log('*********************produits*********************:' + this.produits);
+  //   for (let i = 0; i < this.ligneVentes.length; i++) {
+  //     this.subscribeToSaveResponse(this.ligneVenteService.create(this.ligneVentes[i]));
+  //   }
+  // }
   private createFromForm(): ILigneVente {
     const entity = {
       ...new LigneVente(),
