@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-12">
         <br>
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <div>
@@ -11,7 +11,7 @@
                 </div>
                 <div class="controls">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                     <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.ligneVenteQte" for="field_ligneVenteQte">Ligne Vente Qte</label>
                                     <input type="number" class="form-control" name="ligneVenteQte" id="field_ligneVenteQte"
@@ -28,7 +28,7 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <!-- <div class="form-group">
                                 <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">produit</label>
                                 <select class="form-control" id="field_produit" name="produit" formControlName="produit">
@@ -44,12 +44,12 @@
                                 </datalist>
                             </div> -->
                             <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">Produit</label>
-                                    <select class="form-control" id="field_produit" name="produit" formControlName="produit">
-                                        <option *ngIf="!editForm.get('produit').value" [ngValue]="null" selected></option>
-                                        <option [ngValue]="produitOption.id === editForm.get('produit').value?.id ? editForm.get('produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.id}}</option>
-                                    </select>
-                                </div>
+                                <label class="form-control-label" jhiTranslate="winpharmApp.ligneVente.produit" for="field_produit">Produit</label>
+                                <select class="form-control" id="field_produit" name="produit" formControlName="produit">
+                                    <option *ngIf="!editForm.get('produit').value" [ngValue]="null" selected></option>
+                                    <option [ngValue]="produitOption.id === editForm.get('produit').value?.id ? editForm.get('produit').value : produitOption" *ngFor="let produitOption of produits; trackBy: trackProduitById">{{produitOption.produitLibelle}}</option>
+                                </select>
+                            </div>
                             <div *ngIf="editForm.get('produit').invalid && (editForm.get('produit').dirty || editForm.get('produit').touched)">
                                 <small class="form-text text-danger"
                                     *ngIf="editForm.get('produit').errors.required" jhiTranslate="entity.validation.required">
@@ -57,12 +57,11 @@
                                 </small>
                             </div>
                         </div>
-                    </div>
-                    <div class="text-center">
-                        <!-- <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                        </button> -->
-                        <button class="btn btn-outline-primary" (click)="addLigneVente()">+ add</button>
+                        <div class="col-4 text-center">
+                            <div class="form-group">
+                                <button class="btn btn-success" (click)="addLigneVente()">+ add</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,10 +70,6 @@
 </div>
 
 <div class="row justify-content-center">
-    
-    <h2 id="page-heading">
-        <span jhiTranslate="winpharmApp.ligneVente.home.title">Ligne Ventes</span>
-    </h2>
     <jhi-alert></jhi-alert>
     <div class="alert alert-warning" *ngIf="ligneVentes?.length === 0">
         <span jhiTranslate="winpharmApp.ligneVente.home.notFound">No ligneVentes found</span>
@@ -108,7 +103,7 @@
                     <td>{{ligneVente.ligneVenteTotalTTC}}</td>
                     <td class="text-right">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger btn-sm" (click)="sendProduitToDelete(ligneVente.produit.id)">
+                            <button type="button" class="btn btn-danger btn-sm" (click)="sendProduitToDelete(ligneVente.produit.id, ligneVente.id)">
                                 <fa-icon [icon]="'times'"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                             </button>
@@ -117,13 +112,13 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div [hidden]="ligneVentes?.length === 0">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
+        <!-- <div [hidden]="ligneVentes?.length === 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div> -->
     </div>
 </div>

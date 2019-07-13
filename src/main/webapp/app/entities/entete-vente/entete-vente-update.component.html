@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 class="text-center" id="jhi-entete-vente-heading" jhiTranslate="winpharmApp.enteteVente.home.createOrEditLabel">Create or edit a Entete Vente</h2>
+            <h2 class="text-center" id="jhi-entete-vente-heading" jhiTranslate="winpharmApp.enteteVente.home.createOrEditLabel">Create or edit a Vente</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -51,8 +51,8 @@
                     </div> -->
                         <div class="form-group">
                                 <label class="form-control-label" jhiTranslate="winpharmApp.enteteVente.client" for="field_client">client</label>
-                                <input class="form-control" class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un client" list="field_client" name="client">
-                                <datalist  id="field_client"  formControlName="client">    
+                                <input class="form-control" class="form-control form-control-sm ml-3 w-75" placeholder="Chercher un client" list="field_client" name="client" formControlName="client">
+                                <datalist  id="field_client">   
                                     <option name="client" class="form-control" [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.clientNom}}</option>
                                 </datalist>
                             </div>     
@@ -85,9 +85,6 @@
                 </div>
             </div>
         </form>
-        <p>one LV : {{ ligneVenteFromLV | json }}</p>
-        <p>List LV : </p>
-        <ul><li *ngFor="let lv of listLV">{{ lv | json }}</li></ul>
-        <jhi-ligne-vente-update (produitID)="deleteLigneVente($event)" (sentLigneVentes)="sendLigneVentes($event)"></jhi-ligne-vente-update>
+        <jhi-ligne-vente-update [lvFromParent]="lvFromParent" (produitID)="deleteLigneVente($event)" (sentLigneVentes)="sendLigneVentes($event)"></jhi-ligne-vente-update>
     </div>
 </div>

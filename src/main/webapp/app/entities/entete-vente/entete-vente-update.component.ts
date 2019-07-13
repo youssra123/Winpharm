@@ -14,6 +14,7 @@ import { ILigneVente, LigneVente } from 'app/shared/model/ligne-vente.model';
 import { ClientService } from 'app/entities/client';
 import { IProduit } from 'app/shared/model/produit.model';
 import { ProduitService } from 'app/entities/produit';
+import { LigneVenteService } from '../ligne-vente';
 @Component({
   selector: 'jhi-entete-vente-update',
   templateUrl: './entete-vente-update.component.html'
@@ -24,6 +25,8 @@ export class EnteteVenteUpdateComponent implements OnInit {
   clients: IClient[];
 
   enteteventes: IEnteteVente[];
+
+  ligneVentes: ILigneVente[];
 
   produits: IProduit[];
 
@@ -36,11 +39,15 @@ export class EnteteVenteUpdateComponent implements OnInit {
     client: []
   });
 
-  public listLV: ILigneVente[] = [];
+  public listLV: ILigneVente[] = new Array();
+  public lvFromParent: ILigneVente[];
+  // les IDs des lignes de ventes supprimées !
+  public deletedLVs: number[] = [];
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected enteteVenteService: EnteteVenteService,
+    protected ligneVenteService: LigneVenteService,
     protected clientService: ClientService,
     protected activatedRoute: ActivatedRoute,
     protected produitService: ProduitService,
@@ -48,11 +55,12 @@ export class EnteteVenteUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('*******************************affichage1**********************');
+    console.log('EnteteV : ngOnInit() : start');
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ enteteVente }) => {
       this.updateForm(enteteVente);
     });
+    console.log('EnteteV : call client service');
     this.clientService
       .query()
       .pipe(
@@ -60,13 +68,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IClient[]>) => response.body)
       )
       .subscribe((res: IClient[]) => (this.clients = res), (res: HttpErrorResponse) => this.onError(res.message));
-    console.log('*******************************affichage2**********************');
-    console.log('*************************clients*************:  ' + this.clients);
-
-    this.isSaving = false;
-    this.activatedRoute.data.subscribe(({ ligneVente }) => {
-      this.updateForm(ligneVente);
-    });
+    console.log('EnteteV : call entete-vente service');
     this.enteteVenteService
       .query()
       .pipe(
@@ -74,7 +76,15 @@ export class EnteteVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IEnteteVente[]>) => response.body)
       )
       .subscribe((res: IEnteteVente[]) => (this.enteteventes = res), (res: HttpErrorResponse) => this.onError(res.message));
-    console.log('*******************************affichage3**********************');
+    console.log('EnteteV : call ligneVente service');
+    this.ligneVenteService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IProduit[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IProduit[]>) => response.body)
+      )
+      .subscribe((res: ILigneVente[]) => res, (res: HttpErrorResponse) => this.onError(res.message));
+    console.log('EnteteV : call produit service');
     this.produitService
       .query()
       .pipe(
@@ -82,15 +92,19 @@ export class EnteteVenteUpdateComponent implements OnInit {
         map((response: HttpResponse<IProduit[]>) => response.body)
       )
       .subscribe((res: IProduit[]) => (this.produits = res), (res: HttpErrorResponse) => this.onError(res.message));
-    console.log('*******************************affichage4**********************');
-    console.log('*************************produits*************:  ' + this.produits);
+    console.log('EnteteV : ngOnInit() : end');
   }
 
   sendLigneVentes(data: ILigneVente) {
     console.log('Vente : sendLigneVentes() : ' + JSON.stringify(data));
+
+    if (this.listLV == null) {
+      this.listLV = new Array();
+    }
+
     // test if produit existe deja
     for (let i = 0; i < this.listLV.length; i++) {
-      if (this.listLV[i].produit == data.produit) {
+      if (this.listLV[i].produit === data.produit) {
         this.listLV[i].ligneVenteQte += data.ligneVenteQte;
         return;
       }
@@ -98,7 +112,7 @@ export class EnteteVenteUpdateComponent implements OnInit {
     // add ligneVente to the list
     this.listLV.push({
       ...new LigneVente(),
-      id: null,
+      id: undefined,
       ligneVenteDesignation: null,
       ligneVentePrixHT: 0,
       ligneVentePrixTTC: 0,
@@ -111,14 +125,27 @@ export class EnteteVenteUpdateComponent implements OnInit {
     for (let i = 0; i < this.listLV.length; i++) {
       console.log('lv : ' + JSON.stringify(this.listLV[i]));
     }
+
+    if (this.listLV != null) {
+      console.log('listLV : working !!!!!!!!');
+    } else {
+      console.log('listLV : not working ?????????');
+    }
   }
 
-  deleteLigneVente(id: number) {
-    console.log('event received ! - id : ' + id);
-    for (let i = 0; i < this.listLV.length; i++) {
-      if (this.listLV[i].produit.id == id) {
-        this.listLV.splice(i, 1);
-        return;
+  deleteLigneVente(ids: number[]) {
+    console.log('produit id received to delete ! - id : ' + ids[0]);
+    if (ids.length > 1) {
+      console.log('lv id received to delete ! - id : ' + ids[1]);
+      this.deletedLVs.push(ids[1]);
+      console.log('deletedLVs : ' + this.deletedLVs);
+    }
+    if (this.listLV != null) {
+      for (let i = 0; i < this.listLV.length; i++) {
+        if (this.listLV[i].produit.id == ids[0]) {
+          this.listLV.splice(i, 1);
+          return;
+        }
       }
     }
   }
@@ -140,6 +167,9 @@ export class EnteteVenteUpdateComponent implements OnInit {
         enteteVente.enteteVenteDateCreation != null ? enteteVente.enteteVenteDateCreation.format(DATE_TIME_FORMAT) : null,
       client: enteteVente.client
     });
+    this.lvFromParent = enteteVente.ligneVentes;
+    this.listLV = enteteVente.ligneVentes;
+    console.log('lvFromParent : ' + enteteVente.ligneVentes);
   }
 
   previousState() {
@@ -154,12 +184,18 @@ export class EnteteVenteUpdateComponent implements OnInit {
     console.log('*********************produits*********************:' + this.produits);
     console.log('clients: ' + this.editForm.get(['client']).value);
     console.log('enteteVenteType: ' + this.editForm.get(['enteteVenteType']).value);
-    /* const enteteVente = this.createFromForm();
+    console.log('list ligneVente: ' + this.listLV);
+    const enteteVente = this.createFromForm();
     if (enteteVente.id !== undefined) {
       this.subscribeToSaveResponse(this.enteteVenteService.update(enteteVente));
     } else {
       this.subscribeToSaveResponse(this.enteteVenteService.create(enteteVente));
-    }*/
+    }
+    for (let i = 0; i < this.deletedLVs.length; i++) {
+      console.log('delete LV - id : ' + this.deletedLVs[i]);
+      console.log(this.ligneVenteService.delete(this.deletedLVs[i]));
+      console.log('deleted LV - id : ' + this.deletedLVs[i]);
+    }
   }
 
   private createFromForm(): IEnteteVente {
@@ -173,7 +209,8 @@ export class EnteteVenteUpdateComponent implements OnInit {
         this.editForm.get(['enteteVenteDateCreation']).value != null
           ? moment(this.editForm.get(['enteteVenteDateCreation']).value, DATE_TIME_FORMAT)
           : undefined,
-      client: this.editForm.get(['client']).value
+      client: this.editForm.get(['client']).value,
+      ligneVentes: this.listLV
     };
     return entity;
   }

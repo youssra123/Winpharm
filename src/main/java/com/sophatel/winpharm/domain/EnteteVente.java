@@ -173,4 +173,13 @@ public class EnteteVente implements Serializable {
             ", enteteVenteDateCreation='" + getEnteteVenteDateCreation() + "'" +
             "}";
     }
+
+    public void calculTotaux(){
+        this.enteteVenteTotalHT = (double) 0;
+        this.enteteVenteTotalTTC = (double) 0;
+        for (LigneVente lv : this.ligneVentes){
+            this.enteteVenteTotalHT += lv.getLigneVenteTotalHT();
+            this.enteteVenteTotalTTC += lv.getLigneVenteTotalTTC();
+        }
+    }
 }

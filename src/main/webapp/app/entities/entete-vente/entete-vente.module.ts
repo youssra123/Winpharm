@@ -16,9 +16,7 @@ import {
 import {
   LigneVenteComponent,
   LigneVenteDetailComponent,
-  LigneVenteUpdateComponent,
-  LigneVente2DetailComponent,
-  LigneVente2UpdateComponent
+  LigneVenteUpdateComponent
   //LigneVenteDeletePopupComponent,
   //LigneVenteDeleteDialogComponent,
   //ligneVenteRoute,
@@ -37,8 +35,6 @@ const ENTITY_STATES = [...enteteVenteRoute, ...enteteVentePopupRoute];
     LigneVenteComponent,
     LigneVenteUpdateComponent,
     LigneVenteDetailComponent,
-    LigneVente2DetailComponent,
-    LigneVente2UpdateComponent,
     EnteteVenteDeleteDialogComponent,
     EnteteVenteDeletePopupComponent
   ],
@@ -46,7 +42,6 @@ const ENTITY_STATES = [...enteteVenteRoute, ...enteteVentePopupRoute];
     LigneVenteComponent,
     LigneVenteUpdateComponent,
     EnteteVenteComponent,
-    LigneVente2UpdateComponent,
     EnteteVenteUpdateComponent,
     EnteteVenteDeleteDialogComponent,
     EnteteVenteDeletePopupComponent

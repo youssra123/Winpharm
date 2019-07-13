@@ -9,7 +9,6 @@ import { LigneVente } from 'app/shared/model/ligne-vente.model';
 import { LigneVenteService } from './ligne-vente.service';
 import { LigneVenteComponent } from './ligne-vente.component';
 import { LigneVenteDetailComponent } from './ligne-vente-detail.component';
-import { LigneVente2DetailComponent } from './ligne-vente2-detail.component';
 import { LigneVenteUpdateComponent } from './ligne-vente-update.component';
 import { LigneVenteDeletePopupComponent } from './ligne-vente-delete-dialog.component';
 import { ILigneVente } from 'app/shared/model/ligne-vente.model';
@@ -58,7 +57,7 @@ export const ligneVenteRoute: Routes = [
   },
   {
     path: ':id/voire',
-    component: LigneVente2DetailComponent,
+    component: LigneVenteDetailComponent,
     resolve: {
       ligneVente: LigneVenteResolve
     },

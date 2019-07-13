@@ -343,4 +343,17 @@ public class Stock implements Serializable {
             ", stockDateCreation='" + getStockDateCreation() + "'" +
             "}";
     }
+
+    public int stockActuel(){
+        if (this.stockQte1 > 0 && this.stockDatePeremption1.compareTo(ZonedDateTime.now()) >= 0){
+            return 1;
+        }
+        if (this.stockQte2 > 0 && this.stockDatePeremption2.compareTo(ZonedDateTime.now()) >= 0){
+            return 2;
+        }
+        if (this.stockQte3 > 0 && this.stockDatePeremption3.compareTo(ZonedDateTime.now()) >= 0){
+            return 3;
+        }
+        return 0;
+    }
 }

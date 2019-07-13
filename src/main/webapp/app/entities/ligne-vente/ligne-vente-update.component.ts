@@ -10,10 +10,11 @@ import { LigneVenteService } from './ligne-vente.service';
 import { IProduit } from 'app/shared/model/produit.model';
 import { ProduitService } from 'app/entities/produit';
 import { IEnteteVente } from 'app/shared/model/entete-vente.model';
-import { EnteteVenteService } from 'app/entities/entete-vente';
+// import { EnteteVenteService } from 'app/entities/entete-vente';
 import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 import { AccountService } from 'app/core';
 import { ITEMS_PER_PAGE } from 'app/shared';
+import { Stock, IStock } from 'app/shared/model/stock.model';
 @Component({
   selector: 'jhi-ligne-vente-update',
   templateUrl: './ligne-vente-update.component.html'
@@ -35,9 +36,9 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   previousPage: any;
   reverse: any;
   produits: IProduit[];
-  public count: number = 0;
+  public count = 0;
   public ligneVente1: any;
-  enteteventes: IEnteteVente[];
+  // enteteventes: IEnteteVente[];
 
   editForm = this.fb.group({
     id: [],
@@ -51,15 +52,17 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
     enteteVente: []
   });
 
+  @Input() lvFromParent: ILigneVente[];
   @Output() sentLigneVentes = new EventEmitter<ILigneVente>();
-  @Output() produitID = new EventEmitter<number>();
+  @Output() produitID = new EventEmitter<number[]>();
   public LVSample: ILigneVente;
+  public myStock: IStock = new Stock();
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected ligneVenteService: LigneVenteService,
     protected produitService: ProduitService,
-    protected enteteVenteService: EnteteVenteService,
+    // protected enteteVenteService: EnteteVenteService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     protected accountService: AccountService,
@@ -69,11 +72,15 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log('*******************************affichage3**********************');
+    console.log('LigneV : ngOnInit() : start');
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ ligneVente }) => {
       this.updateForm(ligneVente);
     });
+    if (this.lvFromParent) {
+      this.ligneVentes = this.lvFromParent;
+    }
+    console.log('LigneV : call produit service');
     this.produitService
       .query()
       .pipe(
@@ -81,35 +88,27 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
         map((response: HttpResponse<IProduit[]>) => response.body)
       )
       .subscribe((res: IProduit[]) => (this.produits = res), (res: HttpErrorResponse) => this.onError(res.message));
-    console.log('*******************************affichage1**********************');
-
-    this.enteteVenteService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IEnteteVente[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IEnteteVente[]>) => response.body)
-      )
-      .subscribe((res: IEnteteVente[]) => (this.enteteventes = res), (res: HttpErrorResponse) => this.onError(res.message));
-    this.loadAll();
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });
     this.registerChangeInLigneVentes();
-    console.log('*******************************affichage2**********************');
+    console.log('LigneV : ngOnInit() : end');
   }
 
   updateForm(ligneVente: ILigneVente) {
-    this.editForm.patchValue({
-      id: ligneVente.id,
-      ligneVenteQte: ligneVente.ligneVenteQte,
-      ligneVenteTotalHT: ligneVente.ligneVenteTotalHT,
-      ligneVenteTotalTTC: ligneVente.ligneVenteTotalTTC,
-      ligneVentePrixHT: ligneVente.ligneVentePrixHT,
-      ligneVentePrixTTC: ligneVente.ligneVentePrixTTC,
-      ligneVenteDesignation: ligneVente.ligneVenteDesignation,
-      produit: ligneVente.produit,
-      enteteVente: ligneVente.enteteVente
-    });
+    if (ligneVente) {
+      this.editForm.patchValue({
+        id: ligneVente.id,
+        ligneVenteQte: ligneVente.ligneVenteQte,
+        ligneVenteTotalHT: ligneVente.ligneVenteTotalHT,
+        ligneVenteTotalTTC: ligneVente.ligneVenteTotalTTC,
+        ligneVentePrixHT: ligneVente.ligneVentePrixHT,
+        ligneVentePrixTTC: ligneVente.ligneVentePrixTTC,
+        ligneVenteDesignation: ligneVente.ligneVenteDesignation,
+        produit: ligneVente.produit,
+        enteteVente: ligneVente.enteteVente
+      });
+    }
   }
 
   addLigneVente() {
@@ -118,11 +117,14 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
     this.sentLigneVentes.emit(this.LVSample);
   }
 
-  sendProduitToDelete(id: number) {
-    console.log('delete btn clicked ! - id : ' + id);
-    this.produitID.emit(id);
+  sendProduitToDelete(id: number, idLV?: number) {
+    console.log('produit delete btn clicked ! - id : ' + id);
+    if (idLV) {
+      console.log('lv delete btn clicked ! - id : ' + idLV);
+    }
+    this.produitID.emit([id, idLV]);
     for (let i = 0; i < this.ligneVentes.length; i++) {
-      if (this.ligneVentes[i].produit.id == id) {
+      if (this.ligneVentes[i].produit.id === id) {
         this.ligneVentes.splice(i, 1);
         console.log(' and ligneVente Deleted !');
         return;
@@ -158,7 +160,7 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
       ];
     } else {
       for (let i = 0; i < this.ligneVentes.length; i++) {
-        if (this.ligneVentes[i].produit == ligneVente.produit) {
+        if (this.ligneVentes[i].produit === ligneVente.produit) {
           this.ligneVentes[i].ligneVenteQte += ligneVente.ligneVenteQte;
           return;
         }
@@ -235,7 +237,6 @@ export class LigneVenteUpdateComponent implements OnInit, OnDestroy {
         (res: HttpResponse<ILigneVente[]>) => this.paginateLigneVentes(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-    // this.ngOnInit();
   }
   loadPage(page: number) {
     if (page !== this.previousPage) {

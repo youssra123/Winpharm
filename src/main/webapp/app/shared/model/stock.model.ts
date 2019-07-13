@@ -19,6 +19,7 @@ export interface IStock {
   stockPrixHT3?: number;
   stockDateCreation?: Moment;
   produit?: IProduit;
+  getNumber?: () => number;
 }
 
 export class Stock implements IStock {
@@ -41,4 +42,8 @@ export class Stock implements IStock {
     public stockDateCreation?: Moment,
     public produit?: IProduit
   ) {}
+
+  public getNumber(): number {
+    return 10;
+  }
 }

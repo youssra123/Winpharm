@@ -4,6 +4,8 @@ import com.sophatel.winpharm.service.EnteteVenteService;
 import com.sophatel.winpharm.service.LigneVenteService;
 import com.sophatel.winpharm.domain.EnteteVente;
 import com.sophatel.winpharm.domain.LigneVente;
+import com.sophatel.winpharm.domain.Produit;
+import com.sophatel.winpharm.domain.Stock;
 import com.sophatel.winpharm.repository.EnteteVenteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,13 +46,39 @@ public class EnteteVenteServiceImpl implements EnteteVenteService {
     public EnteteVente save(EnteteVente enteteVente) {
         log.debug("Request to save EnteteVente : {}", enteteVente);
         Set<LigneVente> ligneVentes;
+        Produit produit;
+        Stock stock;
+        double prixHT = 0, prixTTC = 0;
+        int stockActuel, qte = 0;
         if (enteteVente.getLigneVentes() != null){
             ligneVentes = enteteVente.getLigneVentes();
             for (LigneVente lv : ligneVentes){
+                produit = lv.getProduit();
+                stock = produit.getStock();
+                stockActuel = stock.stockActuel();
+                qte = lv.getLigneVenteQte();
+                lv.setLigneVenteDesignation(produit.getProduitLibelle());
+                if (stock != null){
+                    if (stockActuel == 1){
+                        prixHT = stock.getStockPrixHT1();
+                        prixTTC = stock.getStockPrix1();
+                    } else if (stockActuel == 2){
+                        prixHT = stock.getStockPrixHT2();
+                        prixTTC = stock.getStockPrix2();
+                    } else if (stockActuel == 3){
+                        prixHT = stock.getStockPrixHT3();
+                        prixTTC = stock.getStockPrix3();
+                    }
+                    lv.setLigneVentePrixHT(prixHT);
+                    lv.setLigneVentePrixTTC(prixTTC);
+                    lv.setLigneVenteTotalHT(qte * prixHT);
+                    lv.setLigneVenteTotalTTC(qte * prixTTC);
+                }
                 ligneVenteService.save(lv);
                 lv.setEnteteVente(enteteVente);
             }
         }
+        enteteVente.calculTotaux();
         return enteteVenteRepository.save(enteteVente);
     }
 
@@ -91,8 +119,6 @@ public class EnteteVenteServiceImpl implements EnteteVenteService {
     public Optional<EnteteVente> findOne(Long id) {
         log.debug("Request to get EnteteVente : {}", id);
         Optional<EnteteVente> vente = enteteVenteRepository.findById(id);
-        if (vente.get().getLigneVentes() != null)
-            return vente;
         Set<LigneVente> ligneVentes = ligneVenteService.findAllByVente(id);
         vente.get().ligneVentes(ligneVentes);
         return vente;

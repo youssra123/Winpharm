@@ -69,6 +69,7 @@ export class ProduitUpdateComponent implements OnInit {
   });
 
   public innerStock: IStock = {
+    ...new Stock(),
     id: 100,
     stockCouvertureMax: 0,
     stockCouvertureMin: 0,

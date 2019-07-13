@@ -5,11 +5,11 @@
         "title": "Ligne de Ventes",
         "createLabel": "Créer une nouvelle Ligne de Vente",
         "createOrEditLabel": "Créer ou éditer un Ligne Vente",
-        "notFound": "Aucun Ligne Vente trouvé"
+        "notFound": "Aucune Ligne Vente trouvée"
       },
       "created": "Une nouvelle Ligne de Vente a été créé avec l'identifiant {{ param }}",
-      "updated": "La Ligne de Vente avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "La Ligne de Vente avec l'identifiant {{ param }} a été supprimé",
+      "updated": "La Ligne de Vente avec l'identifiant {{ param }} a été mise à jour",
+      "deleted": "La Ligne de Vente avec l'identifiant {{ param }} a été supprimée",
       "delete": {
         "question": "Etes-vous certain de vouloir supprimer la Ligne de Vente {{ id }} ?"
       },
@@ -22,7 +22,7 @@
       "ligneVentePrixTTC": "Prix TTC",
       "ligneVentePrixHT": "Prix HT",
       "ligneVenteDesignation": "Designation",
-      "enteteVente": "Entete de Vente",
+      "enteteVente": "Vente",
       "produit": "Produit"
     }
   }

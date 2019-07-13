@@ -27,7 +27,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new EnteteVente(0, 0, 0, 0, currentDate);
+      elemDefault = new EnteteVente(0, 0, 0, 'AAAA', currentDate);
     });
 
     describe('Service methods', () => {

@@ -3,7 +3,6 @@ package com.sophatel.winpharm.config;
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.core.env.Environment;
 
 import java.util.*;
 

@@ -33,6 +33,7 @@ export class LigneVenteService {
   }
 
   delete(id: number): Observable<HttpResponse<any>> {
+    console.log('receive : delete LV - id : ' + id);
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 }

@@ -11,8 +11,6 @@ import {
   LigneVenteDeletePopupComponent,
   LigneVenteDeleteDialogComponent,
   ligneVenteRoute,
-  LigneVente2DetailComponent,
-  LigneVente2UpdateComponent,
   ligneVentePopupRoute
 } from './';
 
@@ -24,18 +22,10 @@ const ENTITY_STATES = [...ligneVenteRoute, ...ligneVentePopupRoute];
     LigneVenteComponent,
     LigneVenteDetailComponent,
     LigneVenteUpdateComponent,
-    LigneVente2DetailComponent,
-    LigneVenteDeleteDialogComponent,
-    LigneVente2UpdateComponent,
-    LigneVenteDeletePopupComponent
-  ],
-  entryComponents: [
-    LigneVenteComponent,
-    LigneVente2DetailComponent,
-    LigneVenteUpdateComponent,
     LigneVenteDeleteDialogComponent,
     LigneVenteDeletePopupComponent
   ],
+  entryComponents: [LigneVenteComponent, LigneVenteUpdateComponent, LigneVenteDeleteDialogComponent, LigneVenteDeletePopupComponent],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
