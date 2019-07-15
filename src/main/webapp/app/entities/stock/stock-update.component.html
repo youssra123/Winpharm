@@ -1,4 +1,3 @@
-<p>data from parent : {{stockFromParent | json}}</p>
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
@@ -186,70 +185,55 @@
                 <div class="col-12 offset-md-5"> <br><br> <h4 class="col"> Stock 3</h4><br></div>
                
                  <div class="col-6">
-                        <div class="form-group">
-                                <label class="form-control-label" jhiTranslate="winpharmApp.stock.stockQte3" for="field_stockQte3">Stock Qte 3</label>
-                                <input type="number" class="form-control" name="stockQte3" id="field_stockQte3"
-                                       formControlName="stockQte3"/>
-                                <div *ngIf="editForm.get('stockQte3').invalid && (editForm.get('stockQte3').dirty || editForm.get('stockQte3').touched)">
-                                    <small class="form-text text-danger"
-                                           *ngIf="editForm.get('stockQte3').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
-                                        This field should be at least 0.
-                                    </small>
-                                    <small class="form-text text-danger"
-                                        [hidden]="!editForm.get('stockQte3')?.errors?.number" jhiTranslate="entity.validation.number">
-                                        This field should be a number.
-                                    </small>
-                                </div>
-                            </div>
-                        
-                            
-                            <div class="form-group">
-                                    <label class="form-control-label" jhiTranslate="winpharmApp.stock.stockPrix3" for="field_stockPrix3">Stock Prix 3</label>
-                                    <input type="number" class="form-control" name="stockPrix3" id="field_stockPrix3"
-                                           formControlName="stockPrix3"/>
-                                    <div *ngIf="editForm.get('stockPrix3').invalid && (editForm.get('stockPrix3').dirty || editForm.get('stockPrix3').touched)">
-                                        <small class="form-text text-danger"
-                                               *ngIf="editForm.get('stockPrix3').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
-                                            This field should be at least 0.
-                                        </small>
-                                        <small class="form-text text-danger"
-                                            [hidden]="!editForm.get('stockPrix3')?.errors?.number" jhiTranslate="entity.validation.number">
-                                            This field should be a number.
-                                        </small>
-                                    </div>
-                                </div>
-          
-
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.stock.stockQte3" for="field_stockQte3">Stock Qte 3</label>
+                        <input type="number" class="form-control" name="stockQte3" id="field_stockQte3"
+                                formControlName="stockQte3"/>
+                        <div *ngIf="editForm.get('stockQte3').invalid && (editForm.get('stockQte3').dirty || editForm.get('stockQte3').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="editForm.get('stockQte3').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                                This field should be at least 0.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.get('stockQte3')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.stock.stockPrix3" for="field_stockPrix3">Stock Prix 3</label>
+                        <input type="number" class="form-control" name="stockPrix3" id="field_stockPrix3"
+                                formControlName="stockPrix3"/>
+                        <div *ngIf="editForm.get('stockPrix3').invalid && (editForm.get('stockPrix3').dirty || editForm.get('stockPrix3').touched)">
+                            <small class="form-text text-danger"
+                                    *ngIf="editForm.get('stockPrix3').errors.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                                This field should be at least 0.
+                            </small>
+                            <small class="form-text text-danger"
+                                [hidden]="!editForm.get('stockPrix3')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
                  </div> 
                  <div class="col-6">
-                        <div class="form-group">
-                                <label class="form-control-label" jhiTranslate="winpharmApp.stock.stockDatePeremption3" for="field_stockDatePeremption3">Stock Date Peremption 3</label>
-                                <div class="d-flex">
-                                    <input id="field_stockDatePeremption3" type="datetime-local" class="form-control" name="stockDatePeremption3" formControlName="stockDatePeremption3" placeholder="YYYY-MM-DD HH:mm"/>
-                                </div>
-                            </div>
-                        
-                            <div class="form-group">
-                                <label class="form-control-label" jhiTranslate="winpharmApp.stock.stockPrixHT3" for="field_stockPrixHT3">Stock Prix HT 3</label>
-                                <input type="number" class="form-control" name="stockPrixHT3" id="field_stockPrixHT3"
-                                       formControlName="stockPrixHT3"/>
-                            </div>
-                            
-
-                 </div>    
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.stock.stockDatePeremption3" for="field_stockDatePeremption3">Stock Date Peremption 3</label>
+                        <div class="d-flex">
+                            <input id="field_stockDatePeremption3" type="datetime-local" class="form-control" name="stockDatePeremption3" formControlName="stockDatePeremption3" placeholder="YYYY-MM-DD HH:mm"/>
+                        </div>
+                    </div>
                 
-
+                    <div class="form-group">
+                        <label class="form-control-label" jhiTranslate="winpharmApp.stock.stockPrixHT3" for="field_stockPrixHT3">Stock Prix HT 3</label>
+                        <input type="number" class="form-control" name="stockPrixHT3" id="field_stockPrixHT3"
+                                formControlName="stockPrixHT3"/>
+                    </div>
+                 </div>    
             </div>
             <div class="text-center">
-                <br>
-                <button type="button" (click)="sendMsg('mymsg')">send</button>
-                <br>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary"  routerLinkActive="router-link-active" [routerLink]="['/produit']">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
+                <button type="button" class="btn btn-primary" (click)="fireEvent()">Suivant</button>
             </div>
 
         </div> 
@@ -257,4 +241,3 @@
         </form>
     </div>
 </div>
-<button (click)="fireEvent()">Send Event</button>

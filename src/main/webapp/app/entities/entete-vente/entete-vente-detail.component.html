@@ -2,68 +2,98 @@
     <div class="col-8">
         <div *ngIf="enteteVente">
             <br>
-            <h2 class="text-center"><span jhiTranslate="winpharmApp.enteteVente.detail.title">Entete Vente</span> {{enteteVente.id}}</h2>
+            <h2 class="text-center"><span jhiTranslate="winpharmApp.enteteVente.detail.title">Vente N°</span> {{enteteVente.id}}</h2>
             <hr>
             <br>
             <jhi-alert-error></jhi-alert-error>
-                <div class="controls">
-                    <div class="row">
-                        <div class="col-md-6 bottom">
-                            <div class="text-content">
-                                <span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalHT">Entete Vente Total HT</span>
-                            </div>
-                            <div>   
-                                <span>{{enteteVente.enteteVenteTotalHT}}</span>
-                            </div>
+            <div class="controls">
+                <div class="row">
+                    <div class="col-md-6 bottom">
+                        <div class="text-content">
+                            <span jhiTranslate="winpharmApp.enteteVente.enteteVenteType">Vente Type</span>
                         </div>
-                        <div class="col-md-6 bottom">
-                                <div class="text-content">
-                                    <span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalTTC">Entete Vente Total TTC</span>
-                                </div>
-                                <div>   
-                                    <span>{{enteteVente.enteteVenteTotalTTC}}</span>
-                                </div>
+                        <div>   
+                            <span>{{enteteVente.enteteVenteType}}</span>
                         </div>
-                        <div class="col-md-6 bottom">
-                                <div class="text-content">
-                                    <span jhiTranslate="winpharmApp.enteteVente.enteteVenteType">Entete Vente Type</span>
-                                </div>
-                                <div>   
-                                    <span>{{enteteVente.enteteVenteType}}</span>
-                                </div>
+                    </div>
+                    <div class="col-md-6 bottom">
+                        <div class="text-content">
+                            <span jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation">Vente Date Creation</span>
                         </div>
-                        <div class="col-md-6 bottom">
-                                <div class="text-content">
-                                    <span jhiTranslate="winpharmApp.enteteVente.enteteVenteDateCreation">Entete Vente Date Creation</span>
-                                </div>
-                                <div>   
-                                        <span>{{enteteVente.enteteVenteDateCreation}}</span>
-                                </div>
+                        <div>   
+                            <span>{{enteteVente.enteteVenteDateCreation}}</span>
                         </div>
-                        <div class="col-md-6 bottom">
-                                <div class="text-content">
-                                        <span jhiTranslate="winpharmApp.enteteVente.client">Client</span>
-                                </div>
-                                <div *ngIf="enteteVente.client">
-                                        <a [routerLink]="['/client', enteteVente.client?.id, 'view']">{{enteteVente.client?.clientNom}}</a>
-                                </div>
+                    </div>
+                    <div class="col-md-12 bottom">
+                        <div class="text-content">
+                            <span jhiTranslate="winpharmApp.enteteVente.client">Client</span>
                         </div>
-                
-              <div class="col-12 text-center">
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
+                        <div *ngIf="enteteVente.client">
+                            <a [routerLink]="['/client', enteteVente.client?.id, 'view']">{{enteteVente.client?.clientNom}}</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12 bottom">
+                        <div class="table-responsive" *ngIf="enteteVente.ligneVentes?.length > 0">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Produit</th>
+                                        <th>PU HT</th>
+                                        <th>PU TTC</th>
+                                        <th>Qte</th>
+                                        <th>Total HT</th>
+                                        <th>Total TTC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ligneVente of enteteVente.ligneVentes ;trackBy: trackId">
+                                        <td>{{ligneVente.id}}</td>
+                                        <td>
+                                            <div *ngIf="ligneVente.produit">
+                                                <a [routerLink]="['../produit', ligneVente.produit?.produitLibelle, 'view' ]" >{{ligneVente.produit.produitLibelle}}</a>
+                                            </div>
+                                        </td>
+                                        <td>{{ligneVente.ligneVentePrixHT}}</td>
+                                        <td>{{ligneVente.ligneVentePrixTTC}}</td>
+                                        <td>{{ligneVente.ligneVenteQte}}</td>
+                                        <td>{{ligneVente.ligneVenteTotalHT}}</td>
+                                        <td>{{ligneVente.ligneVenteTotalTTC}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 bottom">
+                        <div class="text-content">
+                            <span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalHT">Vente Total HT</span>
+                        </div>
+                        <div>   
+                            <span>{{enteteVente.enteteVenteTotalHT}} dh</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 bottom">
+                        <div class="text-content">
+                            <span jhiTranslate="winpharmApp.enteteVente.enteteVenteTotalTTC">Vente Total TTC</span>
+                        </div>
+                        <div>   
+                            <span>{{enteteVente.enteteVenteTotalTTC}} dh</span>
+                        </div>
+                    </div>
 
-            <button type="button"
-                    [routerLink]="['/entete-vente', enteteVente.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
-        </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" (click)="previousState()" class="btn btn-info">
+                            <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                        </button>
+
+                        <button type="button"
+                                [routerLink]="['/entete-vente', enteteVente.id, 'edit']"
+                                class="btn btn-primary">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 </div>

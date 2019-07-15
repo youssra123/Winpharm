@@ -45,10 +45,10 @@
                 <td>{{produit.produitLibelle}}</td>
                 <td>{{produit.produitActif}}</td>
                 <td>
-                        <div *ngIf="produit.stock">
-                            <a [routerLink]="['../stock', produit.stock?.id, 'view' ]" >{{produit.stock?.stockPrix1}}</a>
-                        </div>
-                    </td>
+                    <div *ngIf="produit.stock">
+                        <a [routerLink]="['../stock', produit.stock?.id, 'view' ]" >{{produit.stock?.stockPrix1}}</a>
+                    </div>
+                </td>
                 <td>
                     <div *ngIf="produit.stock">
                         <a [routerLink]="['../stock', produit.stock?.id, 'view' ]" >{{produit.stock?.id}}</a>

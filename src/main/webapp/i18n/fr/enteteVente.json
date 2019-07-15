@@ -14,12 +14,13 @@
         "question": "Etes-vous certain de vouloir supprimer la Vente {{ id }} ?"
       },
       "detail": {
-        "title": "Vente"
+        "title": "Vente N°",
+        "ligneVentes": "Lignes de vente"
       },
       "enteteVenteTotalHT": "Total HT",
       "enteteVenteTotalTTC": "Total TTC",
       "enteteVenteType": "Type",
-      "enteteVenteDateCreation": "Date Creation",
+      "enteteVenteDateCreation": "Date de Creation",
       "client": "Client",
       "ligneVente": "Ligne de Vente"
     }
